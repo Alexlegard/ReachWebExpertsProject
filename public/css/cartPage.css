@@ -1,0 +1,14 @@
+.cart__subtotal td,
+.cart__tax td,
+.cart__total td {
+  font-weight: bold;
+}
+
+.cart-items-table {
+  margin-bottom: 3vh;
+}
+
+.checkout-link {
+  margin-bottom: 3vh;
+}
+

@@ -1,0 +1,29 @@
+.welcome-restaurant-card {
+	background-color:white;
+	margin-top:1em;
+	margin-bottom:1em;
+	margin-left:auto;
+	margin-right:auto;
+	padding:3%;
+	max-width:700px;
+	
+	display:flex;
+	flex-direction:row;
+	flex-wrap:nowrap;
+	justify-content:flex-start;
+}
+
+
+.welcome-restaurant-card img {
+	margin-right:1em;
+}
+
+.welcome-restaurant-card:hover {
+	box-shadow: 5px 10px 8px #888888;
+}
+
+.top-panel h4 {
+	color:white;
+	text-align:center;
+	margin-top:1em;
+}

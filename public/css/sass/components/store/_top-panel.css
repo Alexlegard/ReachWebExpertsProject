@@ -1,0 +1,26 @@
+.top-panel {
+  background-color: #8B0000;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.top-panel h1 {
+  text-align: center;
+}
+
+.top-panel h1 {
+  color: white;
+}
+
+.top-panel p {
+  color: white;
+  font-size: 14pt;
+  margin-left: 2.5em;
+}
+
+.RestaurantLink {
+  background-color: #C0C0C0;
+}
+

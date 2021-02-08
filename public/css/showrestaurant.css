@@ -1,0 +1,36 @@
+.card-top {
+  background-color: #8B0000;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.card-top h1 {
+  text-align: center;
+  color: white;
+}
+
+.card-top p {
+  color: white;
+  font-size: 12pt;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Restaurant details */
+
+.restaurant-details {
+  margin-left: 5vw;
+  margin-top: 5vh;
+}
+
+/* Reviews */
+
+.reviews {
+  margin-left: 5vw;
+  margin-top: 5vh;
+}
+

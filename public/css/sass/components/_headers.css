@@ -1,0 +1,37 @@
+h1,
+h2,
+h4 {
+  text-align: center;
+}
+
+.header-large-green h1 {
+  font-family: "Roboto", sans-serif;
+  color: #228B22;
+  margin-bottom: 1em;
+}
+
+.subheader-large-green h2 {
+  font-family: "Roboto", sans-serif;
+  color: #228B22;
+  margin-bottom: 1em;
+}
+
+.header-large-blue h1 {
+  font-family: "Roboto", sans-serif;
+  color: #007bff;
+  margin-bottom: 1em;
+}
+
+.subheader-small-blue h2,
+.subheader-small-blue h4 {
+  font-family: "Roboto", sans-serif;
+  color: #007bff;
+  margin-bottom: 1em;
+}
+
+.header-large-black h1 {
+  font-family: "Roboto", sans-serif;
+  color: #343434;
+  margin-bottom: 1em;
+}
+

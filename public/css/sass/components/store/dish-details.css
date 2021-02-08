@@ -1,0 +1,14 @@
+.dish-details {
+  background-color: white;
+  border: 1px solid black;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.dish-details-image {
+  margin-right: 1em;
+}
+

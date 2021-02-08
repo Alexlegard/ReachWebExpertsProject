@@ -1,0 +1,25 @@
+.button-naked {
+  background: none;
+  border: none;
+}
+
+.not-favorited,
+.favorited:hover {
+  color: black;
+}
+
+.not-favorited:hover,
+.favorited {
+  color: red;
+}
+
+.form-submit input {
+  background-color: #FFCC00;
+  font: bold 14px Arial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 1em;
+}
+

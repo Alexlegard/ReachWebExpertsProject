@@ -1,0 +1,27 @@
+.card-top {
+  background-color: #8B0000;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.card-top h1,
+.card-top p {
+  text-align: center;
+}
+
+.card-top h1 {
+  color: white;
+}
+
+.card-top p {
+  color: white;
+  font-size: 16pt;
+}
+
+.dishes {
+  margin-left: 5vw;
+  margin-top: 5vh;
+}
+

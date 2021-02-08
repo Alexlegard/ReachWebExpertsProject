@@ -1,0 +1,446 @@
+body {
+  background-color: #E5E5E5;
+}
+
+.store-bottom-nav {
+  background-color: #BABABA;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.breadcrumbs-container-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.user-sidebar {
+  min-height: 94vh;
+  padding-top: 2vh;
+  background-color: #228B22;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.user-sidebar a {
+  display: block;
+  color: black;
+  padding-left: 5%;
+  padding-top: 1.2vh;
+  height: 5vh;
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
+  border-radius: 7px;
+  width: 100%;
+}
+
+.user-sidebar a span {
+  margin-right: 1em;
+}
+
+.user-sidebar-row:hover {
+  text-decoration: none;
+  background-color: #DCDCDC;
+}
+
+.user-sidebar-row:hover a {
+  color: black;
+}
+
+.user-sidebar-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border-radius: 7px;
+}
+
+.content-padding {
+  height: 30px;
+}
+
+h1,
+h2,
+h4 {
+  text-align: center;
+}
+
+.header-large-green h1 {
+  font-family: "Roboto", sans-serif;
+  color: #228B22;
+  margin-bottom: 1em;
+}
+
+.subheader-large-green h2 {
+  font-family: "Roboto", sans-serif;
+  color: #228B22;
+  margin-bottom: 1em;
+}
+
+.header-large-blue h1 {
+  font-family: "Roboto", sans-serif;
+  color: #007bff;
+  margin-bottom: 1em;
+}
+
+.subheader-small-blue h2,
+.subheader-small-blue h4 {
+  font-family: "Roboto", sans-serif;
+  color: #007bff;
+  margin-bottom: 1em;
+}
+
+.header-large-black h1 {
+  font-family: "Roboto", sans-serif;
+  color: #343434;
+  margin-bottom: 1em;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:hover div {
+  color: black;
+}
+
+a,
+a div {
+  color: black;
+}
+
+.yellow-action-link {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.yellow-action-link a {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #FFCC00;
+  font-size: 13pt;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+.grey-nav-link {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.grey-nav-link a {
+  font: 11px Arial;
+  text-decoration: none;
+  background-color: #D3D3D3;
+  font-size: 13pt;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+.blue-action-link {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.blue-action-link a {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #007bff;
+  font-size: 13pt;
+  color: white;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+.details-table {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  border: 1px solid #D3D3D3;
+}
+
+td {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.details-table tr:nth-child(odd) {
+  background-color: #D3D3D3;
+}
+
+.details-table tr:nth-child(even) {
+  background-color: #F5F5F5;
+}
+
+.admin-dishes-table {
+  width: 100%;
+  margin-top: 0.5rem;
+  border: 1px solid #D3D3D3;
+}
+
+.admin-dishes-table tr:nth-child(even) {
+  background-color: #D3D3D3;
+}
+
+.admin-dishes-table tr:nth-child(odd) {
+  background-color: #F5F5F5;
+}
+
+.button-naked {
+  background: none;
+  border: none;
+}
+
+.not-favorited,
+.favorited:hover {
+  color: black;
+}
+
+.not-favorited:hover,
+.favorited {
+  color: red;
+}
+
+.form-submit input {
+  background-color: #FFCC00;
+  font: bold 14px Arial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 1em;
+}
+
+.orders-chart,
+.sales-chart {
+  margin-bottom: 2.5em;
+}
+
+.white-content-box {
+  background-color: white;
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid #404040;
+}
+
+/* Change navbar links from blue to white */
+
+.top-nav-links a {
+  color: white;
+  margin-left: 2vw;
+}
+
+.top-panel {
+  background-color: #8B0000;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.top-panel h1 {
+  text-align: center;
+}
+
+.top-panel h1 {
+  color: white;
+}
+
+.top-panel p {
+  color: white;
+  font-size: 14pt;
+  margin-left: 2.5em;
+}
+
+.RestaurantLink {
+  background-color: #C0C0C0;
+}
+
+.dish-details {
+  background-color: white;
+  border: 1px solid black;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.dish-details-image {
+  margin-right: 1em;
+}
+
+.billing-address,
+.payment-details {
+  margin-bottom: 3vh;
+}
+
+.checkout-button {
+  background-color: #FFCC00;
+}
+
+.order-form {
+  margin-top: 1em;
+}
+
+/* Order details column */
+
+.order-details {
+  background-color: white;
+  border: 1px solid #696969;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.shipping-address-button,
+.billing-address-button {
+  margin-top: 1em;
+}
+
+.shipping-address-modal,
+.billing-address-modal {
+  display: none;
+}
+
+.modal-content {
+  padding: 1em;
+}
+
+.close {
+  text-align: right;
+}
+
+.submit-btn {
+  margin-top: 1em;
+}
+
+.cart {
+  background-color: white;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 1rem;
+}
+
+.cart-price-table {
+  width: 50%;
+}
+
+.welcome-restaurant-card {
+  background-color: white;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.welcome-restaurant-card img {
+  margin-right: 1em;
+}
+
+.welcome-restaurant-card:hover {
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.top-panel h4 {
+  color: white;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.show-restaurant-card {
+  background-color: white;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  padding: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.show-restaurant-logo {
+  margin-right: 1em;
+}
+
+.user-review-subheader span {
+  color: #A9A9A9;
+}
+
+.list-dish-card {
+  background-color: white;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  padding: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.list-dish-card img {
+  margin-right: 1em;
+}
+
+/* Dish details */
+
+.list-dish-card {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.list-dish-card:hover {
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.dish-details {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 5vh;
+}
+
+.signed-out-msg {
+  margin-top: 5vh;
+}
+
+.add-to-cart-btn {
+  margin-top: 1em;
+  background-color: #FFCC00;
+}
+
+.user-profile-account-settings,
+.user-profile-account-address,
+.user-profile-account-password {
+  margin-bottom: 2em;
+}
+

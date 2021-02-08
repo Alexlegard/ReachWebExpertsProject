@@ -1,0 +1,46 @@
+.billing-address,
+.payment-details {
+  margin-bottom: 3vh;
+}
+
+.checkout-button {
+  background-color: #FFCC00;
+}
+
+.order-form {
+  margin-top: 1em;
+}
+
+/* Order details column */
+
+.order-details {
+  background-color: white;
+  border: 1px solid #696969;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.shipping-address-button,
+.billing-address-button {
+  margin-top: 1em;
+}
+
+.shipping-address-modal,
+.billing-address-modal {
+  display: none;
+}
+
+.modal-content {
+  padding: 1em;
+}
+
+.close {
+  text-align: right;
+}
+
+.submit-btn {
+  margin-top: 1em;
+}
+

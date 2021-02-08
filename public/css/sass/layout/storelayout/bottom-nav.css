@@ -1,0 +1,15 @@
+.store-bottom-nav {
+  background-color: #BABABA;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.breadcrumbs-container-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+

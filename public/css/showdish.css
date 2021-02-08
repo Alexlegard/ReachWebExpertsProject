@@ -1,0 +1,16 @@
+/* Dish details */
+
+.dish-details {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 5vh;
+}
+
+.signed-out-msg {
+  margin-top: 5vh;
+}
+
+.add-to-cart-btn {
+  background-color: #FFCC00;
+}
+
