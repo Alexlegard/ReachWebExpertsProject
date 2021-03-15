@@ -16,10 +16,7 @@ $dishesurl = url('restaurants/'.$restaurant->id.'/dishes');
 		event.preventDefault();
 	}
 </script>
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzkhTMU4uskzqHbOT4zr4XbCZi0SJbLyQ&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
+
 @endsection
 
 @section('css')
