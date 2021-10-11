@@ -3,13 +3,11 @@
   border: none;
 }
 
-.not-favorited,
-.favorited:hover {
+.not-favorited, .favorited:hover {
   color: black;
 }
 
-.not-favorited:hover,
-.favorited {
+.not-favorited:hover, .favorited {
   color: red;
 }
 
@@ -22,4 +20,3 @@
   padding-right: 8px;
   margin-top: 1em;
 }
-

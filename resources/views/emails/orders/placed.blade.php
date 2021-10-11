@@ -1,25 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie-edge">
-	<title>Your Order from RWE Store</title>
-</head>
-<body>
-	<p>Thank you for your order from RWE Store.</p>
-	
-	<div>
-		Order ID: {{ $order->id }}
-	</div>
-	<div>
-		Order Email: {{ $order->billing_email }}
-	</div>
-	<div>
-		Order billing name: {{ $order->billing_name }}
-	</div>
-	<div>
-		Order total: ${{ round($order->billing_total) }}
-	</div>
-</body>
-</html>
+@component('mail::message')
+# Hello {{ $order->billing_name }},
+
+Thank you for shopping with us. Your order will be delivered shortly.
+
+# Order Details
+
+@component('mail::table')
+| Price                  | Amount                                        |
+| ---------------------- | --------------------------------------------- |
+| Subtotal               | {{ $order->billing_subtotal }}                |
+| Subtotal with discount | {{ $order->billing_subtotal_after_discount }} |
+| Tax                    | {{ $order->billing_tax }}                     |
+| Total                  | {{ $order->billing_total }}                   |
+@endcomponent
+
+@component('mail::button', ['url' => ''])
+Order Details
+@endcomponent
+
+@component('mail::button', ['url' => ''])
+Continue Shopping
+@endcomponent
+
+RWEStore is not a real store. You haven't actually been charged for anything.
+
+Thanks,<br>
+Alex Legard, owner of {{ config('app.name') }}
+@endcomponent

@@ -16,7 +16,7 @@ class AccountPageTest extends TestCase
     /** @test **/
     public function authenticated_users_can_see_profile()
     {
-        $this->actingAs( factory(User::class)->create() );
+        $this->actingAs( User::factory()->create() );
 
         $response = $this->get('/profile')
             ->assertOk();
@@ -25,7 +25,7 @@ class AccountPageTest extends TestCase
     /** @test **/
     public function can_see_name_email_description_shipping_address_and_billing_address()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         //Act
         $this->actingAs($user)->get('/profile');
@@ -47,10 +47,12 @@ class AccountPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function admins_cannot_access_page()
     {
-        //$this->refreshApplication();
+        $this->refreshApplication();
+
+        //$this->withoutExceptionHandling();
 
         $admin = Admin::find(1);
 
@@ -60,9 +62,10 @@ class AccountPageTest extends TestCase
     }
 
     
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
-        //$this->refreshApplication();
+        $this->refreshApplication();
 
         $superadmin = SuperAdmin::find(1);
 

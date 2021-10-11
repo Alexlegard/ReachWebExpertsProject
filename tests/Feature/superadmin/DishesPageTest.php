@@ -31,7 +31,7 @@ class DishesPageTest extends TestCase
             ->assertSee('Diet Coke');
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -43,12 +43,24 @@ class DishesPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
 
         $response = $this->get('admin/dishes')
+            ->assertStatus(302);
+    }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/dishes')
             ->assertStatus(302);
     }
 }

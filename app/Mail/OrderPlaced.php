@@ -11,8 +11,8 @@ use App\Order;
 class OrderPlaced extends Mailable
 {
     use Queueable, SerializesModels;
-	
-	public $order;
+
+    public $order;
 
     /**
      * Create a new message instance.
@@ -31,9 +31,7 @@ class OrderPlaced extends Mailable
      */
     public function build()
     {
-        //return $this->view('view.name');
-		return $this->to('alexlegard3@gmail.com', 'Alex')
-			->subject('Subject line')
-			->view('emails.orders.placed');
+        return $this->markdown('emails.orders.placed')
+            ->with('order', $this->order);
     }
 }

@@ -29,7 +29,7 @@ class ReviewsPageTest extends TestCase
             ->assertSee('From Alex Legard on 2020-07-17');
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -41,12 +41,24 @@ class ReviewsPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
 
         $response = $this->get('admin/reviews')
+            ->assertStatus(302);
+    }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/reviews')
             ->assertStatus(302);
     }
 }

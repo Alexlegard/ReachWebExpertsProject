@@ -50,6 +50,8 @@ class LoginController extends Controller
 	
 	public function logout(){
 		Auth::logout();
+        Auth::guard('admin')->logout();
+        Auth::guard('superadmin')->logout();
 		return redirect('/')->with('status','User has been logged out!');
 	}
 }

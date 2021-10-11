@@ -68,9 +68,9 @@ class LoginController extends Controller
     {
 		
 		//logout the admin...
-		Auth::guard('admin')->logout();
-		Auth::guard('superadmin')->logout();
-		Auth()->logout();
+		Auth::logout();
+        Auth::guard('admin')->logout();
+        Auth::guard('superadmin')->logout();
 		
 		return redirect()
 			->route('admin.admin.login')

@@ -4,10 +4,12 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tests\TestCase;
 use App\Restaurant;
 use App\Review;
 use App\User;
+
 
 /* php artisan migrate:refresh --seed before running any tests */
 class RestaurantPageTest extends TestCase
@@ -18,7 +20,10 @@ class RestaurantPageTest extends TestCase
     /** @test **/
     public function can_see_restaurant_page()
     {
-        $restaurant = factory(Restaurant::class)->create();
+        //$restaurant = factory(Restaurant::class)->create();
+
+        $restaurant = Restaurant::factory()->create();
+        //dd($restaurant->id);
 
         //Act
         $response = $this->get('restaurants/'.$restaurant->id);
@@ -31,7 +36,7 @@ class RestaurantPageTest extends TestCase
     /** @test **/
     public function can_see_cuisine_and_city()
     {
-        $restaurant = factory(Restaurant::class)->create();
+        $restaurant = Restaurant::factory()->create();
 
         //Act
         $response = $this->get('restaurants/'.$restaurant->id);
@@ -65,8 +70,12 @@ class RestaurantPageTest extends TestCase
     public function can_see_user_reviews()
     {
         //Need restaurant, user, and review
-        $restaurant = factory(Restaurant::class)->create();
-        $user = factory(User::class)->create();
+        $restaurant = Restaurant::factory()->create();
+        $user = User::factory()->create();
+        $userid = 1;
+        $restaurantid = 1;
+        //dd($user);
+
         $review = Review::create([
             'user_id'        => $user->id,
             'restaurant_id'  => $restaurant->id,
@@ -90,12 +99,12 @@ class RestaurantPageTest extends TestCase
     public function can_not_see_reviews_for_different_restaurant()
     {
         //Restaurant, otherRestaurant, user, and review
-        $restaurant = factory(Restaurant::class)->create();
-        $otherRestaurant = factory(Restaurant::class)->create();
-        $user = factory(User::class)->create();
+        $restaurant = Restaurant::factory()->create();
+        $otherRestaurant = Restaurant::factory()->create();
+        $user = User::factory()->make();
         $review = Review::create([
-            'user_id'        => $user->id,
-            'restaurant_id'  => $otherRestaurant->id,
+            'user_id'        => 1,
+            'restaurant_id'  => 2,
             'rating'         => '4',
             'content'        => $this->faker->paragraph,
             'time_submitted' => now()

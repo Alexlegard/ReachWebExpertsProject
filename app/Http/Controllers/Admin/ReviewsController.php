@@ -45,7 +45,7 @@ class ReviewsController extends Controller
 	public function destroy(Review $review) {
 		$review->delete();
 		
-		return redirect("admin/reviews");
+		return redirect("admin/my-reviews");
 	}
 }
 

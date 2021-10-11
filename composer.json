@@ -17,7 +17,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "hardevine/shoppingcart": "^2.9",
-        "intervention/image": "^2.5",
+        "intervention/image": "^2.7",
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel/framework": "^8.0",
         "laravel/scout": "^8.2",
@@ -29,7 +29,7 @@
     "require-dev": {
         "facade/ignition": "^2.4.2",
         "fzaninotto/faker": "^1.9.1",
-        "laravel/dusk": "^6.4",
+        "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4.3",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.5"
@@ -46,12 +46,10 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ],
 		"files": [
 			"app/helpers.php"
 		]

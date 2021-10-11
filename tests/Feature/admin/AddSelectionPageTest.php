@@ -24,7 +24,7 @@ class AddSelectionPageTest extends TestCase
             ->assertStatus(200);
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
     	$this->refreshApplication();
@@ -36,7 +36,7 @@ class AddSelectionPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
     	$this->refreshApplication();
@@ -45,14 +45,14 @@ class AddSelectionPageTest extends TestCase
     		->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function super_admin_cannot_access()
     {
         $this->refreshApplication();
 
         $superadmin = SuperAdmin::find(1);
 
-        $response = $this->get()
+        $response = $this->get('admin/my-dishes/1/selections/add')
             ->assertStatus(302);
     }
 }

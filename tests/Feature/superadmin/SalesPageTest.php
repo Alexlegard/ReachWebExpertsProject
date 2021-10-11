@@ -32,7 +32,7 @@ class SalesPageTest extends TestCase
             ->assertSee($order->billing_total);
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -44,12 +44,24 @@ class SalesPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
 
         $response = $this->get('admin/sales')
+            ->assertStatus(302);
+    }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/sales')
             ->assertStatus(302);
     }
 }

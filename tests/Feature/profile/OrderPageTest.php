@@ -22,9 +22,9 @@ class OrderPageTest extends TestCase
     public function user_can_see_order_details()
     {
         //Arrange
-        $user = factory(User::class)->create();
-        $restaurant = factory(Restaurant::class)->create();
-        $dish = factory(Dish::class)->create();
+        $user = User::factory()->create();
+        $restaurant = Restaurant::factory()->create();
+        $dish = Dish::factory()->create();
 
         $order = Order::create([
             'user_id'                         => $user->id,
@@ -60,73 +60,23 @@ class OrderPageTest extends TestCase
             ->assertSee(getOrderBillingAddress($order));
     }
 
+    /** @test **/
     public function user_cannot_see_other_users_orders() {
 
+        $this->refreshApplication();
+        
         //Arrange
-        $user = User::create([
-            //Name, email, password, type
-            'name' => 'testuserblah',
-            'email' => 'testuserblah@gmail.com',
-            'password' => '$2y$10$.owxR/OjLUX/07HTmYXsne7yl0N6K7AN5ezbCyrZiwCpvgezU4EDO',
-            'type' => 'super'
-        ]);
+        $user = User::find(1);
 
-        $user = User::create([
-            //Name, email, password, type
-            'name' => 'testuserblah2',
-            'email' => 'testuserblah2@gmail.com',
-            'password' => '$2y$10$.owxR/OjLUX/07HTmYXsne7yl0N6K7AN5ezbCyrZiwCpvgezU4EDO',
-            'type' => 'super'
-        ]);
+        $otheruser = User::factory()->create();
 
-        $restaurant = Restaurant::create([
-            'name'               => 'testrestaurantblah',
-            'description'        => 'Eat fresh with our wide selection of sandwiches.',
-            'slug'               => 'slug',
-            'address'            => json_decode('{"streetaddress":"9995 McVean Dr","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
-            'cuisine'            => ["Sandwiches",null,null],
-        ]);
+        $restaurant = Restaurant::find(1);
 
-        $order = Order::create([
-            'user_id' => $otheruser->id,
-            'billing_email' => 'alexlegard3@gmail.com',
-            'billing_name' => 'Alex Legard',
-            'billing_streetaddress' => '10 Panda Lane',
-            'billing_city' => 'Brampton',
-            'billing_state_province' => 'Ontario',
-            'billing_country' => 'Canada',
-            'billing_postalcode' => 'q4q4q4',
-            'billing_name_on_card' => 'Alex Legard',
-            'billing_subtotal' => '10.97',
-            'billing_tax' => '1.42',
-            'billing_total' => '12.39',
-            'billing_commission' => '2.48',
-            'payment_gateway' => 'Stripe',
-            'shipped' => false,
-            'time_placed' => '2020-07-13',
-        ]);
+        //Act & Assert
+        //There is an order in the database thanks to the seed.
 
-        $dish = Dish::create([
-            'menu_id' => $restaurant->menu->id,
-            'name' => 'Sweet Onion Chicken Teriyaki',
-            'description' => 'Delicious chicken teriyaki with your choice of bread and toppings.',
-            'slug' => 'slug',
-            'price' => json_decode('{"currency":"CAD","amount":"7.99"}'),
-            'special_price' => json_decode('{"currency":"CAD","amount":"5.99"}'),
-            'cuisine' => 'Sandwiches',
-            'calories' => 1000,
-            'people_served' => 1,
-            'stock' => 100,
-            'is_beverage' => false,
-            'is_alcoholic' => false
-        ]);
-
-        //Act
-        $this->actingAs($user)->get('/profile/orders/'.$order->id);
-
-        //Assert
-        $response = $this->get('/profile/orders/'.$order->id)
-            ->assertSee('You have no orders.');
+        $this->actingAs($otheruser)->get('/profile/orders')
+            ->assertSee('You have not placed any orders.');
     }
 
     /** @test **/
@@ -136,7 +86,7 @@ class OrderPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function admins_cannot_access_page()
     {
         $this->refreshApplication();
@@ -148,7 +98,7 @@ class OrderPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
         $this->refreshApplication();

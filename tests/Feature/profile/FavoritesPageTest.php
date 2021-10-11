@@ -19,8 +19,8 @@ class FavoritesPageTest extends TestCase
     /** @test **/
     public function user_can_see_favorite_restaurants()
     {
-        $user = factory(User::class)->create();
-        $restaurant = factory(Restaurant::class)->create();
+        $user = User::factory()->create();
+        $restaurant = Restaurant::factory()->create();
         
         $favorite = Favorite::create([
             'user_id'       => $user->id,
@@ -41,9 +41,9 @@ class FavoritesPageTest extends TestCase
     public function user_can_not_see_not_favorited_restaurant()
     {
         //Arrange
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $restaurant = factory(Restaurant::class)->create();
+        $restaurant = Restaurant::factory()->create();
 
         //Act
         $this->actingAs($user)->get('/profile/favorites/');
@@ -62,6 +62,7 @@ class FavoritesPageTest extends TestCase
     }
 
     
+    /** @test **/
     public function admins_cannot_access_page()
     {
         $this->refreshApplication();
@@ -73,7 +74,7 @@ class FavoritesPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
         $this->refreshApplication();

@@ -17,7 +17,7 @@ class MyRestaurantsController extends Controller
 	use GetOrders;
 	
     /**
-     * Display a listing of the resource.
+     * Display a listing of the restaurant.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +34,7 @@ class MyRestaurantsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new restaurant.
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +44,7 @@ class MyRestaurantsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created restaurant in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -106,7 +106,7 @@ class MyRestaurantsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified restaurant.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -134,7 +134,7 @@ class MyRestaurantsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified restaurant.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -153,7 +153,7 @@ class MyRestaurantsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified restaurant in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -175,18 +175,9 @@ class MyRestaurantsController extends Controller
 			'cuisine' => 'required',
 			'image' => 'sometimes|file|image|max:5000',
 		]);
-		/*
-		if($request->has('image')) {
-            // resize and upload image
-            $path = 'storage/images/' . $request->image->getClientOriginalName();
-            $public_path = 'images/' . $request->image->getClientOriginalName();
-            $resizedimage = Image::make( $request->image )
-                ->resize(300, 200)
-                ->save( $path );
-            
-            $restaurant->image = $public_path;
-		}
-		*/
+
+		$this->storeImage($restaurant);
+		
 		$restaurant->address = array(
 			"streetaddress"  => $request->streetaddress,
 			"city"           => $request->city,
@@ -201,7 +192,6 @@ class MyRestaurantsController extends Controller
 		);
 		
 		if( $request->filled('streetaddresstwo') ) {
-			//dd("Request has streetaddresstwo");
 			$restaurant->address = Arr::add( $restaurant->address, "streetaddresstwo", $request->streetaddresstwo );
 		}
 		
@@ -209,6 +199,7 @@ class MyRestaurantsController extends Controller
 		$restaurant->description = request('description');
 		$restaurant->slug = request('slug');
 		$restaurant->cuisine = request('cuisine');
+		
 		$restaurant->save();
 		
 		return redirect("admin/my-restaurants/");
@@ -234,6 +225,23 @@ class MyRestaurantsController extends Controller
 		return view("admin/myRestaurants/createDish", [
 			'restaurant' => $restaurant
 		]);
+	}
+
+	// Store an image to the storage folder and then to the database.
+	private function storeImage($restaurant)
+	{
+		if(request()->has('image')) {
+
+			$filename = request()->image->getClientOriginalName();
+			$unique_name = md5($filename. microtime()).'.png';
+
+			//Store image to the restaurantimages folder
+			$restaurant->update([
+				'image' => request()->image->storeAs('restaurantimages', $unique_name, 'public'),
+			]);
+
+			$restaurant->image = $unique_name;
+		}
 	}
 }
 

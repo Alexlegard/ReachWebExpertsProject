@@ -17,10 +17,15 @@ class IsUser
     public function handle($request, Closure $next)
     {
         //If user is a user...
-        if( Auth()->check() ) {
+        if( auth::guard('web')->check() ) {
             return $next($request);
         }
         
-        return redirect('');
+        return redirect('login');
     }
 }
+
+//If user is admin...
+//if( auth::guard('admin')->check() ) {
+//    return $next($request);
+//}

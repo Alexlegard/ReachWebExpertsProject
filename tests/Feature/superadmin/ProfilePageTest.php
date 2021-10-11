@@ -32,7 +32,7 @@ class ProfilePageTest extends TestCase
             ->assertSee($profile->description);
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -44,12 +44,24 @@ class ProfilePageTest extends TestCase
             ->assertStatus(302);
     }
 
-   
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
 
         $response = $this->get('admin/profile')
+            ->assertStatus(302);
+    }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/profile')
             ->assertStatus(302);
     }
 }

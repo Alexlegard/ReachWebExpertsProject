@@ -12,6 +12,7 @@ use App\Traits\GetAddressStrings;
 use App\Http\Requests\ShippingAddressRequest;
 use App\Http\Requests\BillingAddressRequest;
 use Auth;
+use Image;
 
 class ProfilesController extends Controller
 {
@@ -58,6 +59,16 @@ class ProfilesController extends Controller
 		$user = Auth()->user();
 		
 		return view('profile.changepassword', [
+			'user' => $user,
+			'profile' => $user->profile
+		]);
+	}
+
+	public function editavatar()
+	{
+		$user = Auth()->user();
+		
+		return view('profile.edit.avatar', [
 			'user' => $user,
 			'profile' => $user->profile
 		]);
@@ -261,6 +272,35 @@ class ProfilesController extends Controller
 		$profile->save();
 		
 		return redirect('profile');
+	}
+
+	//Handle user upload of avatar
+	public function updateavatar(Request $request, Profile $profile)
+	{
+		request()->validate([
+			'avatar' => 'required'
+		]);
+
+		if($request->hasFile('avatar'))
+		{
+			$avatar = $request->file('avatar');
+			$filename = time() . '.' . $avatar->getClientOriginalExtension();
+			Image::make($avatar)->resize(300, 300)->save( public_path('storage/useravatars/' . $filename) );
+
+			$user = Auth::user();
+			$user->avatar = $filename;
+			$user->save();
+		}
+
+		$billingaddress = $this->getBillingAddressString($user->profile);
+		$shippingaddress = $this->getShippingAddressString($user->profile);
+
+		return view('profile.profile', [
+			'user' => $user,
+			'profile' => $user->profile,
+			'billing_address' => $billingaddress,
+			'shipping_address' => $shippingaddress
+		]);
 	}
 }
 

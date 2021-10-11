@@ -34,7 +34,7 @@ class CreateDishesTable extends Migration
 			$table->boolean('is_alcoholic');
 			$table->boolean('on_sale')->default(false);
 			$table->date('on_sale_until')->nullable();
-			$table->string('image')->nullable();
+			$table->string('image')->default('default.jpg');
 			$table->string('image_external_url')->nullable();
             $table->timestamps();
         });

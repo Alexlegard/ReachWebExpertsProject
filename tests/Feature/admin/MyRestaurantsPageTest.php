@@ -21,7 +21,7 @@ class MyRestaurantsPageTest extends TestCase
     {
         $this->refreshApplication();
 
-        $admin = factory(Admin::class)->create();
+        $admin = Admin::factory()->create();
 
         $response = $this->actingAs($admin, 'admin')
             ->get('/admin/my-restaurants')
@@ -54,7 +54,7 @@ class MyRestaurantsPageTest extends TestCase
             ->assertSee('Eat fresh with our wide selection of sandwiches.');
     }
 
-    
+    /** @test **/
     public function users_cannot_access_page()
     {
         $this->refreshApplication();
@@ -66,7 +66,7 @@ class MyRestaurantsPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guests_cannot_access_page()
     {
         $this->refreshApplication();
@@ -75,14 +75,14 @@ class MyRestaurantsPageTest extends TestCase
             ->assertStatus(302);
     }
 
-
+    /** @test **/
     public function super_admin_cannot_access()
     {
         $this->refreshApplication();
 
         $superadmin = SuperAdmin::find(1);
 
-        $response = $this->get()
+        $response = $this->get('/admin/my-restaurants')
             ->assertStatus(302);
     }
 }

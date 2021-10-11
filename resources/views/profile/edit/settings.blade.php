@@ -40,7 +40,7 @@
 							<label for="name">Name:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="name" />
+							<input type="text" name="name" value="{{ Auth::user()->name }}"/>
 						</div>
 					</div>
 					
@@ -49,7 +49,7 @@
 							<label for="email">Email address:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="email" />
+							<input type="text" name="email" value="{{ Auth::user()->email }}"/>
 						</div>
 					</div>
 					
@@ -58,7 +58,7 @@
 							<label for="description">Description:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="description" />
+							<input type="text" name="description" value="{{ Auth::user()->profile->description }}"/>
 						</div>
 					</div>
 					

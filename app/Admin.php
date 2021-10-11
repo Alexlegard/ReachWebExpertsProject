@@ -10,12 +10,15 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 // must implement interface Illuminate\Contracts\Auth\Authenticatable
 class Admin extends User implements Authenticatable
 {
 	use Notifiable;
 	use AuthenticableTrait;
+	use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *

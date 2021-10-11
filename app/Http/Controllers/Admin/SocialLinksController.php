@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Restaurant;
 use App\Http\Requests\SocialLinksRequest;
+use Auth;
 
 class SocialLinksController extends Controller
 {

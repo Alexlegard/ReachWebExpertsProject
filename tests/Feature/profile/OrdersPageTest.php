@@ -21,9 +21,9 @@ class OrdersPageTest extends TestCase
     /** @test **/
     public function user_can_see_order_details()
     {
-        $user = factory(User::class)->create();
-        $restaurant = factory(Restaurant::class)->create();
-        $dish = factory(Dish::class)->create();
+        $user = User::factory()->create();
+        $restaurant = Restaurant::factory()->create();
+        $dish = Dish::factory()->create();
 
         $order = Order::create([
             'user_id'                         => $user->id,
@@ -64,7 +64,7 @@ class OrdersPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function admins_cannot_access_page()
     {
         $this->refreshApplication();
@@ -76,7 +76,7 @@ class OrdersPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
         $this->refreshApplication();

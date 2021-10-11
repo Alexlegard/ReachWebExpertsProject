@@ -7,11 +7,13 @@ use App\Observers\RestaurantObserver;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 //use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Restaurant extends Authenticatable
 {
 	use SearchableTrait;
 	//use Searchable;
+	use HasFactory;
 	
 	
 	protected $table = "restaurants";

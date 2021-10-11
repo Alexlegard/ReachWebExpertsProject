@@ -42,7 +42,7 @@ class LogoutPageTest extends TestCase
             ->assertSee('Logout?');
     }
 
-    
+    /** @test **/
     public function users_cannot_see_logout_page()
     {
         $this->refreshApplication();
@@ -54,7 +54,7 @@ class LogoutPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guests_cannot_see_logout_page()
     {
         $this->refreshApplication();
@@ -63,14 +63,14 @@ class LogoutPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function super_admin_cannot_access()
     {
         $this->refreshApplication();
 
         $superadmin = SuperAdmin::find(1);
 
-        $response = $this->get()
+        $response = $this->get('admin/logout')
             ->assertStatus(302);
     }
 

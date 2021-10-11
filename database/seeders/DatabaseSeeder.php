@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +25,8 @@ class DatabaseSeeder extends Seeder
 			ReviewsTableSeeder::class,
 			FavoritesTableSeeder::class,
 			CouponsTableSeeder::class,
+			ProfilesTableSeeder::class,
+			DishSelectionsTableSeeder::class,
 		]);
     }
 }

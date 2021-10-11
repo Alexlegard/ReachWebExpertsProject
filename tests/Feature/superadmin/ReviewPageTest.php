@@ -33,7 +33,7 @@ class ReviewPageTest extends TestCase
             ->assertSee($review->user->name);
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -45,12 +45,24 @@ class ReviewPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
 
         $response = $this->get('admin/reviews/1')
+            ->assertStatus(302);
+    }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/reviews/1')
             ->assertStatus(302);
     }
 }

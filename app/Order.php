@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
+	use HasFactory;
+
 	const COMMISSION = 0.20;
 	
     protected $fillable = [

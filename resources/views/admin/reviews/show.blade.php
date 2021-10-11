@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+@endsection
+
 @section('js')
 <script>
 	function ConfirmDelete(){
@@ -34,7 +38,7 @@
 			<div class="grey-nav-link">
 				<a href="{{ url('admin/my-reviews') }}">Back to List</a>
 			</div>
-			<form class="delete-form" method="post" action="{{ url('admin/reviews/'. $review->id) }}">
+			<form class="delete-form" method="post" action="{{ url('admin/my-reviews/'. $review->id) }}">
 				@csrf
 				@method('DELETE')
 				<input type="submit" value="Delete this review" onclick="return ConfirmDelete();">

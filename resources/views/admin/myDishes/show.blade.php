@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+@endsection
+
 @section('js')
 <script>
 	function ConfirmDelete(){
@@ -96,6 +100,12 @@
 					<td>{{ $dish->on_sale_until }}</td>
 				</tr>
 				@endif
+				<tr>
+					<td>Image</td>
+					<td>
+						<img src="{{ asset('storage/dishimages/'.$dish->image) }}" width="100" height="100">
+					</td>
+				</tr>
 			</table>
 		</div>
 		

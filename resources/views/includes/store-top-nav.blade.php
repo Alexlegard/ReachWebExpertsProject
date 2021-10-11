@@ -21,8 +21,8 @@
 					<!-- If USER is logged in -->
 					@if( Auth()->check() )
 					<div class="top-nav-links">
-						<a href="{{ url('profile') }}">Profile</a>
-						<a href="{{ url('cart') }}">
+						<a href="{{ url('profile') }}" dusk="profile">Profile</a>
+						<a href="{{ url('cart') }}" dusk="cart">
 							Cart
 							<i class="fas fa-shopping-cart"></i>
 						</a>

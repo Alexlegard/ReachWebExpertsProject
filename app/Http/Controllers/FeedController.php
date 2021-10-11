@@ -33,7 +33,8 @@ class FeedController extends Controller
     public function getUserFeedRecentReviews(User $user)
     {
         $followings = $user->followings()->get();
-        $recent_reviews = collect();
+        $own_reviews = $user->review;
+        $recent_reviews = collect(); //Create empty collection
 
         foreach($followings as $following)
         {
@@ -43,7 +44,15 @@ class FeedController extends Controller
             }
         }
 
-        $recent_reviews = $this->paginate($recent_reviews, 10);
-        return $recent_reviews;
+        foreach($own_reviews as $review)
+        {
+            $recent_reviews->push($review);
+        }
+
+        $sorted = $recent_reviews
+            ->sortBy('created_at')
+            ->reverse();
+        $paginated = $this->paginate($sorted, 10);
+        return $paginated;
     }
 }

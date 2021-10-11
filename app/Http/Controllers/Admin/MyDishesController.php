@@ -9,17 +9,20 @@ use Auth;
 use App\Dish;
 use App\Traits\GetOrders;
 use App\Traits\GetDishes;
+use App\Traits\GetRestaurants;
 use App\Traits\PaginateCollection;
 use App\Http\Requests\MyDishRequest;
+use Image;
 
 class MyDishesController extends Controller
 {
 	use GetOrders;
 	use GetDishes;
+	use GetRestaurants;
 	use PaginateCollection;
 	
     /**
-     * Display a listing of the resource.
+     * Display a listing of the dish.
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,7 +30,7 @@ class MyDishesController extends Controller
     {
 		$admin = Auth::guard('admin')->user();
 		$dishes = $this->getDishesFromAdmin($admin);
-		$restaurants = $this->getRestaurantsWithDishes();
+		$restaurants = $this->getRestaurantsFromAdmin($admin);
 		$restaurants = $this->paginate($restaurants, 10);
 		
         return view("admin/myDishes/index", [
@@ -38,7 +41,7 @@ class MyDishesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created dish in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -71,26 +74,21 @@ class MyDishesController extends Controller
 		$dish->is_beverage = request('isbeverage');
 		$dish->is_alcoholic = request('isalcoholic');
 		
+		if( request()->hasFile('image') )
+		{
+			$image = request()->file('image');
+			$filename = time() . '.' . $image->getClientOriginalExtension();
+			Image::make($image)->resize(300, 300)->save( public_path('storage/dishimages/'.$filename) );
+			$dish->image = $filename;
+		}
+
 		$dish->save();
 		
 		return redirect("/admin/my-restaurants/" . $id);
-		
-		/*
-		if($request->has('image')) {
-            // resize and upload image
-            $path = 'storage/images/' . $request->image->getClientOriginalName();
-            $public_path = 'images/' . $request->image->getClientOriginalName();
-            $resizedimage = Image::make( $request->image )
-                ->resize(300, 200)
-                ->save( $path );
-            
-            $restaurant->image = $public_path;
-		}
-		*/
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified dish.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -109,7 +107,7 @@ class MyDishesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified dish.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -122,7 +120,7 @@ class MyDishesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified dish in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -130,19 +128,6 @@ class MyDishesController extends Controller
      */
     public function update(MyDishRequest $request, Dish $dish)
     {
-        
-		/* IMAGE CODE COPIED FROM RESTAURANTS CONTROLLER
-		if($request->has('image')) {
-            // resize and upload image
-            $path = 'storage/images/' . $request->image->getClientOriginalName();
-            $public_path = 'images/' . $request->image->getClientOriginalName();
-            $resizedimage = Image::make( $request->image )
-                ->resize(300, 200)
-                ->save( $path );
-            
-            $restaurant->image = $public_path;
-		}
-		*/
 		$dish->price = array(
 			"currency" => $request->pricecurrency,
 			"amount" => $request->priceamount,
@@ -158,6 +143,14 @@ class MyDishesController extends Controller
 		$dish->people_served = request('peopleserved');
 		$dish->stock = request('stock');
 		$dish->is_beverage = request('isbeverage');
+
+		if( request()->hasFile('image') )
+		{
+			$image = request()->file('image');
+			$filename = time() . '.' . $image->getClientOriginalExtension();
+			Image::make($image)->resize(300, 300)->save( public_path('storage/dishimages/'.$filename) );
+			$dish->image = $filename;
+		}
 		
 		$dish->save();
 		
@@ -165,7 +158,7 @@ class MyDishesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified dish from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -186,6 +179,9 @@ class MyDishesController extends Controller
 		return redirect('admin/my-dishes');
     }
 	
+	/*
+	 * Returns all restaurants with at least one dish.
+	 */
 	public function getRestaurantsWithDishes() {
 		
 		$restaurants = collect();

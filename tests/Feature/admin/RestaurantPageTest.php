@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Admin;
+use App\SuperAdmin;
 use App\User;
 
 class RestaurantPageTest extends TestCase
@@ -27,7 +28,7 @@ class RestaurantPageTest extends TestCase
             ->assertSee('https://www.instagram.com/subway/');
     }
 
-    
+    /** @test **/
     public function users_cannot_access_page()
     {
         $this->refreshApplication();
@@ -35,7 +36,7 @@ class RestaurantPageTest extends TestCase
         $user = User::find(1);
 
         $response = $this->actingAs($user)
-            ->get('admin/my-profile')
+            ->get('admin/my-restaurants/1')
             ->assertStatus(302);
     }
 
@@ -44,14 +45,23 @@ class RestaurantPageTest extends TestCase
     {
         $this->refreshApplication();
 
-        $response = $this->get('admin/my-profile')
+        $response = $this->get('admin/my-restaurants/1')
             ->assertStatus(302);
     }
 
     /** @test **/
     public function admin_cannot_access_different_admins_restaurant()
     {
+        $this->refreshApplication();
 
+        $admin = Admin::find(1);
+        $otheradmin = Admin::factory()->create();
+
+        $this->actingAs($otheradmin)
+            ->get('admin/my-restaurants/1')
+            ->assertStatus(302);
+
+        //$response = $this->get('')->assertStatus(302);
     }
 
     /** @test **/
@@ -61,7 +71,8 @@ class RestaurantPageTest extends TestCase
 
         $superadmin = SuperAdmin::find(1);
 
-        $response = $this->get()
+        $this->actingAs($superadmin)
+            ->get('admin/my-restaurants/1')
             ->assertStatus(302);
     }
 }

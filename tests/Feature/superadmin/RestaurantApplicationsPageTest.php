@@ -48,4 +48,16 @@ class RestaurantApplicationsPageTest extends TestCase
         $response = $this->get('admin/restaurant-applications')
             ->assertStatus(302);
     }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/restaurant-applications')
+            ->assertStatus(302);
+    }
 }

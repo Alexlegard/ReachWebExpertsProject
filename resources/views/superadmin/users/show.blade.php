@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+@endsection
+
 @section('js')
 <script>
 function ConfirmBan(){

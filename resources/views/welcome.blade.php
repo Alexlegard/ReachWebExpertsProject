@@ -17,10 +17,10 @@
 		@foreach($restaurants as $restaurant)
 		<div class="col-md-6">
 			<a href="{{ url('restaurants/'.$restaurant->id) }}">
-				<div class="welcome-restaurant-card">
-					@if( isset($restaurant->image_external_url) )
+				<div class="welcome-restaurant-card" dusk="restaurant-card">
+					@if( $restaurant->image )
 					<div class="restaurant-card-logo">
-						<img src="{{ url($restaurant->image_external_url) }}" width="100" height="100">
+						<img src="{{ asset('storage/restaurantimages/'.$restaurant->image) }}" width="100" height="100">
 					</div>
 					@endif
 					<div class="restaurant-card-details">
@@ -37,7 +37,7 @@
 								@csrf
 								<input type="hidden" name="restaurantid" value="{{ $restaurant->id }}">
 								<button class="button-naked" type="submit">
-									<i class="fas fa-heart favorited"></i>
+									<i class="fas fa-heart favorited" dusk="heart-favorited"></i>
 								</button>
 							</form>
 							@else
@@ -46,7 +46,7 @@
 								@csrf
 								<input type="hidden" name="restaurantid" value="{{ $restaurant->id }}">
 								<button class="button-naked" type="submit">
-									<i class="fas fa-heart not-favorited"></i>
+									<i class="fas fa-heart not-favorited" dusk="heart-not-favorited"></i>
 								</button>
 							</form>
 							@endif

@@ -11,6 +11,8 @@ use App\User;
 class CheckoutPageTest extends TestCase
 {
     use DatabaseTransactions;
+    
+    /* Check out ordertest in Browser directory. */
 
     /** @test **/
     public function user_must_confirm_password()

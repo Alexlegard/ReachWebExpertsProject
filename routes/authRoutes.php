@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
-/***************************************Admin authentication related routes */
+/***************************************Admin auth related routes */
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 	
 	Route::namespace('Auth')->group(function(){
@@ -37,7 +37,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 	});
 });
 
-/**************************************** Superadmin authentication related routes */
+/**************************************** Superadmin auth related routes */
 Route::prefix('/superadmin')->name('superadmin.')->namespace('Superadmin')->group(function(){
 
 	Route::namespace('Auth')->group(function(){
@@ -64,3 +64,9 @@ Route::prefix('/superadmin')->name('superadmin.')->namespace('Superadmin')->grou
 			->name('password.update');
 	});
 });	
+
+/***** Email verification notice */
+
+Route::get('/email/verify', function() {
+	return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');

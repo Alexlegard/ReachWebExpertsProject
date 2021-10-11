@@ -17,7 +17,7 @@ class RestaurantsController extends Controller
 	use GetOrders;
 	
     /**
-     * Display a listing of the resource.
+     * Display a listing of the restaurant.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class RestaurantsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified restaurant.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -52,7 +52,7 @@ class RestaurantsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified restaurant from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

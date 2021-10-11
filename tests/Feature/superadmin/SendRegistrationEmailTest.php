@@ -28,7 +28,7 @@ class SendRegistrationEmailTest extends TestCase
             ->assertSee('Fill out the form to send an email');
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -40,12 +40,24 @@ class SendRegistrationEmailTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
 
         $response = $this->get('admin/admins/send-registration-email')
+            ->assertStatus(302);
+    }
+
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/admins/send-registration-email')
             ->assertStatus(302);
     }
 }

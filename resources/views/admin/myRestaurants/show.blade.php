@@ -7,6 +7,9 @@
 	margin-bottom:0.5rem;
 }
 </style>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+
 @endsection
 
 @section('content')
@@ -75,6 +78,16 @@
 					@if( isset($restaurant->instagram) )
 					<td>
 						<a href="{{ url($restaurant->instagram) }}">{{ $restaurant->instagram }}</a>
+					</td>
+					@else
+					<td>Not set</td>
+					@endif
+				</tr>
+				<tr>
+					<td>Restaurant Image</td>
+					@if( isset($restaurant->image) )
+					<td>
+						<img src="{{ asset('storage/restaurantimages/'.$restaurant->image) }}" width="100" height="100">
 					</td>
 					@else
 					<td>Not set</td>

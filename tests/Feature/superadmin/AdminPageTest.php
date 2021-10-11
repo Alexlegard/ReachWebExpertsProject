@@ -30,7 +30,7 @@ class AdminPageTest extends TestCase
             ->assertSee($admin->email);
     }
 
-    
+    /** @test **/
     public function user_cannot_access_page()
     {
         $this->refreshApplication();
@@ -42,7 +42,7 @@ class AdminPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guest_cannot_access_page()
     {
         $this->refreshApplication();
@@ -51,5 +51,15 @@ class AdminPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
+    public function admin_cannot_access_page()
+    {
+        $this->refreshApplication();
+
+        $admin = Admin::find(1);
+
+        $response = $this->actingAs($admin)
+            ->get('admin/admins/1')
+            ->assertStatus(302);
+    }
 }

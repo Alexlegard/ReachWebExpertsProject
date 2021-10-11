@@ -18,7 +18,7 @@ body {
 }
 
 .user-sidebar {
-  min-height: 94vh;
+  min-height: max(94vh, 100%);
   padding-top: 2vh;
   background-color: #228B22;
   border-left: 1px solid black;
@@ -46,7 +46,6 @@ body {
   text-decoration: none;
   background-color: #DCDCDC;
 }
-
 .user-sidebar-row:hover a {
   color: black;
 }
@@ -63,9 +62,7 @@ body {
   height: 30px;
 }
 
-h1,
-h2,
-h4 {
+h1, h2, h4 {
   text-align: center;
 }
 
@@ -103,13 +100,11 @@ h4 {
 a:hover {
   text-decoration: none;
 }
-
 a:hover div {
   color: black;
 }
 
-a,
-a div {
+a, a div {
   color: black;
 }
 
@@ -208,13 +203,11 @@ td {
   border: none;
 }
 
-.not-favorited,
-.favorited:hover {
+.not-favorited, .favorited:hover {
   color: black;
 }
 
-.not-favorited:hover,
-.favorited {
+.not-favorited:hover, .favorited {
   color: red;
 }
 
@@ -228,20 +221,19 @@ td {
   margin-top: 1em;
 }
 
-.orders-chart,
-.sales-chart {
+.orders-chart, .sales-chart {
   margin-bottom: 2.5em;
 }
 
 .white-content-box {
   background-color: white;
   padding: 1em;
-  margin: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
   border: 1px solid #404040;
 }
 
 /* Change navbar links from blue to white */
-
 .top-nav-links a {
   color: white;
   margin-left: 2vw;
@@ -287,6 +279,17 @@ td {
   margin-right: 1em;
 }
 
+.user-avatar-icon {
+  border-radius: 50%;
+}
+
+.user-avatar-icon-public-profile {
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .billing-address,
 .payment-details {
   margin-bottom: 3vh;
@@ -301,7 +304,6 @@ td {
 }
 
 /* Order details column */
-
 .order-details {
   background-color: white;
   border: 1px solid #696969;
@@ -311,13 +313,11 @@ td {
   padding-bottom: 2em;
 }
 
-.shipping-address-button,
-.billing-address-button {
+.shipping-address-button, .billing-address-button {
   margin-top: 1em;
 }
 
-.shipping-address-modal,
-.billing-address-modal {
+.shipping-address-modal, .billing-address-modal {
   display: none;
 }
 
@@ -412,7 +412,6 @@ td {
 }
 
 /* Dish details */
-
 .list-dish-card {
   max-width: 700px;
   margin-left: auto;
@@ -443,4 +442,3 @@ td {
 .user-profile-account-password {
   margin-bottom: 2em;
 }
-

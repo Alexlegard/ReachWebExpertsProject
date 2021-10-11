@@ -28,7 +28,10 @@ trait GetAddressStrings {
 	
 	
 	/* User addresses ************************************************************/
-    public function getBillingAddressString(Profile $profile, $postalcode = null) {
+
+	/* Accepts the user's profile, or AdminProfile, or SuperAdminProfile,
+	  and their postal code. */
+    public function getBillingAddressString($profile, $postalcode = null) {
 		
 		$addressSet = isset(
 			$profile->billing_address['streetaddress'],
@@ -50,7 +53,8 @@ trait GetAddressStrings {
 		return null;
 	}
 	
-	public function getShippingAddressString(Profile $profile) {
+	/* Accepts the user's profile, or AdminProfile, or SuperAdminProfile */
+	public function getShippingAddressString($profile) {
 		
 		$addressSet = isset(
 			$profile->shipping_address['streetaddress'],

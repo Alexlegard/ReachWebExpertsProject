@@ -1,5 +1,5 @@
 .user-sidebar {
-  min-height: 94vh;
+  min-height: max(94vh, 100%);
   padding-top: 2vh;
   background-color: #228B22;
   border-left: 1px solid black;
@@ -27,7 +27,6 @@
   text-decoration: none;
   background-color: #DCDCDC;
 }
-
 .user-sidebar-row:hover a {
   color: black;
 }
@@ -39,4 +38,3 @@
   justify-content: flex-start;
   border-radius: 7px;
 }
-

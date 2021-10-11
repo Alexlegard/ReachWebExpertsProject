@@ -15,6 +15,18 @@ class SettingsPageTest extends TestCase
 {
     use DatabaseTransactions;
     
+    /** @test **/
+    public function user_can_see_their_name()
+    {
+        $this->refreshApplication();
+
+        $user = User::find(1);
+
+        $this->actingAs($user)
+            ->get('profile/edit/settings')
+            ->assertSee('Alex Legard');
+    }
+
     public function user_can_update_their_profile_settings()
     {
         $user = factory(User::class)->create();
@@ -44,7 +56,7 @@ class SettingsPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function admins_cannot_access_page()
     {
         $this->refreshApplication();
@@ -56,7 +68,7 @@ class SettingsPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
         $this->refreshApplication();

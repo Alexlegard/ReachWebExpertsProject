@@ -1,6 +1,4 @@
-h1,
-h2,
-h4 {
+h1, h2, h4 {
   text-align: center;
 }
 
@@ -34,4 +32,3 @@ h4 {
   color: #343434;
   margin-bottom: 1em;
 }
-

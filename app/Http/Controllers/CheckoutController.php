@@ -119,7 +119,10 @@ class CheckoutController extends Controller
 				]);
 			}
 			
-			Mail::send(new OrderPlaced($order));
+			//Send email
+			Mail::to( $user->email )
+				->send(new OrderPlaced($order));
+
 			session()->forget('coupon');
 			
 			$thankyoumessage = 

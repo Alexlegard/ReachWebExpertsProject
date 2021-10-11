@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\User;
+namespace Database\Seeders;
 
-class UsersTableSeeder extends Seeder
+use Illuminate\Database\Seeder;
+use App\SuperAdmin;
+
+class SuperAdminsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,12 +14,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        SuperAdmin::create([
 			//Name, email, password, type
-			'name' => 'Alex Legard',
-			'email' => 'alexlegard3@gmail.com',
+			'name' => 'Melissa Legard',
+			'email' => 'melissalegard3@gmail.com',
 			'password' => '$2y$10$.owxR/OjLUX/07HTmYXsne7yl0N6K7AN5ezbCyrZiwCpvgezU4EDO',
-			'type' => 'super'
 		]);
     }
 }

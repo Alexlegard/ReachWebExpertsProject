@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Dish extends Model
 {
+	use HasFactory;
+
 	protected $guarded = [];
 	
 	protected $casts = [

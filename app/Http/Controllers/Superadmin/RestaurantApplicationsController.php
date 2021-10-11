@@ -46,8 +46,11 @@ class RestaurantApplicationsController extends Controller
 		]);
     }
 	
+	// Approve the specified restaurant application.
     public function approve(Request $request, RestaurantApplication $restaurantApplication)
 	{
+		//dd($restaurantApplication->image);
+
 		$restaurant = new Restaurant;
 		$admin = Admin::find($restaurantApplication->admin_id);
 		$restaurant->name = $restaurantApplication->name;
@@ -55,6 +58,11 @@ class RestaurantApplicationsController extends Controller
 		$restaurant->slug = $restaurantApplication->slug;
 		$restaurant->address = $restaurantApplication->address;
 		$restaurant->cuisine = $restaurantApplication->cuisine;
+
+		if(isset($restaurantApplication->image)) {
+			$restaurant->image = $restaurantApplication->image;
+		}
+
 		$restaurant->save();
 		$restaurant->admins()->sync($admin->id);
 		$restaurantApplication->delete();
@@ -62,6 +70,7 @@ class RestaurantApplicationsController extends Controller
 		return redirect('admin/restaurant-applications');
 	}
 	
+	// Deny the specified restaurant application.
 	public function deny(RestaurantApplication $restaurantApplication)
 	{
 		$restaurantApplication->delete();

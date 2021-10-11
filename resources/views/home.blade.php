@@ -16,8 +16,8 @@
 
                     You are logged in!
 					
-					<div>
-						<a href="{{ url('profile/'.Auth()->user()->id) }}">Visit profile</a>
+					<div class="yellow-action-link">
+						<a href="{{ url('profile') }}">Visit profile</a>
 					</div>
 					
 					@if (Gate::allows('is-admin'))

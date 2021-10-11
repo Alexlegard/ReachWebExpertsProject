@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -32,6 +36,12 @@
 				<tr>
 					<td>Cuisines</td>
 					<td>{{ $cuisines }}</td>
+				</tr>
+				<tr>
+					<td>Image</td>
+					<td>
+						<img src="{{ asset('storage/restaurantimages/'.$restaurantApplication->image) }}" width="100" height="100">
+					</td>
 				</tr>
 			</table>
 			@if (session('success_message'))

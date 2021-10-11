@@ -91,7 +91,7 @@ label.star:before {
 		<div class="col-12">
 			<div class="white-content-box">
 				<div class="show-restaurant-logo">
-					<img src="{{ $restaurant->image_external_url }}" width="100" height="100">
+					<img src="{{ asset('storage/restaurantimages/'.$restaurant->image) }}" width="100" height="100">
 				</div>
 
 				<div class="show-restaurant-details">
@@ -132,7 +132,7 @@ label.star:before {
 						<input type="submit" value="Post Review">
 						<span class="stars">
 							<input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
-						    <label class="star star-5" for="star-5"></label>
+						    <label class="star star-5" for="star-5" dusk="star-5"></label>
 						    <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
 						    <label class="star star-4" for="star-4"></label>
 						    <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
@@ -154,7 +154,8 @@ label.star:before {
 
 				<div class="review">
 					
-					<h5><a href="{{ url('user/'.$review->user->id) }}">{{ $review->user->name }}</a></h5>
+					<h5><a href="{{ url('user/'.$review->user->id) }}" dusk="reviewer-name">{{ $review->user->name }}</a></h5>
+					<img class="user-avatar-icon" src="{{ asset('storage/useravatars/'.$review->user->avatar) }}" width="70" height="70">
 					@if( $review->user == Auth()->user() )
 					<form method="post" action="{{ url('reviews/'.$review->id.'/delete') }}">
 						@csrf

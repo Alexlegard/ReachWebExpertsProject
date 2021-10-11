@@ -31,7 +31,7 @@ Route::post('/restaurants/{restaurant}/review', 'ReviewsController@store')
 Route::delete('/reviews/{review}/delete', 'ReviewsController@delete')
 	->name('reviews.delete');
 	
-/* FavorPites */
+/* Favorites */
 Route::post('favorite', 'FavoritesController@favorite')
 	->name('favorite');
 Route::post('unfavorite/{restaurant}', 'FavoritesController@unfavorite')

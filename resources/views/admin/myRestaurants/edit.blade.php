@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -13,7 +17,7 @@
 	
 	<div class="row">
 		<div class="col-12">
-			<form class="content-form" method="post" action="{{ url('/admin/my-restaurants/'. $restaurant->id) }}">
+			<form class="content-form" method="post" action="{{ url('/admin/my-restaurants/'. $restaurant->id) }}" enctype="multipart/form-data">
 				@csrf
 				@method('PATCH')
 				
@@ -115,6 +119,15 @@
 						<input type="text" name="cuisine[]" value="{{ $restaurant->cuisine[0] }}" />
 						<input type="text" name="cuisine[]" value="{{ $restaurant->cuisine[1] }}" />
 						<input type="text" name="cuisine[]" value="{{ $restaurant->cuisine[2] }}" />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3">
+						<label for="image">Restaurant image:</label>
+					</div>
+					<div class="col-md-9">
+						<input type="file" name="image" />
 					</div>
 				</div>
 				

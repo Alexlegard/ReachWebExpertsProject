@@ -9,8 +9,9 @@
 <script>
 window.addEventListener('load', function () {
 	// Create a Stripe client.
+	// This is the PUBLISHABLE Stripe key. There is no need to keep it secret because it is used solely to identify my Stripe account.
 	var stripe = Stripe('pk_test_51GzYZgEwovnXVY3jkkOEU9D2LPBzKykl4RZaSARJp7cbkjSvbIYMZOU8eg1025kPkz1Z4Nm9QyfVkPBMGMrxLPR300hZWGEQsS');
-
+	
 	// Create an instance of Elements.
 	var elements = stripe.elements();
 
@@ -491,19 +492,3 @@ window.addEventListener('load', function () {
 	</div>
 </div>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

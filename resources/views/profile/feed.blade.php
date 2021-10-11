@@ -29,8 +29,11 @@
 
 				<h4>Recent reviews</h4>
 				
+				@if( $recent_reviews->isEmpty() )
+					<p>No reviews! Write a review or follow someone.</p>
+				@endif
 
-				@foreach($recent_reviews as $review)
+				@foreach( $recent_reviews as $review )
 				<hr>
 				<div class="review">
 					<div class="review-subtitle">
@@ -52,9 +55,13 @@
 			<div class="white-content-box">
 				<h4>People You Follow</h4>
 
+				@if( $followings->isEmpty() )
+					<p>Not following anyone! Try to follow some people.</p>
+				@endif
+
 				<ul>
 					@foreach( $followings as $following )
-					<li><a href="{{ url('user/'.$user->id) }}">{{ $following->name }}</a></li>
+					<li><a href="{{ url('user/'.$following->id) }}">{{ $following->name }}</a></li>
 					@endforeach
 				</ul>
 

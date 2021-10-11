@@ -4,6 +4,10 @@
 <div class="top-panel">
 	<h1>{{ $user->name }}</h1>
 
+	<div class="user-avatar">
+		<img class="user-avatar-icon-public-profile" src="{{ asset('storage/useravatars/'.$user->avatar) }}" width="100" height="100">
+	</div>
+
 	@if( Auth()->check() )
 		@if( $user->id != Auth()->user()->id )
 			@if( Auth()->user()->followings->contains($user->id) )
@@ -11,7 +15,7 @@
 			<form method="post" action="{{ url('user/'.$user->id.'/unfollow') }}">
 				@csrf
 				<div class="form-submit" style="text-align:center;">
-					<input type="submit" value="Unfollow">
+					<input type="submit" value="Unfollow" dusk="unfollow">
 				</div>
 			</form>
 			@else
@@ -19,7 +23,7 @@
 			<form method="post" action="{{ url('user/'.$user->id.'/follow') }}">
 				@csrf
 				<div class="form-submit" style="text-align:center;">
-					<input type="submit" value="Follow">
+					<input type="submit" value="Follow" dusk="follow">
 				</div>
 			</form>
 			@endif

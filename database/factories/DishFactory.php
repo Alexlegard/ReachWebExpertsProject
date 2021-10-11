@@ -1,23 +1,40 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Dish;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-$factory->define(Dish::class, function (Faker $faker) {
-    return [
-        'menu_id' => 1,
-		'name' => $faker->word,
-		'description' => $faker->paragraph,
-		'slug' => 'slug',
-		'price' => json_decode('{"currency":"CAD","amount":"7.99"}'),
-		'special_price' => json_decode('{"currency":"CAD","amount":"5.99"}'),
-		'cuisine' => $faker->word,
-		'calories' => $faker->randomNumber(3),
-		'people_served' => 1,
-		'stock' => $faker->randomNumber(3),
-		'is_beverage' => false,
-		'is_alcoholic' => false
-    ];
-});
+class DishFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Dish::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'menu_id' => 1,
+            'name' => $this->faker->word(),
+            'description' => $this->faker->paragraph(),
+            'slug' => 'slug',
+            'price' => json_decode('{"currency":"CAD","amount":"7.99"}'),
+            'special_price' => json_decode('{"currency":"CAD","amount":"5.99"}'),
+            'cuisine' => $this->faker->word(),
+            'calories' => $this->faker->randomNumber(3),
+            'people_served' => 1,
+            'stock' => $this->faker->randomNumber(3),
+            'is_beverage' => false,
+            'is_alcoholic' => false
+        ];
+    }
+}

@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
+@endsection
+
 @section('content')
 <div class="container">
 	<div class="row">
@@ -12,7 +16,7 @@
 	
 	<div class="row">
 		<div class="col-12">
-			<form class="content-form" method="post" action="{{ url('/admin/my-dishes/'. $dish->id) }}">
+			<form class="content-form" method="post" action="{{ url('/admin/my-dishes/'. $dish->id) }}" enctype="multipart/form-data">
 				@csrf
 				@method('PATCH')
 				

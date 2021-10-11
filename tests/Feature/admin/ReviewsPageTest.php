@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use App\Admin;
+use App\SuperAdmin;
 use App\User;
 
 /** Test after php artisan migrate:refresh --seed **/
@@ -29,7 +30,7 @@ class ReviewsPageTest extends TestCase
             ->assertSee('This is an excellent restaurant.');
     }
 
-    
+    /** @test **/
     public function users_cannot_access_page()
     {
         $this->refreshApplication();
@@ -41,7 +42,7 @@ class ReviewsPageTest extends TestCase
             ->assertStatus(302);
     }
 
-    
+    /** @test **/
     public function guests_cannot_access_page()
     {
         $this->refreshApplication();
@@ -50,14 +51,14 @@ class ReviewsPageTest extends TestCase
             ->assertStatus(302);
     }
 
-
+    /** @test **/
     public function super_admin_cannot_access()
     {
         $this->refreshApplication();
 
         $superadmin = SuperAdmin::find(1);
 
-        $response = $this->get()
+        $response = $this->get('admin/my-reviews')
             ->assertStatus(302);
     }
 }

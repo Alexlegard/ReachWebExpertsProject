@@ -84,6 +84,22 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="user-profile-account-avatar">
+					<div class="subheader-large-green">
+						<h2>Avatar</h2>
+					</div>
+					<div class="user-avatar">
+						<img src="{{ asset('storage/useravatars/'.$user->avatar) }}" style="width:150px;height:150px;">
+					</div>
+					<div class="grey-nav-link">
+						<a href="{{ url('profile/edit/avatar') }}">Change Avatar</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 @endsection

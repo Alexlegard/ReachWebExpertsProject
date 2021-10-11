@@ -43,7 +43,7 @@
 							<label for="billingstreetaddress">Street address:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="billingstreetaddress" />
+							<input type="text" name="billingstreetaddress" value="{{ $profile->billing_address["streetaddress"] }}"/>
 						</div>
 					</div>
 					
@@ -61,7 +61,7 @@
 							<label for="billingcity">City:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="billingcity" />
+							<input type="text" name="billingcity" value="{{ $profile->billing_address["city"] }}"/>
 						</div>
 					</div>
 					
@@ -70,7 +70,7 @@
 							<label for="billingstateprovince">State / Province:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="billingstateprovince" />
+							<input type="text" name="billingstateprovince" value="{{ $profile->billing_address["stateprovince"] }}"/>
 						</div>
 					</div>
 					
@@ -80,8 +80,16 @@
 						</div>
 						<div class="col-9">
 							<select name="billingcountry">
-								<option value="Canada">Canada</option>
-								<option value="United States">United States</option>
+								@if( $profile->billing_address["country"] === "Canada" )
+									<option value="Canada" selected>Canada</option>
+								@else
+									<option value="Canada">Canada</option>
+								@endif
+								@if( $profile->billing_address["country"] === "United States" )
+									<option value="United States" selected>United States</option>
+								@else
+									<option value="United States">United States</option>
+								@endif
 							</select>
 						</div>
 					</div>
@@ -94,7 +102,7 @@
 							<label for="shippingstreetaddress">Street address:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="shippingstreetaddress" />
+							<input type="text" name="shippingstreetaddress" value="{{ $profile->shipping_address["streetaddress"] }}"/>
 						</div>
 					</div>
 					
@@ -112,7 +120,7 @@
 							<label for="shippingcity">City:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="shippingcity" />
+							<input type="text" name="shippingcity" value="{{ $profile->shipping_address["city"] }}"/>
 						</div>
 					</div>
 					
@@ -121,7 +129,7 @@
 							<label for="shippingstateprovince">State / Province:</label>
 						</div>
 						<div class="col-9">
-							<input type="text" name="shippingstateprovince" />
+							<input type="text" name="shippingstateprovince" value="{{ $profile->shipping_address["stateprovince"] }}"/>
 						</div>
 					</div>
 					

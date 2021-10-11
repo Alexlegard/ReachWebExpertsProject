@@ -12,7 +12,6 @@
 }
 
 /* Order details column */
-
 .order-details {
   background-color: white;
   border: 1px solid #696969;
@@ -22,13 +21,11 @@
   padding-bottom: 2em;
 }
 
-.shipping-address-button,
-.billing-address-button {
+.shipping-address-button, .billing-address-button {
   margin-top: 1em;
 }
 
-.shipping-address-modal,
-.billing-address-modal {
+.shipping-address-modal, .billing-address-modal {
   display: none;
 }
 
@@ -43,4 +40,3 @@
 .submit-btn {
   margin-top: 1em;
 }
-

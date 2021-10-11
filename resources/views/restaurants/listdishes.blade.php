@@ -16,7 +16,6 @@
 	@else
 	<h1>No dishes found for {{ $restaurant->name }}</h1>
 	@endif
-	
 </div>
 
 <div class="container">
@@ -24,10 +23,10 @@
 		@foreach( $restaurant->menu->dish as $dish )
 		<div class="col-md-6">
 			<a href="{{ url('dishes/'.$dish->id) }}">
-				<div class="list-dish-card">
-					@if( isset($dish->image_external_url) )
+				<div class="list-dish-card" dusk="dish-card">
+					@if( isset($dish->image) )
 					<div class="dish-card-image">
-						<img src="{{ $dish->image_external_url }}" width="100" height="100">
+						<img src="{{ asset('storage/dishimages/'.$dish->image) }}" width="100" height="100">
 					</div>
 					@endif
 					<div class="dish-card-details">

@@ -28,16 +28,16 @@ class DashboardPageTest extends TestCase
     public function users_cannot_access_admin_dashboard()
     {
         $this->refreshApplication();
-        $this->actingAs( factory(User::class)->create() );
+        $this->actingAs( User::factory()->create() );
 
-        $response = $this->get('/admin/dashboard')
+        $response = $this->get('admin/dashboard')
             ->assertRedirect('/');
     }
 
     /** @test **/
     public function admins_can_access_admin_dashboard()
     {
-        $admin = factory(Admin::class)->create();
+        $admin = Admin::factory()->create();
 
         // Returns 200 status
         $response = $this->actingAs($admin)
@@ -48,10 +48,10 @@ class DashboardPageTest extends TestCase
     /** @test **/
     public function super_admins_can_access_admin_dashboard()
     {
-        $superadmin = factory(SuperAdmin::class)->create();
+        $superadmin = SuperAdmin::factory()->create();
 
         // Returns unwanted 302 status
-        $this->actingAs( factory(SuperAdmin::class)->create() )
+        $this->actingAs( $superadmin )
             ->get('/admin/dashboard')
             ->assertOk();
     }

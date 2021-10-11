@@ -19,8 +19,7 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->waitForText('Need a restaurant?')
-                    ->assertSee("Need a restaurant?");
+                    ->assertSee('Need a restaurant?');
         });
     }
 }

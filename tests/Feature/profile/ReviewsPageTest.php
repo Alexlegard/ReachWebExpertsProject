@@ -21,8 +21,8 @@ class ReviewsPageTest extends TestCase
     public function can_see_review_content()
     {
         //Arrange
-        $user = factory(User::class)->create();
-        $restaurant = factory(Restaurant::class)->create();
+        $user = User::factory()->create();
+        $restaurant = Restaurant::factory()->create();
         
         $review = Review::create([
             'user_id'        => $user->id,
@@ -47,7 +47,7 @@ class ReviewsPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function admins_cannot_access_page()
     {
         $this->refreshApplication();
@@ -59,7 +59,7 @@ class ReviewsPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
         $this->refreshApplication();

@@ -8,10 +8,12 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\SuperAdminResetPasswordNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SuperAdmin extends Authenticatable
 {
 	 use Notifiable;
+	 use HasFactory;
     /**
      * The attributes that are mass assignable.
      *

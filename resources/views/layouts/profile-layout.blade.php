@@ -97,10 +97,10 @@
 							<a href="{{ url('profile/orders') }}"><span><i class="fas fa-hamburger"></i></span>Your Orders</a>
 						</div>
 						<div class="user-sidebar-row favorites">
-							<a href="{{ url('profile/favorites') }}"><span><i class="fas fa-heart"></i></span>Your Favorites</a>
+							<a href="{{ url('profile/favorites') }}" dusk="your-favorites"><span><i class="fas fa-heart"></i></span>Your Favorites</a>
 						</div>
                         <div class="user-sidebar-row follows">
-                            <a href="{{ url('profile/feed') }}"><span><i class="fas fa-user"></i></span>Feed</a>
+                            <a href="{{ url('profile/feed') }}" dusk="feed"><span><i class="fas fa-user"></i></span>Feed</a>
                         </div>
 						<div class="user-sidebar-row shoppingcart">
 							<a href="{{ url('cart') }}"><span><i class="fas fa-shopping-cart"></i></span>Your Cart</a>

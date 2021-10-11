@@ -14,6 +14,19 @@ class AddressPageTest extends TestCase
 {
     use DatabaseTransactions;
 
+
+    /** @test **/
+    public function can_see_address()
+    {
+        $this->refreshApplication();
+
+        $user = User::find(1);
+
+        $response = $this->actingAs($user)
+            ->get('profile/edit/address')
+            ->assertSee('');
+    }
+    
     /** @test **/
     public function guests_cannot_access_page()
     {
@@ -22,6 +35,7 @@ class AddressPageTest extends TestCase
     }
 
     
+    /** @test **/
     public function admins_cannot_access_page()
     {
         $this->refreshApplication();
@@ -33,7 +47,7 @@ class AddressPageTest extends TestCase
             ->assertRedirect('login');
     }
 
-    
+    /** @test **/
     public function super_admins_cannot_access_page()
     {
         $this->refreshApplication();

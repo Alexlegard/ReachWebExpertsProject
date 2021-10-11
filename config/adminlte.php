@@ -9,12 +9,12 @@ return [
     |
     | Here you can change the default title of your admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#61-title
+    | For detailed instructions you can look the title section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
 
-    'title' => 'RWE Dashboard',
+    'title' => 'RWE Admin',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -25,8 +25,8 @@ return [
     |
     | Here you can activate the favicon.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#62-favicon
+    | For detailed instructions you can look the favicon section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
 
@@ -40,8 +40,8 @@ return [
     |
     | Here you can change the logo of your admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#63-logo
+    | For detailed instructions you can look the logo section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
 
@@ -59,16 +59,17 @@ return [
     |
     | Here you can activate and change the user menu.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#64-user-menu
+    | For detailed instructions you can look the user menu section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => true,
+    'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -77,8 +78,8 @@ return [
     |
     | Here we change the layout of your admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#65-layout
+    | For detailed instructions you can look the layout section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
 
@@ -90,28 +91,46 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Extra Classes
+    | Authentication Views Classes
+    |--------------------------------------------------------------------------
+    |
+    | Here you can change the look and behavior of the authentication views.
+    |
+    | For detailed instructions you can look the auth classes section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
+    |
+    */
+
+    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_header' => '',
+    'classes_auth_body' => '',
+    'classes_auth_footer' => '',
+    'classes_auth_icon' => '',
+    'classes_auth_btn' => 'btn-flat btn-primary',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Classes
     |--------------------------------------------------------------------------
     |
     | Here you can change the look and behavior of the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#66-classes
+    | For detailed instructions you can look the admin panel classes here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
 
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
+    'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
-    'classes_topnav_nav' => 'navbar-expand-md',
+    'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
-	
-	
 
     /*
     |--------------------------------------------------------------------------
@@ -120,8 +139,8 @@ return [
     |
     | Here we can modify the sidebar of the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#67-sidebar
+    | For detailed instructions you can look the sidebar section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
 
@@ -142,8 +161,8 @@ return [
     |
     | Here we can modify the right sidebar aka control sidebar of the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#68-control-sidebar-right-sidebar
+    | For detailed instructions you can look the right sidebar section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
 
@@ -162,25 +181,18 @@ return [
     |
     | Here we can modify the url settings of the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#69-urls
+    | For detailed instructions you can look the urls section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
 
     'use_route_url' => false,
-
-    'dashboard_url' => '/',
-
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
-
     'login_url' => 'login',
-
     'register_url' => 'register',
-
     'password_reset_url' => 'password/reset',
-
     'password_email_url' => 'password/email',
-
     'profile_url' => false,
 
     /*
@@ -190,12 +202,14 @@ return [
     |
     | Here we can enable the Laravel Mix option for the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#610-laravel-mix
+    | For detailed instructions you can look the laravel mix section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     |
     */
 
     'enabled_laravel_mix' => false,
+    'laravel_mix_css_path' => 'css/app.css',
+    'laravel_mix_js_path' => 'js/app.js',
 
     /*
     |--------------------------------------------------------------------------
@@ -204,127 +218,126 @@ return [
     |
     | Here we can modify the sidebar/top navigation of the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#611-menu
+    | For detailed instructions you can look here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-	
+
     'menu' => [
-		/* Topnav: text search and logout */
+        /* Topnav: text search and logout */
         [
             'text' => 'search',
             'search' => true,
             'topnav' => true,
         ],
-		[
-			'text'         => 'Logout',
-			'url'          => 'admin/logout',
-			'icon'         => 'fas fa-sign-out-alt',
-			'topnav_right' => true,
-			
-		],
-		/* Menu items visible to admins (restaurant owners) */
-		[
-			'text'         => 'Dashboard',
-			'url'          => 'admin/dashboard',
-			'icon'         => 'fas fa-home',
-			'can'          => 'add-restaurant',
-		],
-		[
-			'text'         => 'My Restaurants',
-			'url'          => 'admin/my-restaurants',
-			'icon'         => 'fas fa-hamburger',
-			'can'          => 'add-restaurant',
-		],
-		[
-			'text'         => 'My Dishes',
-			'url'          => 'admin/my-dishes',
-			'icon'         => 'fas fa-utensils',
-			'can'          => 'add-restaurant',
-		],
-		[
+        [
+            'text'         => 'Logout',
+            'url'          => 'admin/logout',
+            'icon'         => 'fas fa-sign-out-alt',
+            'topnav_right' => true,
+            
+        ],
+        /* Menu items visible to admins (restaurant owners) */
+        [
+            'text'         => 'Dashboard',
+            'url'          => 'admin/dashboard',
+            'icon'         => 'fas fa-home',
+            'can'          => 'add-restaurant',
+        ],
+        [
+            'text'         => 'My Restaurants',
+            'url'          => 'admin/my-restaurants',
+            'icon'         => 'fas fa-hamburger',
+            'can'          => 'add-restaurant',
+        ],
+        [
+            'text'         => 'My Dishes',
+            'url'          => 'admin/my-dishes',
+            'icon'         => 'fas fa-utensils',
+            'can'          => 'add-restaurant',
+        ],
+        [
             'text'         => 'Orders',
             'url'          => 'admin/my-orders',
             'icon'         => 'fas fa-shopping-cart',
-			'can'          => 'add-restaurant',
+            'can'          => 'add-restaurant',
         ],
-		[
-			'text'         => 'Sales',
-			'url'          => 'admin/my-sales',
-			'icon'         => 'fas fa-shopping-cart',
-			'can'          => 'add-restaurant',
-		],
-		[
+        [
+            'text'         => 'Sales',
+            'url'          => 'admin/my-sales',
+            'icon'         => 'fas fa-shopping-cart',
+            'can'          => 'add-restaurant',
+        ],
+        [
             'text'         => 'Reviews',
             'url'          => 'admin/my-reviews',
             'icon'         => 'fas fa-smile',
-			'can'          => 'add-restaurant',
+            'can'          => 'add-restaurant',
         ],
-		[
-			'text'         => 'Profile',
-			'url'          => 'admin/my-profile',
-			'icon'         => 'fas fa-user',
-			'can'          => 'add-restaurant',
-		],
-		/* Menu items visible to super admins */
-		
+        [
+            'text'         => 'Profile',
+            'url'          => 'admin/my-profile',
+            'icon'         => 'fas fa-user',
+            'can'          => 'add-restaurant',
+        ],
+        /* Menu items visible to super admins */
+        
         [
             'text'         => 'Restaurants',
             'url'          => 'admin/restaurants',
             'icon'         => 'fas fa-hamburger',
-			'can'          => 'view-users',
+            'can'          => 'view-users',
         ],
-		[
+        [
             'text'         => 'Restaurant applications',
             'url'          => 'admin/restaurant-applications',
             'icon'         => 'fas fa-hamburger',
-			'can'          => 'view-users',
+            'can'          => 'view-users',
         ],
-		[
+        [
             'text'         => 'Dishes',
             'url'          => 'admin/dishes',
             'icon'         => 'fas fa-utensils',
-			'can'          => 'view-users',
+            'can'          => 'view-users',
         ],
-		[
+        [
             'text'         => 'Orders',
             'url'          => 'admin/orders',
             'icon'         => 'fas fa-shopping-cart',
-			'can'          => 'view-users',
+            'can'          => 'view-users',
         ],
-		[
-			'text'         => 'Sales',
-			'url'          => 'admin/sales',
-			'icon'         => 'fas fa-shopping-cart',
-			'can'          => 'view-users',
-		],
-		[
+        [
+            'text'         => 'Sales',
+            'url'          => 'admin/sales',
+            'icon'         => 'fas fa-shopping-cart',
+            'can'          => 'view-users',
+        ],
+        [
             'text'         => 'Reviews',
             'url'          => 'admin/reviews',
             'icon'         => 'fas fa-smile',
-			'can'          => 'view-users',
+            'can'          => 'view-users',
         ],
-		[
-			'text'         => 'Users',
+        [
+            'text'         => 'Users',
             'url'          => 'admin/users',
             'icon'         => 'fas fa-user',
-			'can'          => 'view-users',
-		],
-		[
-			'text'         => 'Admins',
-			'url'          => 'admin/admins',
-			'icon'         => 'fas fa-crown',
-			'can'          => 'view-users',
-		],
-		[
-			'text'         => 'Profile',
-			'url'          => 'admin/profile',
-			'icon'         => 'fas fa-user',
-			'can'          => 'view-users',
-		],
+            'can'          => 'view-users',
+        ],
+        [
+            'text'         => 'Admins',
+            'url'          => 'admin/admins',
+            'icon'         => 'fas fa-crown',
+            'can'          => 'view-users',
+        ],
+        [
+            'text'         => 'Profile',
+            'url'          => 'admin/profile',
+            'icon'         => 'fas fa-user',
+            'can'          => 'view-users',
+        ],
         
     ],
-	
 
     /*
     |--------------------------------------------------------------------------
@@ -333,18 +346,17 @@ return [
     |
     | Here we can modify the menu filters of the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#612-menu-filters
+    | For detailed instructions you can look the menu filters section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
 
     'filters' => [
+        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
     ],
@@ -356,14 +368,13 @@ return [
     |
     | Here we can modify the plugins used inside the admin panel.
     |
-    | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#613-plugins
+    | For detailed instructions you can look the plugins section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     |
     */
 
     'plugins' => [
-        [
-            'name' => 'Datatables',
+        'Datatables' => [
             'active' => false,
             'files' => [
                 [
@@ -383,8 +394,7 @@ return [
                 ],
             ],
         ],
-        [
-            'name' => 'Select2',
+        'Select2' => [
             'active' => false,
             'files' => [
                 [
@@ -399,8 +409,7 @@ return [
                 ],
             ],
         ],
-        [
-            'name' => 'Chartjs',
+        'Chartjs' => [
             'active' => false,
             'files' => [
                 [
@@ -410,8 +419,7 @@ return [
                 ],
             ],
         ],
-        [
-            'name' => 'Sweetalert2',
+        'Sweetalert2' => [
             'active' => false,
             'files' => [
                 [
@@ -421,8 +429,7 @@ return [
                 ],
             ],
         ],
-        [
-            'name' => 'Pace',
+        'Pace' => [
             'active' => false,
             'files' => [
                 [
@@ -437,27 +444,18 @@ return [
                 ],
             ],
         ],
-		[
-			'name' => 'Roboto',
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap',
-                ],
-            ],
-		],
-		[
-			'name' => 'sass',
-            'active' => true,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => 'css/sass/main.css',
-                ],
-            ],
-		],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Livewire
+    |--------------------------------------------------------------------------
+    |
+    | Here we can enable the Livewire support.
+    |
+    | For detailed instructions you can look the livewire here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
+    */
+
+    'livewire' => false,
 ];
