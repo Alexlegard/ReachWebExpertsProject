@@ -10,6 +10,7 @@ use Carbon;
 use Auth;
 use App\Traits\PaginateCollection;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 // Admin-side reviews controller
 class ReviewsController extends Controller
@@ -37,12 +38,21 @@ class ReviewsController extends Controller
 	
 	public function show(Review $review)
 	{
+		$restaurant = $review->restaurant;
+
+		$this->authorize('owns-restaurant', $restaurant);
+
 		return view("admin/reviews/show", [
 			"review" => $review
 		]);
 	}
 	
 	public function destroy(Review $review) {
+
+		$restaurant = $review->restaurant;
+		
+		$this->authorize('delete-review', $review);
+
 		$review->delete();
 		
 		return redirect("admin/my-reviews");

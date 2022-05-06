@@ -14,10 +14,11 @@ class RestaurantApplicationRequest extends FormRequest
      */
     public function authorize()
     {
-		if( Auth::guard('admin')->check() ) {
-			return true;
-		}
-        return false;
+		if(! Auth::guard('admin')->check() ) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

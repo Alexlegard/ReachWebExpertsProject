@@ -6,6 +6,13 @@
 
 @section('content')
 <div class="container">
+	<!-- Session message -->
+	@if(Session::has('message'))
+		<p class="alert
+			{{ Session::get('alert-class', 'alert-info') }}">{{Session::get('message') }}
+		</p>
+	@endif
+	
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">

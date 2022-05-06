@@ -38,4 +38,18 @@ class DishesController extends Controller
 			'dish' => $dish
 		]);
     }
+
+    /**
+     * Delete the specified dish. 
+     * 
+     */
+    public function destroy(Dish $dish)
+    {
+        $dish->delete();
+        $restaurants = Restaurant::all();
+        $dishes = Dish::all();
+
+        return redirect('admin/dishes')
+            ->with('message', 'Successfully deleted dish!');
+    }
 }

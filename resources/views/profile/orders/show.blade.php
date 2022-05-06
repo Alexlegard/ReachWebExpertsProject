@@ -53,6 +53,23 @@
 						<td>{{ presentPrice($order->billing_total) }}</td>
 					</tr>
 				</table>
+
+				<div class="header-large-green">
+					<h1>Order Items</h1>
+				</div>
+
+				<table class="details-table">
+					<tr>
+						<th>Quantity</th>
+						<th>Name</th>
+					</tr>
+					@foreach($order->dishes as $dish)
+					<tr>
+						<td>{{ $dish->pivot->quantity }}</td>
+						<td>{{ $dish->name }}</td>
+					</tr>
+					@endforeach
+				</table>
 			</div>
 		</div>
 	</div>

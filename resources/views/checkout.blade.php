@@ -437,25 +437,13 @@ window.addEventListener('load', function () {
 								<td>Subtotal</td>
 								<td>{{ presentPrice(Cart::subtotal()) }}</td>
 							</tr>
-							@if(session()->has('coupon'))
-							<tr>
-								<td>Discount</td>
-								<td>
-									{{ presentPrice(session()->get('coupon')['discount']) }}
-								</td>
-							</tr>
-							<tr>
-								<td>New subtotal</td>
-								<td>{{ presentPrice($newSubtotal) }}</td>
-							</tr>
-							@endif
 							<tr>
 								<td>Tax</td>
-								<td>{{ presentPrice($newTax) }}</td>
+								<td>{{ presentPrice($tax) }}</td>
 							</tr>
 							<tr>
 								<td>Total</td>
-								<td>{{ presentPrice($newTotal) }}</td>
+								<td>{{ presentPrice($total) }}</td>
 							</tr>
 						</table>
 						@if(session()->has('coupon'))
@@ -468,26 +456,8 @@ window.addEventListener('load', function () {
 						</form>
 						@endif
 					</div>
-					
-					<div class="coupon">
-						<h2>Have a code?</h2>
-						
-						<form action="{{ route('coupon.store') }}" method="post"
-								class="coupon-form" id="coupon-form">
-							@csrf
-							<div id="row">
-								<div>
-									<input type="text" name="couponcode" id="couponcode" />
-								</div>
-								<div class="form-submit">
-									<input type="submit" value="Apply">
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
-		
 		</div>
 	</div>
 </div>

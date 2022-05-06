@@ -46,15 +46,6 @@
 					
 					<div class="row">
 						<div class="col-3">
-							<label for="email">Email address:</label>
-						</div>
-						<div class="col-9">
-							<input type="text" name="email" value="{{ Auth::user()->email }}"/>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-3">
 							<label for="description">Description:</label>
 						</div>
 						<div class="col-9">

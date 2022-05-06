@@ -1,4 +1,5 @@
 @component('mail::message')
+
 # Hello {{ $order->billing_name }},
 
 Thank you for shopping with us. Your order will be delivered shortly.

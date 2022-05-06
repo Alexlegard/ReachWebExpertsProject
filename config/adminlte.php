@@ -263,12 +263,6 @@ return [
             'can'          => 'add-restaurant',
         ],
         [
-            'text'         => 'Sales',
-            'url'          => 'admin/my-sales',
-            'icon'         => 'fas fa-shopping-cart',
-            'can'          => 'add-restaurant',
-        ],
-        [
             'text'         => 'Reviews',
             'url'          => 'admin/my-reviews',
             'icon'         => 'fas fa-smile',

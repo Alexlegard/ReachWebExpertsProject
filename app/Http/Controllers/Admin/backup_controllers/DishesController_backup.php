@@ -11,20 +11,7 @@ use App\Http\Controllers\Controller;
 
 /* Admin dishes controller */
 class DishesController extends Controller
-{
-	/*
-    public function index()
-	{
-		$dishes = Dish::all()->sortBy('restaurant_id');
-		$restaurants = $this->getRestaurantsWithDishes();
-		
-		dd($restaurants);
-		
-		return view('admin/dishes/list', [
-			'dishes' => $dishes
-		]);
-	}*/
-	
+{	
 	public function index_public($id)
 	{
 		$dishes = Dish::where('menu_id', $id)->get();
@@ -51,18 +38,7 @@ class DishesController extends Controller
 		]);
 		
 		$dish = new Dish;
-		/* IMAGE CODE COPIED FROM RESTAURANTS CONTROLLER
-		if($request->has('image')) {
-            // resize and upload image
-            $path = 'storage/images/' . $request->image->getClientOriginalName();
-            $public_path = 'images/' . $request->image->getClientOriginalName();
-            $resizedimage = Image::make( $request->image )
-                ->resize(300, 200)
-                ->save( $path );
-            
-            $restaurant->image = $public_path;
-		}
-		*/
+		
 		$dish->menu_id = $id;
 		
 		$dish->price = array(

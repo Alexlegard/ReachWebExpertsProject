@@ -19,9 +19,10 @@ class OrderPlaced extends Mailable
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order, $contents)
     {
         $this->order = $order;
+        $this->contents = $contents;
     }
 
     /**
@@ -32,6 +33,7 @@ class OrderPlaced extends Mailable
     public function build()
     {
         return $this->markdown('emails.orders.placed')
-            ->with('order', $this->order);
+            ->with('order', $this->order)
+            ->with('contents', $this->contents);
     }
 }

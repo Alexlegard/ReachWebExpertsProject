@@ -40,9 +40,6 @@
 				<div class="yellow-action-link">
 					<a href="{{ url('admin/my-profile/edit') }}">Change basic settings</a>
 				</div>
-				<div class="yellow-action-link">
-					<a href="{{ url('admin/password/reset') }}">Password Reset</a>
-				</div>
 			</div>
 		</div>
 	</div>

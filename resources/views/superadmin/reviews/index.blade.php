@@ -27,7 +27,9 @@
 						@if( isset($restaurant->review[0]) )
 							
 						<tr>
-							<td>{{ $restaurant->name }}</td>
+							<td>
+								<a href="{{ url('admin/restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+							</td>
 							
 							<td>
 								@foreach($restaurant->review as $review)

@@ -7,12 +7,47 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\Mail\AdminRegistration;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\AdminRequest;
+use Illuminate\Support\Facades\Hash;
 
 
 class AdminsController extends Controller
 {
+	/**
+	 * Show the form to create a new admin.
+	 */
+	public function create()
+	{
+		return view("superadmin/admins/create");
+	}
+
+	/**
+	 * Create a new admin.
+	 */
+	public function store(AdminRequest $request)
+	{
+		$admin = new Admin;
+		
+		$random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890!$%^&!$%^&');
+		$password = substr($random, 0, 10);
+
+		$admin->name = $request->name;
+		$admin->email = $request->email;
+		$admin->password = Hash::make($password);
+		$admin->save();
+
+		//Send email to new admin with their account credentials
+		Mail::to( $admin->email )
+			->send(new AdminRegistration($admin->name, $admin->email, $password));
+
+		$msg = 'An email has been sent to ' . $admin->email . '!';
+
+		return redirect("admin/admins")
+			->with('message', $msg); ;
+	}
+
     /**
-     * Display a listing of the resource.
+     * Display a listing admins.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +61,7 @@ class AdminsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified admin.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -42,7 +77,7 @@ class AdminsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified admin from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

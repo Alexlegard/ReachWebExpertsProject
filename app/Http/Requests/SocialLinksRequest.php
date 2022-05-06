@@ -14,9 +14,17 @@ class SocialLinksRequest extends FormRequest
      */
     public function authorize()
     {
-		if( Auth::guard('admin')->check() ) {
-			return true;
-		}
+		if(! Auth::guard('admin')->check() ) {
+            return false;
+        }
+
+        foreach($this->restaurant->admins as $admin) {
+            
+            if( Auth::guard('admin')->id() == $admin->id ) {
+                return true;
+            }
+        }
+
         return false;
     }
 

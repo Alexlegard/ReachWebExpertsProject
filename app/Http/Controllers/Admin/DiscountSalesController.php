@@ -17,7 +17,9 @@ class DiscountSalesController extends Controller
      */
     public function create(Dish $dish)
     {
-        //dd("In create method.");
+    	$restaurant = $dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
 		
 		return view('admin/myDishes/discountSales/create', [
 			'dish' => $dish
@@ -32,6 +34,10 @@ class DiscountSalesController extends Controller
      */
     public function store(DiscountSaleRequest $request, Dish $dish)
     {
+    	$restaurant = $dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
+
         $dish->special_price = array(
 			"currency" => $request->currency,
 			"amount" => $request->specialprice
@@ -67,6 +73,10 @@ class DiscountSalesController extends Controller
      */
     public function destroy(Dish $dish)
     {
+    	$restaurant = $dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
+
         $dish->on_sale = false;
 		$dish->on_sale_until = null;
 		$dish->save();

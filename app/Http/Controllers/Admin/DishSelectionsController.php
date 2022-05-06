@@ -12,44 +12,45 @@ use App\Http\Requests\DishSelectionsRequest;
 class DishSelectionsController extends Controller
 {
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new DishSelection.
      *
      * @return \Illuminate\Http\Response
      */
     public function create(Dish $dish)
     {
+        $restaurant = $dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
+
         return view("admin/myDishes/options/create", [
 			"dish" => $dish
 		]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created DishSelection in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(DishSelectionsRequest $request, $id)
-    {
-        //dd($request);
-		
+    {	
 		// Name, options, and radio_or_checkbox
-		
-		$dishselection = new DishSelection;
-		
-		$dishselection->dish_id = $id;
-		$dishselection->name = request('name');
-		// Array
-		//dd(array_filter(request('options')));
-		$dishselection->options = array_filter(request('options'));
-		$dishselection->radio_or_checkbox = request('radio_or_checkbox');
-		$dishselection->save();
-		//dd("Hello.");
-		return redirect("admin/my-dishes/".$id);
+		$ds = new DishSelection;
+		$ds->dish_id = $id;
+		$ds->name = request('name');
+		$ds->options = array_filter(request('options'));
+		$ds->radio_or_checkbox = request('radio_or_checkbox');
+		$ds->save();
+		return redirect("admin/my-dishes/".$ds->dish_id);
     }
 	
 	public function show(DishSelection $dishselection) {
 		
+        $restaurant = $dishselection->dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
+
 		$dish = $dishselection->dish;
 		
 		return view("admin/myDishes/options/show", [
@@ -59,13 +60,17 @@ class DishSelectionsController extends Controller
 	}
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified DishSelection.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(DishSelection $dishselection)
     {
+        $restaurant = $dishselection->dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
+
 		$dish = $dishselection->dish;
 		
         return view('admin/myDishes/options/edit', [
@@ -75,7 +80,7 @@ class DishSelectionsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified DishSelection in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -83,7 +88,9 @@ class DishSelectionsController extends Controller
      */
     public function update(DishSelectionsRequest $request, DishSelection $dishselection)
     {
-        //dd($dishselection);
+        $restaurant = $dishselection->dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
 		
 		$dishselection->name = request('name');
 		// Array
@@ -94,13 +101,17 @@ class DishSelectionsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified DishSelection from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(DishSelection $dishselection)
     {
+        $restaurant = $dishselection->dish->menu->restaurant;
+
+        $this->authorize('owns-restaurant', $restaurant);
+        
 		$id = $dishselection->dish->id;
 		
         $dishselection->delete();

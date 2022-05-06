@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
 			CouponsTableSeeder::class,
 			ProfilesTableSeeder::class,
 			DishSelectionsTableSeeder::class,
+			InvoicesTableSeeder::class,
 		]);
     }
 }

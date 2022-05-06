@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use App\Dish;
 
 class DishSelectionsRequest extends FormRequest
 {
@@ -14,9 +15,22 @@ class DishSelectionsRequest extends FormRequest
      */
     public function authorize()
     {
-		if(Auth::guard('admin')->check()) {
-			return true;
+        //dd($this->dishselection->dish->menu->restaurant);
+
+		if(! Auth::guard('admin')->check() ) {
+			return false;
 		}
+
+        //dd(Dish::find($this->id));
+        $dish = Dish::find($this->id);
+
+        foreach($dish->menu->restaurant->admins as $admin) {
+            
+            if( Auth::guard('admin')->id() == $admin->id ) {
+                return true;
+            }
+        }
+
         return false;
     }
 

@@ -4,6 +4,15 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/sass/main.css') }}" />
 @endsection
 
+@section('js')
+<script>
+function ConfirmDelete(){
+	if(!confirm("Are you sure you want to delete this dish?"))
+	event.preventDefault();
+}
+</script>
+@endsection
+
 @section('content')
 <div class="container">
 	<div class="row">
@@ -82,6 +91,12 @@
 			<div class="grey-nav-link">
 				<a href="{{ url('admin/dishes') }}">Back to dishes</a>
 			</div>
+
+			<form class="delete-form" method="post" action="{{ url('admin/dishes/'. $dish->id.'/destroy') }}">
+				@csrf
+				@method('delete')
+				<input type="submit" value="Delete this dish" onclick="return ConfirmDelete();">
+			</form>
 		</div>
 	</div>
 </div>

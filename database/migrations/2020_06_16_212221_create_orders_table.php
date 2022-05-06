@@ -33,7 +33,6 @@ class CreateOrdersTable extends Migration
 			$table->string('billing_postalcode');
 			$table->string('billing_name_on_card');
 			$table->double('billing_subtotal');
-			$table->double('billing_subtotal_after_discount');
 			$table->double('billing_tax');
 			$table->double('billing_total');
 			$table->double('billing_commission');

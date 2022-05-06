@@ -14,6 +14,7 @@ class CreateRestaurantPagesTable extends Migration
     public function up()
     {
         Schema::create('restaurant_pages', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
 			$table->unsignedBigInteger('restaurant_id');
 			

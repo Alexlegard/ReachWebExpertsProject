@@ -259,13 +259,11 @@ class ProfilesController extends Controller
 	{
 		request()->validate([
 			'name' => 'required',
-			'email' => 'required',
 			'description' => 'required'
 		]);
 		
 		$user = $profile->user;
 		$user->name = $request->name;
-		$user->email = $request->email;
 		$user->save();
 		
 		$profile->description = $request->description;

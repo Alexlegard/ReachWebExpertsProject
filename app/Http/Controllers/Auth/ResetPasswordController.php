@@ -47,11 +47,4 @@ class ResetPasswordController extends Controller
 			'token' => $token,
 		]);
 	}
-	
-	
-	/*
-	protected function guard()
-	{
-		return Auth::guard('admin');
-	}*/
 }

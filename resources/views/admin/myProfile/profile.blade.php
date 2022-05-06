@@ -37,11 +37,6 @@
 				<a href="{{ url('profile/edit/settings') }}">Change basic settings</a>
 			</div>
 		</div>
-	
-		<div id="account-password-reset">
-			<h2>Password</h2>
-			<a href="{{ url('password/reset') }}">Change Password</a>
-		</div>
 	</div>
 </div>
 	

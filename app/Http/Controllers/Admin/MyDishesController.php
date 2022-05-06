@@ -95,9 +95,12 @@ class MyDishesController extends Controller
      */
     public function show(Dish $dish)
     {
+    	$restaurant = $dish->menu->restaurant;
+
+    	$this->authorize('owns-restaurant', $restaurant);
+
 		$admin = Auth::guard('admin')->user();
 		$orders = $this->getOrdersFromDish($dish);
-		$restaurant = $dish->menu->restaurant;
 		
         return view("admin/myDishes/show", [
 			'dish' => $dish,
@@ -114,6 +117,10 @@ class MyDishesController extends Controller
      */
     public function edit(Dish $dish)
     {
+    	$restaurant = $dish->menu->restaurant;
+
+    	$this->authorize('owns-restaurant', $restaurant);
+
         return view("admin/myDishes/edit", [
 			'dish' => $dish
 		]);
@@ -128,6 +135,10 @@ class MyDishesController extends Controller
      */
     public function update(MyDishRequest $request, Dish $dish)
     {
+    	$restaurant = $dish->menu->restaurant;
+
+    	$this->authorize('owns-restaurant', $restaurant);
+
 		$dish->price = array(
 			"currency" => $request->pricecurrency,
 			"amount" => $request->priceamount,
@@ -165,6 +176,10 @@ class MyDishesController extends Controller
      */
     public function destroy(Dish $dish)
     {
+    	$restaurant = $dish->menu->restaurant;
+    	
+    	$this->authorize('owns-restaurant', $restaurant);
+
         $dish->delete();
 		$dishes_array = array();
 		$restaurants = Auth::guard('admin')->user()->restaurants;

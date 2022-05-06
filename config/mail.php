@@ -82,9 +82,9 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
+    
     'from' => [
-        'address' => 'legardalex401@gmail.com',
+        'address' => env('MAIL_FROM_ADDRESS'),
         'name' => 'Alex Legard',
     ],
 

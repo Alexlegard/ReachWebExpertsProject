@@ -22,14 +22,18 @@ class OrdersController extends Controller
 		$billing_address = $this->getBillingAddressString(Auth()->user()->profile, $order->billing_postalcode);
 		$shipping_address = $this->getShippingAddressString(Auth()->user()->profile);
 
-		//if(Auth()->user()->id != $order->user->id) {
-		//	return redirect('profile/orders');
-    	//}
     	$this->authorize('show', $order);
+
+    	//dd($order->dishes);
+
+    	//foreach($order->dishes as $dish) {
+    	//	dd($dish->name);
+    	//}
 		
 		return view("profile/orders/show", [
 			"user" => Auth()->user(),
 			"order" => $order,
+			"dishes" => $order->dishes,
 			"billing_address" => $billing_address,
 			"shipping_address" => $shipping_address
 		]);

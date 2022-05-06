@@ -173,6 +173,7 @@ let quarterlyOrdersChart = new Chart(quarterlyOrdersContext, {
 @section('content')
 <div class="container">
 	<div class="row">
+		<!-- Left column -->
 		<div class="col-md-6">
 			<div class="subheader-small-blue">
 				@if( count($orders) == 0 )
@@ -198,7 +199,7 @@ let quarterlyOrdersChart = new Chart(quarterlyOrdersContext, {
 						<td>{{ $order->billing_name }}</td>
 						<td>${{ $order->billing_total }}</td>
 						<td>
-							<a href="{{ url('admin/my-orders/'.$order->id) }}">Order</a>
+							<a href="{{ url('admin/orders/'.$order->id) }}">Order</a>
 						</td>
 					</tr>
 					@endforeach
@@ -209,6 +210,7 @@ let quarterlyOrdersChart = new Chart(quarterlyOrdersContext, {
 			{{ $orders->links() }}
 		</div>
 		
+		<!-- Right column -->
 		<div class="col-md-6">
 			<div class="charts">
 				<div class="subheader-small-blue">

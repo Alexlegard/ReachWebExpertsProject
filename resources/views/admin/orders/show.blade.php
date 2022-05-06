@@ -20,59 +20,59 @@
 			<table class="details-table">
 				<tr>
 					<td>Time placed</td>
-					<td>{{ $order->time_placed }}</td>
+					<td>{{ $invoice->time_issued }}</td>
 				</tr>
 				<tr>
-					<td>Customer name</td>
-					<td>{{ $order->billing_name }}</td>
+					<td>Customer Email</td>
+					<td>{{ $invoice->customer_email }}</td>
 				</tr>
 				<tr>
-					<td>Customer email</td>
-					<td>{{ $order->billing_email }}</td>
+					<td>Customer Name</td>
+					<td>{{ $invoice->customer_name }}</td>
 				</tr>
 				<tr>
-					<td>Street address</td>
-					<td>{{ $order->billing_streetaddress }}</td>
+					<td>Customer Street Address</td>
+					<td>{{ $invoice->customer_streetaddress . $invoice->customer_streetaddresstwo }}</td>
 				</tr>
 				<tr>
-					<td>City</td>
-					<td>{{ $order->billing_city }}</td>
+					<td>Customer City</td>
+					<td>{{ $invoice->customer_city }}</td>
 				</tr>
 				<tr>
-					<td>State / Province</td>
-					<td>{{ $order->billing_state_province }}</td>
+					<td>Customer State / Province</td>
+					<td>{{ $invoice->customer_state_province }}</td>
 				</tr>
 				<tr>
-					<td>Country</td>
-					<td>{{ $order->billing_country }}</td>
+					<td>Customer Country</td>
+					<td>{{ $invoice->customer_country }}</td>
 				</tr>
 				<tr>
-					<td>Postal code</td>
-					<td>{{ $order->billing_postalcode }}</td>
+					<td>Customer Postal Code</td>
+					<td>{{ $invoice->customer_postalcode }}</td>
 				</tr>
 				<tr>
-					<td>Name on card</td>
-					<td>{{ $order->billing_name_on_card }}</td>
+					<td>Customer Name on Card</td>
+					<td>{{ $invoice->customer_name_on_card }}</td>
 				</tr>
 				<tr>
 					<td>Subtotal</td>
-					<td>{{ presentPrice($order->billing_subtotal) }}</td>
+					<td>{{ presentPrice($invoice->subtotal) }}</td>
 				</tr>
 				<tr>
 					<td>Tax</td>
-					<td>{{ presentPrice($order->billing_tax) }}</td>
+					<td>{{ presentPrice($invoice->tax) }}</td>
 				</tr>
 				<tr>
 					<td>Total</td>
-					<td>{{ presentPrice($order->billing_total) }}</td>
+					<td>{{ presentPrice($invoice->total) }}</td>
 				</tr>
 				<tr>
-					<td>Payment gateway</td>
-					<td>{{ $order->payment_gateway }}</td>
+					<td>Commission</td>
+					<td>{{ presentPrice($invoice->commission) }}</td>
 				</tr>
 				<tr>
 					<td>Shipped</td>
-					@if( $order->shipped )
+					@if( $invoice->shipped )
 					<td>Yes</td>
 					@else
 					<td>No</td>
@@ -84,7 +84,7 @@
 		<!-- Right column -->
 		<div class="col-6">
 			<div class="grey-nav-link">
-				<a href="{{ url('admin/my-orders') }}">Back to orders</a>
+				<a href="{{ url('admin/my-orders') }}">Back to Invoices</a>
 			</div>
 		</div>
 	</div>
@@ -95,25 +95,20 @@
 		<div class="col-6">
 			<h4>This order's dishes:</h4>
 			
-			<ul>
-			@foreach($dishes as $dish)
-				<li>
-					<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
-				</li>
-			@endforeach
-			</ul>
-		</div>
-		
-		<div class="col-6">
-			<h4>This order's restaurants:</h4>
-			
-			<ul>
-			@foreach($restaurants as $restaurant)
-				<li>
-					<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
-				</li>
-			@endforeach
-			</ul>
+			<table class="details-table">
+				<tr>
+					<th>Dish name</th>
+					<th>Quantity</th>
+				</tr>
+				@foreach( $dishes as $dish )
+				<tr>
+					<td>
+						<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
+					</td>
+					<td>{{ $dish->pivot->quantity }}</td>
+				</tr>
+				@endforeach
+			</table>
 		</div>
 	</div>
 </div>

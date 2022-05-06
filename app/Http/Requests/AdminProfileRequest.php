@@ -14,9 +14,14 @@ class AdminProfileRequest extends FormRequest
      */
     public function authorize()
     {
-		if( Auth::guard('admin')->check() ) {
-			return true;
-		}
+		if(! Auth::guard('admin')->check() ) {
+            return false;
+        }
+
+        if( Auth::guard('admin')->id() == $this->adminProfile->admin->id ) {
+            return true;
+        }
+
         return false;
     }
 

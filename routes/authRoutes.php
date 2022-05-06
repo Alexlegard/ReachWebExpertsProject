@@ -17,27 +17,22 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 		Route::post('/logout', 'LoginController@logout')
 			->name('admin.logout');
 
-		// Register route
-		Route::get('/register/{token}', 'RegisterController@showRegistrationForm')
-			->name('admin.showregister');
-		Route::post('/register', 'RegisterController@register')
-			->name('admin.register');
+		// Reset Password Routes
+		// Is this working as expected???
+		Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')
+			->name('password.reset');
+		Route::post('/password/reset','ResetPasswordController@reset')
+			->name('password.update');
 
 		// Forgot Password Routes
 		Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')
 			->name('password.request');
 		Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')
 			->name('password.email');
-
-		// Reset Password Routes
-		Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')
-			->name('password.reset');
-		Route::post('/password/reset','ResetPasswordController@reset')
-			->name('password.update');
 	});
 });
 
-/**************************************** Superadmin auth related routes */
+/************************************ Superadmin auth related routes */
 Route::prefix('/superadmin')->name('superadmin.')->namespace('Superadmin')->group(function(){
 
 	Route::namespace('Auth')->group(function(){

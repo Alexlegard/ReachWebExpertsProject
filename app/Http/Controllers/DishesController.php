@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Restaurant;
 use App\Dish;
 use Illuminate\Support\Facades\Route;
 use Storage;
@@ -39,8 +40,6 @@ class DishesController extends Controller
 			]);
 		}
 	}
-	
-	
 }
 
 

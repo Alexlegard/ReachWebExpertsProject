@@ -6,6 +6,13 @@
 
 @section('content')
 <div class="container">
+	<!-- Session message -->
+	@if(Session::has('message'))
+		<p class="alert
+			{{ Session::get('alert-class', 'alert-info') }}">{{Session::get('message') }}
+		</p>
+	@endif
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -38,7 +45,7 @@
 		<div class="col-md-6">
 			<div class="links">
 				<div class="grey-nav-link">
-					<a href="{{ url('admin/admins/send-registration-email') }}">Send new admin registration email</a>
+					<a href="{{ url('admin/admins/create') }}">Create New Admin</a>
 				</div>
 			</div>
 		</div>

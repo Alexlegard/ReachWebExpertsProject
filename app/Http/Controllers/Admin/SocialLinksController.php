@@ -18,6 +18,8 @@ class SocialLinksController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
+        $this->authorize('owns-restaurant', $restaurant);
+
         if(Auth::guard('admin')->user()->id != $restaurant->admins()->find(1)->id) {
             return redirect('admin/dashboard');
         }
@@ -36,6 +38,8 @@ class SocialLinksController extends Controller
      */
     public function update(SocialLinksRequest $request, Restaurant $restaurant)
     {
+        $this->authorize('owns-restaurant', $restaurant);
+
         $restaurant->facebook = request('facebook');
 		$restaurant->twitter = request('twitter');
 		$restaurant->instagram = request('instagram');

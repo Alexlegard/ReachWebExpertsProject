@@ -42,12 +42,14 @@ class RestaurantsController extends Controller
 		$address = $this->getRestaurantAddressString($restaurant);
 		$cuisines = $this->getRestaurantCuisinesString($restaurant);
 		$orders = $this->getOrdersFromRestaurant($restaurant);
+        $reviews = $restaurant->review;
 		
         return view("superadmin/restaurants/show", [
 			'restaurant' => $restaurant,
-			'address' => $address,
-			'cuisines' => $cuisines,
-			'orders' => $orders
+			'address'    => $address,
+			'cuisines'   => $cuisines,
+			'orders'     => $orders,
+            'reviews'    => $reviews
 		]);
     }
 

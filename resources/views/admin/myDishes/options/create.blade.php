@@ -91,7 +91,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="form-submit">
-							<input type="submit" value="Add Option" />
+							<input type="submit" value="Add Selection" />
 						</div>
 					</div>
 				</div>

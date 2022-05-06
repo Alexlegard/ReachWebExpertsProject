@@ -21,6 +21,7 @@
 					<!-- If USER is logged in -->
 					@if( Auth()->check() )
 					<div class="top-nav-links">
+						<a href="{{ url('about') }}" dusk="about">About</a>
 						<a href="{{ url('profile') }}" dusk="profile">Profile</a>
 						<a href="{{ url('cart') }}" dusk="cart">
 							Cart
@@ -38,6 +39,7 @@
 					<!-- If ADMIN is logged in -->
 					@elseif(Auth::guard('admin')->check())
 					<div class="top-nav-links">
+						<a href="{{ url('about') }}" dusk="about">About</a>
 						<a href="{{ url('admin/dashboard') }}">Admin Dashboard</a>
 						<a href="#"
 							onclick="event.preventDefault();
@@ -50,6 +52,7 @@
 					</div>
 					@elseif(Auth::guard('superadmin')->check())
 					<div class="top-nav-links">
+						<a href="{{ url('about') }}" dusk="about">About</a>
 						<a href="{{ url('admin/dashboard') }}">Admin Dashboard</a>
 						<a href="#"
 							onclick="event.preventDefault();
@@ -63,6 +66,7 @@
 					@else
 					<!-- If no one is logged in -->
 					<div class="top-nav-links">
+						<a href="{{ url('about') }}" dusk="about">About</a>
 						<a href="{{ url('login') }}">Login</a>
 						<a href="{{ url('register') }}">Register</a>
 						<a href="{{ url('cart') }}">

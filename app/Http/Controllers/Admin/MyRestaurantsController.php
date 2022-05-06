@@ -9,6 +9,7 @@ use Auth;
 use App\Traits\GetAddressStrings;
 use App\Traits\GetCuisinesStrings;
 use App\Traits\GetOrders;
+use App\Http\Requests\MyRestaurantRequest;
 
 class MyRestaurantsController extends Controller
 {
@@ -49,34 +50,9 @@ class MyRestaurantsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MyRestaurantRequest $request)
     {
-		request()->validate([
-			'title' => 'required',
-			'description' => 'required',
-			'slug' => 'required',
-			'streetaddress' => 'required',
-			'streetaddresstwo' => 'sometimes',
-			'city' => 'required',
-			'stateprovince' => 'required',
-			'country' => 'required',
-			'cuisine' => 'required',
-			'image' => 'sometimes|file|image|max:5000',
-		]);
-		
 		$restaurant = new Restaurant;
-		/*
-		if($request->has('image')) {
-            // resize and upload image
-            $path = 'storage/images/' . $request->image->getClientOriginalName();
-            $public_path = 'images/' . $request->image->getClientOriginalName();
-            $resizedimage = Image::make( $request->image )
-                ->resize(300, 200)
-                ->save( $path );
-            
-            $restaurant->image = $public_path;
-		}
-		*/
 		
 		$restaurant->address = array(
 			"streetaddress" => $request->streetaddress,
@@ -93,14 +69,11 @@ class MyRestaurantsController extends Controller
 		$restaurant->description = request('description');
 		$restaurant->slug = request('slug');
 		$restaurant->cuisine = request('cuisine');
-		
 		$restaurant->save();
 		
 		$admin = Auth::guard('admin')->user();
 		//dd($admin);
 		$restaurant->admins()->sync($admin);
-		
-		
 		
 		return redirect("/admin/my-restaurants");
     }
@@ -113,23 +86,22 @@ class MyRestaurantsController extends Controller
      */
     public function show($id)
     {
+    	$restaurant = Restaurant::find($id);
+
+    	$this->authorize('owns-restaurant', $restaurant);
 		
 		$admin = Auth::guard('admin')->user();
-		$restaurant = Restaurant::find($id);
 		$address = $this->getRestaurantAddressString($restaurant);
 		$cuisines = $this->getRestaurantCuisinesString($restaurant);
 		$orders = $this->getOrdersFromRestaurant($restaurant);
-		
-		
-		if(Auth::guard('admin')->user()->id != $restaurant->admins()->find(1)->id) {
-			return redirect('admin/dashboard');
-		}
+		$reviews = $restaurant->review;
 		
         return view("admin/myRestaurants/show", [
 			'restaurant' => $restaurant,
-			'address' => $address,
-			'cuisines' => $cuisines,
-			'orders' => $orders
+			'address' =>    $address,
+			'cuisines' =>   $cuisines,
+			'orders' =>     $orders,
+			'reviews' =>    $reviews
 		]);
     }
 
@@ -142,6 +114,8 @@ class MyRestaurantsController extends Controller
     public function edit($id)
     {
 		$restaurant = Restaurant::where('id', $id)->first();
+
+		$this->authorize('owns-restaurant', $restaurant);
 
 		if(Auth::guard('admin')->user()->id != $restaurant->admins()->find(1)->id) {
 			return redirect('admin/dashboard');
@@ -159,22 +133,9 @@ class MyRestaurantsController extends Controller
      * @return \Illuminate\Http\Response
      * Route::patch('my-restaurants/{restaurant}')
      */
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(MyRestaurantRequest $request, Restaurant $restaurant)
     {
-    	//dd($request);
-
-        request()->validate([
-			'title' => 'required',
-			'description' => 'required',
-			'slug' => 'required',
-			'streetaddress' => 'required',
-			'streetaddresstwo' => 'sometimes',
-			'city' => 'required',
-			'stateprovince' => 'required',
-			'country' => 'required',
-			'cuisine' => 'required',
-			'image' => 'sometimes|file|image|max:5000',
-		]);
+    	$this->authorize('owns-restaurant', $restaurant);
 
 		$this->storeImage($restaurant);
 		
@@ -213,7 +174,7 @@ class MyRestaurantsController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-		//dd($restaurant);
+		$this->authorize('owns-restaurant', $restaurant);
 		
         $restaurant->delete();
 		
@@ -221,6 +182,8 @@ class MyRestaurantsController extends Controller
     }
 	
 	public function createdish(Restaurant $restaurant) {
+
+		$this->authorize('owns-restaurant', $restaurant);
 		
 		return view("admin/myRestaurants/createDish", [
 			'restaurant' => $restaurant

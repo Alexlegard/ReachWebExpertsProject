@@ -22,15 +22,28 @@ class Dish extends Model
 		return $this->belongsTo(Menu::class);
 	}
 	
-	
-	
 	public function orders()
 	{
 		return $this->belongsToMany(Order::class);
 	}
+
+	public function orderDish()
+    {
+        return $this->belongsTo(OrderDish::class);
+    }
 	
 	public function selections()
 	{
 		return $this->hasMany(DishSelection::class);
 	}
+
+	public function invoices()
+	{
+		return $this->hasMany(Invoice::class);
+	}
+
+	public function dishInvoice()
+    {
+        return $this->belongsTo(DishInvoice::class);
+    }
 }

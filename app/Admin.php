@@ -72,4 +72,9 @@ class Admin extends User implements Authenticatable
 	{
 		return $this->hasOne(AdminProfile::class);
 	}
+
+	public function invoices()
+	{
+		return $this->hasMany(Invoice::class);
+	}
 }

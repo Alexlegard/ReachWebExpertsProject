@@ -40,7 +40,9 @@ class ResetPasswordController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showResetForm(Request $request, $token = null){
-		
+
+        //dd("Hello");
+
         return view('admin.auth.passwords.reset',[
             'title' => 'Reset Admin Password',
             'passwordUpdateRoute' => 'admin.password.update',

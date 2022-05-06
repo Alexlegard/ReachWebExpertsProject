@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
+// The namespace on the route, is to define where the controller is for that route
 Route::prefix('admin')->namespace('Admin')->group(function() {
 	
 	Route::group(['middleware' => ['is_admin_or_superadmin']], function() {
@@ -12,8 +13,13 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
 		/* Logout page */
 		Route::get('logout', 'AdminController@showLogoutPage')
 			->name('admin.logout');
-			
-		
+	});
+});
+
+
+Route::prefix('admin')->namespace('Admin')->group(function() {
+	
+	Route::group(['middleware' => ['is_admin']], function() {
 		/* admin/reviews */
 		//List reviews
 		Route::get('my-reviews', 'ReviewsController@index')
@@ -21,12 +27,6 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
 		//Show review
 		Route::get('my-reviews/{review}', 'ReviewsController@show')
 			->name('myreviews.show');
-		//Edit review
-		Route::get('my-reviews/{review}/edit', 'ReviewsController@edit')
-			->name('myreviews.edit');
-		//Update review
-		Route::patch('my-reviews/{review}', 'ReviewsController@update')
-			->name('myreviews.update');
 		//Destroy review
 		Route::delete('my-reviews/{review}', 'ReviewsController@destroy')
 			->name('myreviews.destroy');
@@ -124,11 +124,6 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
 		Route::get('my-orders/{order}', 'OrdersController@show')
 			->name('myorders.show');
 			
-		/* admin/my-sales */
-		// Show sales table
-		Route::get('my-sales', 'SalesController@index')
-			->name('mysales.index');
-			
 		/* admin/my-profile */
 		// Show profile
 		Route::get('my-profile', 'ProfileController@show')
@@ -139,6 +134,7 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
 		// Update profile
 		Route::patch('my-profile/{adminProfile}', 'ProfileController@update')
 			->name('myprofile.update');
+
 	});
 });
 
@@ -179,7 +175,9 @@ Route::prefix('admin')->namespace('Superadmin')->group(function() {
 		//Show dish
 		Route::get('dishes/{dish}', 'DishesController@show')
 			->name('dishes.show');
-		
+		//Delete dish
+		Route::delete('dishes/{dish}/destroy', 'DishesController@destroy')
+			->name('dishes.destroy');
 		
 		
 		/* admin/orders */
@@ -230,18 +228,18 @@ Route::prefix('admin')->namespace('Superadmin')->group(function() {
 		
 		
 		/* admin/admins */
-		//Show registration email form
-		Route::get('admins/send-registration-email', 'AdminsController@showRegistrationEmailForm')
-			->name('admins.registration.show');
+		//Create admin
+		Route::get('admins/create', 'AdminsController@create')
+			->name('admins.create');
+		//Store admin
+		Route::post('admins', 'AdminsController@store')
+			->name('admins.store');
 		//List admins
 		Route::get('admins', 'AdminsController@index')
 			->name('admins.list');
 		//Show admin
 		Route::get('admins/{admin}', 'AdminsController@show')
 			->name('admins.show');
-		//Send registration email
-		Route::post('admins/sendRegistrationEmail', 'AdminsController@sendRegistrationEmail')
-			->name('admins.registration.send');
 		//Ban admin
 		Route::patch('admins/{admin}/ban', 'AdminsController@ban')
 			->name('admins.ban');

@@ -14,6 +14,7 @@ class CouponsTableSeeder extends Seeder
      */
     public function run()
     {
+    	/*
         Coupon::create([
 			'code' => '2bucks',
 			'type' => 'fixed',
@@ -24,6 +25,6 @@ class CouponsTableSeeder extends Seeder
 			'code' => 'halfoff',
 			'type' => 'percent',
 			'value' => '50',
-		]);
+		]);*/
     }
 }

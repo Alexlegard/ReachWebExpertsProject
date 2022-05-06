@@ -37,7 +37,7 @@
 				<p>{{ $dish->description }}</p>
 			
 				@if($dish->on_sale)
-				<p>Price: {{ presentPrice($dish->special_price['amount']) }}</p>
+				<p>Price: <del>{{ presentPrice($dish->price['amount']) }}</del> {{ presentPrice($dish->special_price['amount']) }}!</p>
 				@else
 				<p>Price: {{ presentPrice($dish->price['amount']) }}</p>
 				@endif

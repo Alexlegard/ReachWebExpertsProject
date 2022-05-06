@@ -14,6 +14,7 @@ class CreateAdminRestaurantsTable extends Migration
     public function up()
     {
         Schema::create('admin_restaurant', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
 			$table->unsignedBigInteger("admin_id");
 			$table->unsignedBigInteger("restaurant_id");

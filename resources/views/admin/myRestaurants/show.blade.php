@@ -172,6 +172,35 @@
 			</div>
 		</div>
 	</div>
+
+	<hr>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="restaurant-reviews">
+				<div class="restaurant-reviews-header">
+					@if( count($reviews) == 0 )
+					<h4>No reviews for {{ $restaurant->name }}</h4>
+					@elseif( count($reviews) == 1 )
+					<h4>{{ count($reviews) }} review for {{ $restaurant->name }}:</h4>
+					@else
+					<h4>{{ count($reviews) }} reviews for {{ $restaurant->name }}:</h4>
+					@endif
+				</div>
+				@if( count($reviews) >= 1 )
+				<div class="restaurant-reviews-list">
+					<ul>
+					@foreach($reviews as $review)
+						<li>
+							<a href="{{ url('admin/my-reviews/'.$review->id) }}">{{ $review->time_submitted }}</a>
+						</li>
+					@endforeach
+					</ul>
+				</div>
+				@endif
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
 

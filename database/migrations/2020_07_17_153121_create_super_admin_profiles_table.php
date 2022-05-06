@@ -14,6 +14,7 @@ class CreateSuperAdminProfilesTable extends Migration
     public function up()
     {
         Schema::create('super_admin_profiles', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
 			$table->unsignedBigInteger('super_admin_id');
 			

@@ -14,6 +14,7 @@ class CreateDishSelectionsTable extends Migration
     public function up()
     {
         Schema::create('dish_selections', function (Blueprint $table) {
+            
             $table->BigIncrements('id');
 			$table->unsignedBigInteger('dish_id');
 			

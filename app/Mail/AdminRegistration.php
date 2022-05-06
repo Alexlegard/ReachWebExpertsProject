@@ -16,9 +16,11 @@ class AdminRegistration extends Mailable
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($name, $email, $password)
     {
-        $this->token = $token;
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -28,11 +30,9 @@ class AdminRegistration extends Mailable
      */
     public function build()
     {
-        return $this->to('alexlegard3@gmail.com', 'Alex')
-            ->subject('Make your RWE administrator profile!')
-            ->view('emails.admin.registration')
-            ->with([
-                'token' => $this->token
-            ]);
+        return $this->markdown('emails.admin.registration')
+            ->with('name', $this->name)
+            ->with('email', $this->email)
+            ->with('password', $this->password);
     }
 }

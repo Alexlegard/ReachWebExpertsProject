@@ -15,7 +15,7 @@ class Order extends Model
 		'user_id', 'billing_email', 'billing_name', 'billing_streetaddress',
 		'billing_streetaddresstwo', 'billing_city', 'billing_state_province',
 		'billing_country', 'billing_postalcode', 'billing_name_on_card',
-		'billing_subtotal', 'billing_subtotal_after_discount', 'billing_tax', 'billing_total', 'billing_commission',
+		'billing_subtotal', 'billing_tax', 'billing_total', 'billing_commission',
 		'error', 'time_placed'
 	];
 	
@@ -42,5 +42,10 @@ class Order extends Model
 	public function sale()
 	{
 		return $this->hasOne(Sale::class);
+	}
+
+	public function invoices()
+	{
+		return $this->hasMany(Invoice::class);
 	}
 }

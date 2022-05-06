@@ -10,6 +10,7 @@ use Auth;
 use App\Traits\GetDishes;
 use App\Traits\GetRestaurants;
 use App\Traits\GetOrders;
+use App\Traits\GetInvoices;
 use App\Charts\OrdersChart;
 use App\Traits\MakeOrdersCharts;
 use Carbon\Carbon;
@@ -19,66 +20,92 @@ class OrdersController extends Controller
 	use GetDishes;
 	use GetRestaurants;
 	use GetOrders;
+	use GetInvoices;
 	use MakeOrdersCharts;
     /**
-     * Display a listing of the resource.
+     * Display a listing of the invoices.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-		
-		
+    	// Simplest way to go is to make a new trait like getInvoices...
+    	// We need to pass arrays of INTEGERS to be used by chartjs.
+        // for charts showing the NUMBER of orders:
+    	// weekly_invoices, monthly_invoices, and quarterly_invoices.
+        // for charts showing the REVENUE:
+        // weekly_revenue, monthly_revenue, quarterly_revenue
+
 		$admin = Auth::guard('admin')->user();
-		$orders = $this->getOrdersFromAdmin($admin);
-		
-		// Number of today's orders
-		$dailyOrders = $this->getTodaysOrders($admin);
-		
-		// Weekly orders
-		$weekly_orders = $this->weeklyOrdersArray($admin);
-		
-		// Monthly orders
+
+		$invoices = $admin->invoices;
+
+		// Today's invoices
+		$dailyInvoices = $this->getTodaysInvoices($admin);
+
+		// This week's invoices
+		$weeklyInvoices = $this->getWeeklyInvoices($admin);
+
+		// This month's invoices
 		$month = Carbon::now()->format('F Y');
-		$monthly_orders = $this->monthlyOrdersArray($admin);
-		
-		// Quarterly orders
+		$monthlyInvoices = $this->getMonthlyInvoices($admin);
+
+		// This quarter's invoices
 		$quarter = "Q" . Carbon::now()->quarter . " " . Carbon::now()->year;
-		$quarterly_orders = $this->quarterlyOrdersArray($admin);
-		
+        $quarterInt = Carbon::now()->quarter;
+		$quarterlyInvoices = $this->getQuarterlyInvoices($admin);
+
+        // Today's revenue
+        $dailyRevenue = $this->getTodaysRevenue($admin);
+
+        // This week's revenue
+        $weeklyRevenue = $this->getWeeklyRevenue($admin);
+
+        // This month's revenue
+        $monthlyRevenue = $this->getMonthlyRevenue($admin);
+
+        // This quarter's revenue
+        $quarterlyRevenue = $this->getQuarterlyRevenue($admin);
 		
 		return view("admin/orders/list", [
-			'orders' => $orders,
-			'dailyOrders' => $dailyOrders,
-			'weekly_orders' => $weekly_orders,
-			'month' => $month,
-			'monthly_orders' => $monthly_orders,
-			'quarter' => $quarter,
-			'quarterly_orders' => $quarterly_orders
+			'invoices'           => $invoices,
+			'dailyInvoices'      => $dailyInvoices,
+            'dailyRevenue'       => $dailyRevenue,
+			'weekly_invoices'    => $weeklyInvoices,
+            'weekly_revenue'     => $weeklyRevenue,
+			'month'              => $month,
+			'monthly_invoices'   => $monthlyInvoices,
+            'monthly_revenue'    => $monthlyRevenue,
+			'quarter'            => $quarter,
+            'quarterInt'         => $quarterInt,
+			'quarterly_invoices' => $quarterlyInvoices,
+            'quarterly_revenue'  => $quarterlyRevenue
 		]);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified invoice.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $order = Order::where('id', $id)->first();
-		$dishes = $this->getDishesFromOrder($order);
-		$restaurants = $this->getRestaurantsFromOrder($order);
+        $admin = Auth::guard('admin')->user();
+        $invoice = $admin->invoices->where('id', $id)->first();
+
+        // Get dishes from the pivot table.
+
+		$dishes = $invoice->dishes;
 		
 		return view("admin/orders/show", [
-			'order' => $order,
+			'invoice' => $invoice,
 			'dishes' => $dishes,
-			'restaurants' => $restaurants
 		]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified invoice.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -89,7 +116,7 @@ class OrdersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified invoice in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -101,7 +128,7 @@ class OrdersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified invoice from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

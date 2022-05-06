@@ -16,16 +16,19 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 /* Public guest routes */
 /* Welcome */
 Route::get('/', 'WelcomeController@index')->name('welcome');
-Auth::routes();
+Auth::routes(['verify' => true]);
 /* Home */
 Route::get('/home', 'HomeController@index')->name('home');
+/* About */
+Route::get('/about', 'AboutController@index')->name('about');
 /* Public restaurants page */
 Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')
 	->middleware('throttle')
 	->name('public.restaurants.show');
 /* Store new review */
 Route::post('/restaurants/{restaurant}/review', 'ReviewsController@store')
-	->middleware('auth', 'throttle')
+	->middleware(['auth', 'verified'])
+	->middleware('throttle')
 	->name('reviews.store');
 /* Delete review */
 Route::delete('/reviews/{review}/delete', 'ReviewsController@delete')
@@ -65,25 +68,21 @@ Route::patch('cart/updatequantity', 'CartsController@updatequantity')
 /* Delete a dish from the cart */
 Route::delete('/profile/cart/{dish}', 'CartsController@destroy')
 	->name('cart.destroy');
-/* Destroy the cart for testing purposes */
-Route::get('empty', function() {
-	Cart::destroy();
-});
 /* Show the cart page */
 Route::get('/cart', 'CartsController@show')
 	->name('cart.show');
 /* Show the checkout page */
 Route::get('checkout', 'CheckoutController@index')
-	->middleware('auth')
+	->middleware(['auth', 'verified'])
 	->middleware('password.confirm')
 	->name('checkout.index');
 /* Make the order */
 Route::post('/checkout/store', 'CheckoutController@store')
-	->middleware('auth')
+	->middleware(['auth', 'verified'])
 	->name('checkout.store');
 /* Show thank you message */
 Route::get('thankyou', 'ThankyouController@index')
-	->middleware('auth')
+	->middleware(['auth', 'verified'])
 	->name('thankyou');
 /* Empty cart */
 Route::get('empty', function() {

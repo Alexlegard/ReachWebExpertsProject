@@ -228,7 +228,7 @@ let quarterlySalesChart = new Chart(quarterlySalesContext, {
 					<td>{{ $order->billing_name }}</td>
 					<td>${{ $order->billing_total }}</td>
 					<td>
-						<a href="{{ url('admin/my-orders/'.$order->id) }}">Order</a>
+						<a href="{{ url('admin/orders/'.$order->id) }}">Order</a>
 					</td>
 				</tr>
 				@endforeach

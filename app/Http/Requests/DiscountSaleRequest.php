@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use App\Restaurant;
 
 class DiscountSaleRequest extends FormRequest
 {
@@ -14,9 +15,20 @@ class DiscountSaleRequest extends FormRequest
      */
     public function authorize()
     {
-		if( Auth::guard('admin')->check() ) {
-			return true;
+        //dd( Auth::guard('admin')->id() ); //Current logged in admin's id
+        //dd($this->dish->menu->restaurant->admins);
+
+		if(! Auth::guard('admin')->check() ) {
+			return false;
 		}
+
+        foreach($this->dish->menu->restaurant->admins as $admin) {
+            
+            if( Auth::guard('admin')->id() == $admin->id ) {
+                return true;
+            }
+        }
+
         return false;
     }
 

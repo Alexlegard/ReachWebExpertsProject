@@ -21,7 +21,9 @@ function getAddress($restaurant) {
 /* Presents the price in a readable string */
 function presentPrice($price)
 {
-    if ($price<0) return "-".asDollars(-$price);
+    if ($price < 0) {
+    	return "-" . asDollars( - $price);
+    } 
 	return '$' . number_format($price, 2);
 }
 
@@ -64,10 +66,36 @@ function getShippingAddress($user) {
 /* Return the order's billing address in a readable string */
 function getOrderBillingAddress($order) {
 
-	$billing_address = implode(', ', [
+	$addressSet = isset(
 		$order->billing_streetaddress,
 		$order->billing_city,
 		$order->billing_state_province,
 		$order->billing_country
-	]);
+	);
+
+	if($addressSet) {
+		$order_address = $order->billing_streetaddress . ', ' .
+		$order->billing_city . ', ' .
+		$order->billing_state_province . ', ' .
+		$order->billing_country;
+		return $order_address;
+	}
+
+	return 'Not set';
 }
+
+/*
+function getAddress($restaurant) {
+	
+	$addressSet = isset(
+		$restaurant->address['streetaddress'],
+		$restaurant->address['city'],
+		$restaurant->address['stateprovince'],
+		$restaurant->address['country']
+	);
+	if($addressSet) {
+		$restaurant_address = implode(', ', $restaurant->address);
+		return $restaurant_address;
+	}
+	return null;
+}*/

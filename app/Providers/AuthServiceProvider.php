@@ -6,6 +6,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Auth;
 
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -15,10 +16,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        Order::class => OrderPolicy::class,
+        Order::class      => OrderPolicy::class,
         Restaurant::class => RestaurantPolicy::class,
-        Dish::class => DishPolicy::class,
-        Review::class =>ReviewPolicy::class,
+        Dish::class       => DishPolicy::class,
+        Review::class     => ReviewsPolicy::class,
+
     ];
 
     /**
@@ -32,7 +34,28 @@ class AuthServiceProvider extends ServiceProvider
 		
 		
 		
-		/* Only regular admins can use this gate */
+		/************* ADMIN GATES *************/
+		//Restaurants
+		Gate::define('owns-restaurant', function ($user = null, $restaurant) {
+
+			if( Auth::guard('admin')->check() ) {
+				
+				$admin = Auth::guard('admin')->user();
+				return $restaurant->admins->contains($admin->id);
+			}
+			return false;
+		});
+
+		Gate::define('owns-profile', function ($user = null, $adminProfile) {
+			
+			if( Auth::guard('admin')->check() ) {
+				
+				$admin = Auth::guard('admin')->user();
+				return $admin->id == $adminProfile->admin->id;
+			}
+			return false;
+		});
+
 		Gate::define('add-restaurant', function ($user = null) {
 			
 			if( Auth::guard('admin')->check() ) {
@@ -40,8 +63,9 @@ class AuthServiceProvider extends ServiceProvider
 			}
 			return false;
 		});
+
 		
-		/* Only super admins can use this gate */
+		/************* SUPER ADMIN GATES *************/
 		Gate::define('view-users', function ($user = null) {
 			
 			if( Auth::guard('superadmin')->check() ) {
@@ -49,5 +73,7 @@ class AuthServiceProvider extends ServiceProvider
 			}
 			return false;
 		});
+
+
 	}
 }

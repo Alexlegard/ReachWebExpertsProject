@@ -6,6 +6,8 @@
 	<a href="/">Home</a>
 @endcomponent
 
+
+
 <div class="top-panel">
 	<h1>Need a restaurant?</h1>
 

@@ -4,19 +4,34 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use App\Restaurant;
+use App\Dish;
 
 class MyDishRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the admin is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-		if( Auth::guard('admin')->check() ) {
-			return true;
+		if(! Auth::guard('admin')->check() ) {
+			return false;
 		}
+
+		$dish = Dish::firstWhere('name', $this->name);
+		$restaurant = $dish->menu->restaurant;
+
+		// The currently logged in admin id must match the restaurant
+		// admin's id.
+		foreach($restaurant->admins as $admin) {
+            
+            if( Auth::guard('admin')->id() == $admin->id ) {
+                return true;
+            }
+        }
+
         return false;
     }
 

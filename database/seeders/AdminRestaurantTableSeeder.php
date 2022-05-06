@@ -16,8 +16,18 @@ class AdminRestaurantTableSeeder extends Seeder
     {
         AdminRestaurant::create([
 			//admin_id, restaurant_id
-			'admin_id' => '1',
-			'restaurant_id' => '1'
+			'admin_id'      => '1',
+			'restaurant_id' => '1' // Subway
 		]);
+
+        AdminRestaurant::create([
+            'admin_id'      => '1',
+            'restaurant_id' => '2' // McDonalds
+        ]);
+
+        AdminRestaurant::create([
+            'admin_id'      => '1',
+            'restaurant_id' => '3' // Tim Hortons
+        ]);
     }
 }

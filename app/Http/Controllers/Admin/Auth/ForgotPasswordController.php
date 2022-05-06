@@ -20,7 +20,7 @@ class ForgotPasswordController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showLinkRequestForm(){
-		
+		//dd("Hello");
         return view('admin.auth.passwords.email',[
             'title' => 'Admin Password Reset',
             'passwordEmailRoute' => 'admin.password.email'

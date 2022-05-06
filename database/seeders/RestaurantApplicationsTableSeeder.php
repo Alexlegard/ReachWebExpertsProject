@@ -14,6 +14,7 @@ class RestaurantApplicationsTableSeeder extends Seeder
      */
     public function run()
     {
+    	/*
         RestaurantApplication::create([
 			'admin_id' => 1,
 			'name' => 'Mr. Sub',
@@ -21,6 +22,6 @@ class RestaurantApplicationsTableSeeder extends Seeder
 			'slug' => 'slug',
 			'address' => json_decode('{"streetaddress":"8888 Bovaird St East","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
 			'cuisine' => ["Sandwiches",null,null]
-		]);
+		]);*/
     }
 }

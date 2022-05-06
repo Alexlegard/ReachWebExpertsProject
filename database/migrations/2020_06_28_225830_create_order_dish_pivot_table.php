@@ -14,6 +14,7 @@ class CreateOrderDishPivotTable extends Migration
     public function up()
     {
         Schema::create('dish_order', function (Blueprint $table) {
+            
             $table->id();
 			$table->unsignedBigInteger("order_id")->nullable();
 			$table->unsignedBigInteger("dish_id");

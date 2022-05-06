@@ -21,10 +21,14 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
 			
 			if($guard == "admin") {
-				return redirect()->route('admin.home');
-			} else {
-				return redirect()->route('profile.show');
+				return redirect()->route('admin.dashboard');
 			}
+
+            if($guard == "superadmin") {
+                return redirect()->route('admin.dashboard');
+            }
+
+			return redirect()->route('profile.show');
         }
 
         return $next($request);

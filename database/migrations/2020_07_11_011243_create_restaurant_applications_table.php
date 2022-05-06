@@ -14,6 +14,7 @@ class CreateRestaurantApplicationsTable extends Migration
     public function up()
     {
         Schema::create('restaurant_applications', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
 			$table->unsignedBigInteger('admin_id');
 			
@@ -22,7 +23,7 @@ class CreateRestaurantApplicationsTable extends Migration
 				->onUpdate('cascade')
 				->onDelete('cascade');
 			
-			$table->string('name');
+			$table->string('name')->unique('restaurants', 'name');
 			$table->text('description');
 			$table->string('slug');
 			$table->json('address');
