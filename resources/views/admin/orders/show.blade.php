@@ -7,6 +7,17 @@
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-orders') }}">Orders</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Order</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -16,7 +27,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 			<table class="details-table">
 				<tr>
 					<td>Time placed</td>
@@ -80,32 +91,27 @@
 				</tr>
 			</table>
 		</div>
-		
-		<!-- Right column -->
-		<div class="col-6">
-			<div class="grey-nav-link">
-				<a href="{{ url('admin/my-orders') }}">Back to Invoices</a>
-			</div>
-		</div>
 	</div>
 	
 	<hr>
 	
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12">
 			<h4>This order's dishes:</h4>
 			
 			<table class="details-table">
 				<tr>
+					<th>Restaurant</th>
+					<th>Address</th>
 					<th>Dish name</th>
 					<th>Quantity</th>
 				</tr>
 				@foreach( $dishes as $dish )
 				<tr>
-					<td>
-						<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
-					</td>
-					<td>{{ $dish->pivot->quantity }}</td>
+					<td><a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->menu->restaurant->name }}</a></td>
+					<td><a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ getAddress($dish->menu->restaurant); }}</a></td>
+					<td><a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a></td>
+					<td><a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->pivot->quantity }}</a></td>
 				</tr>
 				@endforeach
 			</table>

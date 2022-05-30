@@ -6,6 +6,21 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Edit</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">

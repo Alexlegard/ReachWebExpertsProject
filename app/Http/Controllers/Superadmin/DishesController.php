@@ -33,9 +33,11 @@ class DishesController extends Controller
      */
     public function show(Dish $dish)
     {
+        $restaurant = $dish->menu->restaurant;
 		
         return view('superadmin/dishes/show', [
-			'dish' => $dish
+			'dish'       => $dish,
+            'restaurant' => $restaurant
 		]);
     }
 

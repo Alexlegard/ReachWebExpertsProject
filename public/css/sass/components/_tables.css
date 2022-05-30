@@ -20,6 +20,18 @@ td {
   background-color: #F5F5F5;
 }
 
+.details-table tr:hover {
+  background: #DCDCDC;
+}
+
+.details-table td a {
+  display: block;
+}
+
+.details-table a:hover {
+  color: black;
+}
+
 .admin-dishes-table {
   width: 100%;
   margin-top: 0.5rem;

@@ -6,6 +6,17 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/orders') }}">Orders</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Order</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -17,7 +28,7 @@
 	<div class="row">
 	
 		<!-- Left column -->
-		<div class="col-6">
+		<div class="col-12">
 			<table class="details-table">
 				<tr>
 					<td>Time placed</td>
@@ -80,13 +91,6 @@
 					@endif
 				</tr>
 			</table>
-		</div>
-		
-		<!-- Right column -->
-		<div class="col-6">
-			<div class="grey-nav-link">
-				<a href="{{ url('admin/orders') }}">Back to orders</a>
-			</div>
 		</div>
 	</div>
 	

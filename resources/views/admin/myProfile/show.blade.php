@@ -7,6 +7,14 @@
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<span>Profile</span>
+			</div>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="col-12">

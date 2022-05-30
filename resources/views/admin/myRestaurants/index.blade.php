@@ -8,6 +8,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12">
+			<div class="breadcrumbs">
+				<span>Restaurants</span>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-12">
 			<div class="header-large-blue">
 				<h1>My Restaurants</h1>
 			</div>
@@ -24,7 +33,7 @@
 				<ul>
 					@foreach( $restaurants as $restaurant )
 					<li>
-						<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+						<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }} <b>({{ getAddress($restaurant); }})</b></a>
 					</li>
 					@endforeach
 				</ul>

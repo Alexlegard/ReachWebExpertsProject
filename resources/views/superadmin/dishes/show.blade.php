@@ -15,6 +15,19 @@ function ConfirmDelete(){
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $dish->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">

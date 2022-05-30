@@ -22,10 +22,12 @@ class RestaurantFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->company();
+
         return [
-            'name'               => $this->faker->company(),
+            'name'               => $name,
             'description'        => $this->faker->sentence(),
-            'slug'               => 'slug',
+            'slug'               => $name,
             'address'            => json_decode('{"streetaddress":"9995 McVean Dr","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
             'cuisine'            => $cuisine = ["Sandwiches",null,null],
         ];

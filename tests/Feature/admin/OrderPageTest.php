@@ -37,7 +37,6 @@ class OrderPageTest extends TestCase
             ->assertSee(presentPrice($order->billing_subtotal))
             ->assertSee(presentPrice($order->billing_tax))
             ->assertSee(presentPrice($order->billing_total))
-            ->assertSee($order->payment_gateway)
             ->assertSee('Sweet Onion Chicken Teriyaki')
             ->assertSee('Subway');
     }

@@ -6,6 +6,21 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Sale</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -18,10 +33,6 @@
 		<div class="col-12">
 			<form class="content-form" method="post" action="/admin/my-dishes/{{$dish->id}}/sale">
 				@csrf
-				
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-dishes/'.$dish->id) }}">Back to dish</a>
-				</div>
 				
 				<!-- Need to fill out the form for special price and sale duration -->
 				

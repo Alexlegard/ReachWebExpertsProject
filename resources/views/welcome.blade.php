@@ -18,7 +18,7 @@
 	<div class="row">
 		@foreach($restaurants as $restaurant)
 		<div class="col-md-6">
-			<a href="{{ url('restaurants/'.$restaurant->id) }}">
+			<a href="{{ url('restaurants/'.$restaurant->slug) }}">
 				<div class="welcome-restaurant-card" dusk="restaurant-card">
 					@if( $restaurant->image )
 					<div class="restaurant-card-logo">

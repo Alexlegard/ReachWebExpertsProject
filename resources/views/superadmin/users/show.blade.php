@@ -23,6 +23,17 @@ function ConfirmDelete(){
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/users') }}">Users</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $user->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -61,9 +72,6 @@ function ConfirmDelete(){
 		
 		<div class="col-6">
 			<div class="links">
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/users') }}">Back to users</a>
-				</div>
 				@if(! $user->is_banned )
 				<form class="ban-form" method="post" action="{{ url('admin/users/'. $user->id.'/ban') }}">
 					@csrf

@@ -44,6 +44,7 @@ class ReviewsPolicy
      */
     public function delete(Admin $admin, Review $review)
     {
-        //
+        dd("test");
+        return true;
     }
 }

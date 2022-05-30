@@ -10,6 +10,7 @@ use App\Traits\GetAddressStrings;
 use App\Traits\GetCuisinesStrings;
 use App\Traits\GetOrders;
 use App\Http\Requests\MyRestaurantRequest;
+use Illuminate\Support\Facades\Storage;
 
 class MyRestaurantsController extends Controller
 {
@@ -137,7 +138,9 @@ class MyRestaurantsController extends Controller
     {
     	$this->authorize('owns-restaurant', $restaurant);
 
-		$this->storeImage($restaurant);
+    	// Store an image to the storage then the database and delete the old
+    	// one from storage.
+		$this->updateImage($restaurant);
 		
 		$restaurant->address = array(
 			"streetaddress"  => $request->streetaddress,
@@ -176,6 +179,7 @@ class MyRestaurantsController extends Controller
     {
 		$this->authorize('owns-restaurant', $restaurant);
 		
+		$this->deleteImage($restaurant->image);
         $restaurant->delete();
 		
 		return redirect("/admin/my-restaurants");
@@ -190,12 +194,15 @@ class MyRestaurantsController extends Controller
 		]);
 	}
 
-	// Store an image to the storage folder and then to the database.
-	private function storeImage($restaurant)
+	// Store an image to the storage then the database and delete the old
+    // one from storage.
+	private function updateImage($restaurant)
 	{
 		if(request()->has('image')) {
 
+			$oldpath = 'restaurantimages/'.$restaurant->image;
 			$filename = request()->image->getClientOriginalName();
+			//dd($oldfilename);
 			$unique_name = md5($filename. microtime()).'.png';
 
 			//Store image to the restaurantimages folder
@@ -203,8 +210,20 @@ class MyRestaurantsController extends Controller
 				'image' => request()->image->storeAs('restaurantimages', $unique_name, 'public'),
 			]);
 
+			//Delete old file name from storage
+			Storage::disk('public')->delete($oldpath);
+
+
 			$restaurant->image = $unique_name;
 		}
+	}
+
+	//When a restaurant is deleted, also delete its image from storage.
+	private function deleteImage($image)
+	{
+		$path = 'restaurantimages/'.$image;
+
+        Storage::disk('public')->delete($path);
 	}
 }
 

@@ -12,9 +12,29 @@
 
 @endsection
 
+@section('js')
+<script>
+	function ConfirmDelete(){
+		if(!confirm("Are you sure to delete this restaurant?"))
+		event.preventDefault();
+	}
+</script>
+@endsection
+
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $restaurant->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -104,9 +124,6 @@
 				</div>
 				<div class="yellow-action-link">
 					<a href="{{ url('admin/my-restaurants/'.$restaurant->id.'/social-links/edit') }}">Edit Social Links</a>
-				</div>
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-restaurants') }}">Back to my restaurants</a>
 				</div>
 				<form class="delete-form" method="post" action="{{ url('admin/my-restaurants/'. $restaurant->id) }}">
 					@csrf

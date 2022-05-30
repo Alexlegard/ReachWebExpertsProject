@@ -19,10 +19,23 @@
 
 	<div class="row">
 		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $selection->name }}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
 			<div class="header-large-blue">
-				<h1>{{ $selection->name }} option</h1>
-			</div>	
-			<h5>{{ $dish->name }}</h5>
+				<h1>{{ $selection->name }} option for {{ $dish->name }}</h1>
+			</div>
 		</div>
 	</div>
 
@@ -47,9 +60,6 @@
 			<div class="links">
 				<div class="yellow-action-link">
 					<a href="{{ url('admin/my-selections/'.$selection->id.'/edit') }}">Edit this selection</a>
-				</div>
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-dishes/'.$dish->id) }}">Back to dish</a>
 				</div>
 
 				<form class="delete-form" method="post" action="{{ url('admin/my-selections/'. $selection->id) }}">

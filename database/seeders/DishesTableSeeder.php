@@ -28,7 +28,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => false,
 			'is_alcoholic' => false,
-			'image' => 'SweetOnionChickenTeriyaki.jpg'
+			'image' => 'SweetOnionChickenTeriyaki.png'
 		]);
 		
 		Dish::create([
@@ -44,7 +44,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => false,
 			'is_alcoholic' => false,
-			'image' => 'chocolatecookie.jpg'
+			'image' => 'chocolatecookie.png'
 		]);
 		
 		Dish::create([
@@ -60,7 +60,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => true,
 			'is_alcoholic' => false,
-			'image' => 'dietcoke.jpg'
+			'image' => 'dietcoke.png'
 		]);
 		
 		
@@ -78,7 +78,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => false,
 			'is_alcoholic' => false,
-			'image' => 'bigmac.jpg'
+			'image' => 'bigmac.png'
 		]);
 		
 		Dish::create([
@@ -94,7 +94,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => false,
 			'is_alcoholic' => false,
-			'image' => 'quarterpounder.jpg'
+			'image' => 'quarterpounder.png'
 		]);
 		
 		Dish::create([
@@ -110,7 +110,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => true,
 			'is_alcoholic' => false,
-			'image' => 'mcdonaldscoffee.jpg'
+			'image' => 'mcdonaldscoffee.png'
 		]);
 		
 		/* For restaurant: Tim Hortons */
@@ -127,7 +127,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => true,
 			'is_alcoholic' => false,
-			'image' => 'timhortonscoffee.jpg'
+			'image' => 'timhortonscoffee.png'
 		]);
 		
 		Dish::create([
@@ -143,7 +143,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => false,
 			'is_alcoholic' => false,
-			'image' => 'timhortonsblt.jpg'
+			'image' => 'timhortonsblt.png'
 		]);
 		
 		Dish::create([
@@ -159,7 +159,7 @@ class DishesTableSeeder extends Seeder
 			'stock' => 100,
 			'is_beverage' => false,
 			'is_alcoholic' => false,
-			'image' => 'vanilladipdonut.jpg'
+			'image' => 'vanilladipdonut.png'
 		]);
 	}
 }

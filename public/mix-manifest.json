@@ -11,6 +11,7 @@
     "/css/sass/pages/store/welcome.css": "/css/sass/pages/store/welcome.css",
     "/css/sass/pages/cart.css": "/css/sass/pages/cart.css",
     "/css/sass/pages/checkout.css": "/css/sass/pages/checkout.css",
+    "/css/sass/components/icons.css": "/css/sass/components/icons.css",
     "/css/sass/components/store/dish-details.css": "/css/sass/components/store/dish-details.css",
     "/css/sass/components/store/_top-panel.css": "/css/sass/components/store/_top-panel.css",
     "/css/sass/components/store/_navbar.css": "/css/sass/components/store/_navbar.css",

@@ -16,23 +16,25 @@ class MyDishRequest extends FormRequest
      */
     public function authorize()
     {
+    	//dd($this->request);
+
 		if(! Auth::guard('admin')->check() ) {
 			return false;
 		}
 
-		$dish = Dish::firstWhere('name', $this->name);
-		$restaurant = $dish->menu->restaurant;
+		//$dish = Dish::firstWhere('name', $this->name);
+		//$restaurant = $dish->menu->restaurant;
 
 		// The currently logged in admin id must match the restaurant
 		// admin's id.
-		foreach($restaurant->admins as $admin) {
+		//foreach($restaurant->admins as $admin) {
             
-            if( Auth::guard('admin')->id() == $admin->id ) {
-                return true;
-            }
-        }
+        //    if( Auth::guard('admin')->id() == $admin->id ) {
+        //        return true;
+        //    }
+        //}
 
-        return false;
+        return true;
     }
 
     /**

@@ -6,6 +6,17 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Create</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -21,10 +32,6 @@
 				
 				<p>Apply to add a new restaurant by filling out the form. The website
 				owner will review your application.</p>
-				
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-restaurants') }}">Back to my restaurants</a>
-				</div>
 				
 				<div class="row">
 					<div class="col-md-3">
@@ -46,7 +53,7 @@
 				
 				<div class="row">
 					<div class="col-md-3">
-						<label for="slug">Slug:</label>
+						<label for="slug">Slug (Must be unique):</label>
 					</div>
 					<div class="col-md-9">
 						<input type="text" name="slug" />

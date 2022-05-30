@@ -15,6 +15,17 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/reviews') }}">Reviews</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Review</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -54,9 +65,6 @@
 		<!-- Right column -->
 		<div class="col-6">
 			<div class="links">
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/reviews') }}">Back to reviews</a>
-				</div>
 				<form class="delete-form" method="post" action="{{ url('admin/reviews/'. $review->id) }}">
 					@csrf
 					@method('DELETE')

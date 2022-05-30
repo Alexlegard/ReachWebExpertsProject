@@ -17,7 +17,7 @@ class ReviewsController extends Controller
 {
 	use PaginateCollection;
 	
-	/* My reviews */
+	/* Reviews on my restaurants */
 	public function index()
 	{
 		$admin = Auth::guard('admin')->user();
@@ -51,7 +51,7 @@ class ReviewsController extends Controller
 
 		$restaurant = $review->restaurant;
 		
-		$this->authorize('delete-review', $review);
+		$this->authorize('owns-restaurant', $restaurant);
 
 		$review->delete();
 		

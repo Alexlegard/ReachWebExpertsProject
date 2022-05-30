@@ -122,7 +122,8 @@ class MyDishesController extends Controller
     	$this->authorize('owns-restaurant', $restaurant);
 
         return view("admin/myDishes/edit", [
-			'dish' => $dish
+			'dish' => $dish,
+			'restaurant' => $restaurant
 		]);
     }
 

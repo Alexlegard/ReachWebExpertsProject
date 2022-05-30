@@ -26,7 +26,7 @@ class RestaurantPageTest extends TestCase
         //dd($restaurant->id);
 
         //Act
-        $response = $this->get('restaurants/'.$restaurant->id);
+        $response = $this->get('restaurants/'.$restaurant->slug);
 
         //Assert
         $response->assertStatus(200);
@@ -39,7 +39,7 @@ class RestaurantPageTest extends TestCase
         $restaurant = Restaurant::factory()->create();
 
         //Act
-        $response = $this->get('restaurants/'.$restaurant->id);
+        $response = $this->get('restaurants/'.$restaurant->slug);
 
         //Assert
         $response->assertSee("Sandwiches");
@@ -59,7 +59,7 @@ class RestaurantPageTest extends TestCase
         ]);
 
         //Act
-        $response = $this->get('restaurants/'.$restaurant->id);
+        $response = $this->get('restaurants/'.$restaurant->slug);
 
         //Assert
         $response->assertSee('9065 Airport Rd, Brampton, Ontario, Canada');
@@ -86,7 +86,7 @@ class RestaurantPageTest extends TestCase
 
 
         //Act
-        $response = $this->get('restaurants/'.$restaurant->id);
+        $response = $this->get('restaurants/'.$restaurant->slug);
 
         //Assert
         $response->assertSee($user->name);
@@ -112,7 +112,7 @@ class RestaurantPageTest extends TestCase
         
 
         //Act
-        $response = $this->get('restaurants/'.$restaurant->id);
+        $response = $this->get('restaurants/'.$restaurant->slug);
 
         //Assert
         $response->assertDontSee($review->user->name);

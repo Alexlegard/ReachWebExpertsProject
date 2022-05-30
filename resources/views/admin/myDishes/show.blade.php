@@ -16,6 +16,19 @@
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $dish->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -128,12 +141,6 @@
 					</div>
 				</form>
 				@endif
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-dishes') }}">Back to dishes</a>
-				</div>
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">View Restaurant</a>
-				</div>
 
 				<form class="delete-form" method="post" action="{{ url('admin/my-dishes/'. $dish->id) }}">
 					@csrf

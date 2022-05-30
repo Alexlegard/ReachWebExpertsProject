@@ -16,6 +16,17 @@
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $restaurant->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -86,9 +97,6 @@
 		<!-- Right column -->
 		<div class="col-6">
 			<div class="links">
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/restaurants') }}">Back to restaurants</a>
-				</div>
 				<form class="delete-form" method="post" action="{{ url('admin/restaurants/'. $restaurant->id) }}">
 					@csrf
 					@method('DELETE')
@@ -118,7 +126,7 @@
 					<ul>
 					@foreach($orders as $order)
 						<li>
-							<a href="{{ url('admin/my-orders/'.$order->id) }}">{{ $order->time_placed }}</a>
+							<a href="{{ url('admin/orders/'.$order->id) }}">{{ $order->time_placed }}</a>
 						</li>
 					@endforeach
 					</ul>

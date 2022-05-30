@@ -102,7 +102,7 @@ label.star:before {
 						Address: {{ $address }}
 					</div>
 					<div class="yellow-action-link">
-						<a href="{{ url('restaurants/'.$restaurant->id.'/dishes') }}">Shop</a>
+						<a href="{{ url('restaurants/'.$restaurant->slug.'/dishes') }}">Shop</a>
 					</div>
 				</div>
 			</div>

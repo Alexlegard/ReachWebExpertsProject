@@ -11,16 +11,15 @@ use Auth;
 class RestaurantApplicationsController extends Controller
 {
 	
+	// Create a new restaurant application
     public function store(RestaurantApplicationRequest $request)
 	{
-		//dd(request()->image->getClientOriginalName());
-
 		$restaurantApplication = new RestaurantApplication;
 
 		$this->storeImage($restaurantApplication);
 
 		$restaurantApplication->address = array(
-			"streetaddress" => $request->streetaddress,
+			"streetaddress"  => $request->streetaddress,
 			"city"           => $request->city,
 			"stateprovince"  => $request->stateprovince,
 			"country"        => $request->country,
@@ -54,7 +53,7 @@ class RestaurantApplicationsController extends Controller
 
 			//Store image to the restaurantimages folder
 			$restaurantApplication->update([
-				'image' => request()->image->storeAs('restaurantimages', $unique_name, 'public'),
+				'image' => request()->image->storeAs('restaurantapplicationimages', $unique_name, 'public'),
 			]);
 
 			$restaurantApplication->image = $unique_name;

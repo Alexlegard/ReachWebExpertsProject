@@ -23,7 +23,8 @@ class DishSelectionsController extends Controller
         $this->authorize('owns-restaurant', $restaurant);
 
         return view("admin/myDishes/options/create", [
-			"dish" => $dish
+			"dish" => $dish,
+            "restaurant" => $restaurant
 		]);
     }
 
@@ -54,8 +55,9 @@ class DishSelectionsController extends Controller
 		$dish = $dishselection->dish;
 		
 		return view("admin/myDishes/options/show", [
-			'selection' => $dishselection,
-			'dish' => $dish
+			'selection'  => $dishselection,
+			'dish'       => $dish,
+            'restaurant' => $restaurant
 		]);
 	}
 
@@ -75,7 +77,8 @@ class DishSelectionsController extends Controller
 		
         return view('admin/myDishes/options/edit', [
 			'selection' => $dishselection,
-			'dish' => $dish
+			'dish' => $dish,
+            'restaurant' => $restaurant
 		]);
     }
 

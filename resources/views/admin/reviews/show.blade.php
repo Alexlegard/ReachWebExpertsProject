@@ -16,6 +16,17 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-reviews') }}">Reviews</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Review</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -28,9 +39,9 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="review-details">
-				<p>User: {{ $review->user->name }}</p>
-				<p>Time submitted: {{ $review->time_submitted }}</p>
-				<p>Content: {{ $review->content }}</p>
+				<p><b>User:</b> {{ $review->user->name }}</p>
+				<p><b>Time submitted:</b> {{ $review->time_submitted }}</p>
+				<p>{{ $review->content }}</p>
 			</div>
 		</div>
 		

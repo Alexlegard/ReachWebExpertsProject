@@ -7,6 +7,19 @@
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Edit</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -20,13 +33,6 @@
 			<form class="content-form" method="post" action="{{ url('/admin/my-restaurants/'. $restaurant->id) }}" enctype="multipart/form-data">
 				@csrf
 				@method('PATCH')
-				
-				
-				<div class="grey-nav-link">
-					<a href="{{ url('/admin/my-restaurants/'. $restaurant->id) }}">
-						Back to Restaurant
-					</a>
-				</div>
 				
 				<div class="row">
 					<div class="col-md-3">

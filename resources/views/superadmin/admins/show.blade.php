@@ -31,6 +31,17 @@ h4 {
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/admins') }}">Admins</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $admin->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">

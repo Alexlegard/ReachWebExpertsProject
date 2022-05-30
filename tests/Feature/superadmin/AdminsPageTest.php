@@ -25,7 +25,7 @@ class AdminsPageTest extends TestCase
         $response = $this->actingAs($superadmin, 'superadmin')
             ->get('admin/admins')
             ->assertStatus(200)
-            ->assertSee('Evan Legard');
+            ->assertSee('Alex Legard');
     }
 
     /** @test **/

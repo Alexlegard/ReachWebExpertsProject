@@ -6,6 +6,17 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/admins') }}">Admins</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Create</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -20,10 +31,6 @@
 				@csrf
 				
 				<p>You can create a new admin account. An email will automatically be sent containing a secure password.</p>
-				
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/admins') }}">Back to admins</a>
-				</div>
 
 				<!-- We should enter their name, email address, and password. -->
 				

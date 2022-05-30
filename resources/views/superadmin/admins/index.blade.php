@@ -6,6 +6,15 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<span>Admins</span>
+			</div>
+		</div>
+	</div>
+
 	<!-- Session message -->
 	@if(Session::has('message'))
 		<p class="alert

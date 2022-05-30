@@ -20,7 +20,7 @@ class ListDishesPageTest extends TestCase
         $restaurant = Restaurant::create([
             'name'               => "Montana's",
             'description'        => 'Smokin Good BBQ',
-            'slug'               => 'slug',
+            'slug'               => 'montanas-airport-rd',
             'address'            => json_decode('{"streetaddress":"9065 Airport Rd","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
             'cuisine'            => ["Barbecue",null,null]
         ]);
@@ -42,7 +42,7 @@ class ListDishesPageTest extends TestCase
         ]);
 
         //Act
-        $response = $this->get("restaurants/".$restaurant->id."/dishes");
+        $response = $this->get("restaurants/".$restaurant->slug."/dishes");
 
         //Assert
         $response->assertStatus(200);
@@ -57,9 +57,9 @@ class ListDishesPageTest extends TestCase
     {
         //Arrange
         $restaurant = Restaurant::create([
-            'name'               => "test",
+            'name'               => "test 1",
             'description'        => 'Eat Fresh',
-            'slug'               => 'slug',
+            'slug'               => 'test 1',
             'address'            => json_decode('{"streetaddress":"9995 McVean Dr","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
             'cuisine'            => ["Barbecue",null,null]
         ]);
@@ -67,7 +67,7 @@ class ListDishesPageTest extends TestCase
         $otherRestaurant = Restaurant::create([
             'name'               => "test 2",
             'description'        => 'Smokin Good BBQ',
-            'slug'               => 'slug',
+            'slug'               => 'test 2',
             'address'            => json_decode('{"streetaddress":"9065 Airport Rd","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
             'cuisine'            => ["Barbecue",null,null]
         ]);
@@ -105,7 +105,7 @@ class ListDishesPageTest extends TestCase
         
 
         //Act
-        $response = $this->get("restaurants/".$restaurant->id."/dishes");
+        $response = $this->get("restaurants/".$restaurant->slug."/dishes");
 
         //Assert
         $response->assertDontSee($otherDish->name);

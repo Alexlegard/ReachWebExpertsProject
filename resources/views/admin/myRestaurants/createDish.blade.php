@@ -6,6 +6,19 @@
 
 @section('content')
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Create Dish</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -18,10 +31,6 @@
 		<div class="col-12">
 			<form class="content-form" method="post" action="/admin/my-dishes/{{ $restaurant->id }}" enctype="multipart/form-data">
 				@csrf
-				
-				<div class="grey-nav-link">
-					<a href="{{ url('admin/my-restaurants/' . $restaurant->id) }}">Back</a>
-				</div>
 				
 				<div class="row">
 					<div class="col-md-3">

@@ -7,6 +7,17 @@
 @section('content')
 
 <div class="container">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/restaurant-applications') }}">Restaurant Applications</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>{{ $restaurantApplication->name }}</span>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-12">
 			<div class="header-large-blue">
@@ -39,9 +50,16 @@
 				</tr>
 				<tr>
 					<td>Image</td>
+					@if( file_exists(public_path('/storage/restaurantapplicationimages/'.$restaurantApplication->image)) )
 					<td>
-						<img src="{{ asset('storage/restaurantimages/'.$restaurantApplication->image) }}" width="100" height="100">
+						<img src="{{ asset('storage/restaurantapplicationimages/'.$restaurantApplication->image) }}" width="100" height="100">
 					</td>
+					@else
+					<td>
+						No image
+					</td>
+					@endif
+					
 				</tr>
 			</table>
 			@if (session('success_message'))
@@ -65,17 +83,14 @@
 			</div>
 		</div>
 	</div>
+
+	@if(session()->has('errors'))
+	<div class="alert alert-danger mt-3 mb-0">
+		@foreach( $errors->all() as $message )
+		<p>Error: {{ $message }}</p>
+		@endforeach
+	</div>
+	@endif
 </div>
-
-
-
-
-
-
-	
-	
-	
-	
-	
 
 @endsection

@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /* About */
 Route::get('/about', 'AboutController@index')->name('about');
 /* Public restaurants page */
-Route::get('/restaurants/{restaurant}', 'RestaurantsController@show')
+Route::get('/restaurants/{restaurant:slug}', 'RestaurantsController@show')
 	->middleware('throttle')
 	->name('public.restaurants.show');
 /* Store new review */
@@ -54,7 +54,7 @@ Route::post('user/{user}/unfollow', 'PublicProfilesController@unfollow')
 
 /************************************************** Ecommerce related routes */
 /* Show all dishes from a restaurant */
-Route::get('/restaurants/{restaurant}/dishes', 'RestaurantsController@listdishes')
+Route::get('/restaurants/{restaurant:slug}/dishes', 'RestaurantsController@listdishes')
 	->name('public.restaurants.dishes.list');
 /* Show a dish */
 Route::get('/dishes/{dish}', 'DishesController@show')

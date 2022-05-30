@@ -409,17 +409,15 @@ let quarterlyRevenueChart = new Chart(quarterlyRevenueContext, {
 					<th>Time placed</th>
 					<th>Billing name</th>
 					<th>Total (No Tax)</th>
-					<th>Link</th>
+					<th>Total (Tax)</th>
 				</tr>
 				
 				@foreach($invoices as $invoice)
 				<tr>
-					<td>{{ $invoice->time_issued }}</td>
-					<td>{{ $invoice->customer_name_on_card }}</td>
-					<td>{{ presentPrice($invoice->subtotal) }}</td>
-					<td>
-						<a href="{{ url('admin/my-orders/'.$invoice->id) }}">Invoice</a>
-					</td>
+					<td><a href="{{ url('admin/my-orders/'.$invoice->id) }}">{{ $invoice->time_issued }}</a></td>
+					<td><a href="{{ url('admin/my-orders/'.$invoice->id) }}">{{ $invoice->customer_name_on_card }}</a></td>
+					<td><a href="{{ url('admin/my-orders/'.$invoice->id) }}">{{ presentPrice($invoice->subtotal) }}</a></td>
+					<td><a href="{{ url('admin/my-orders/'.$invoice->id) }}">{{ presentPrice($invoice->total) }}</a></td>
 				</tr>
 				@endforeach
 			</table>

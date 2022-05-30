@@ -225,11 +225,7 @@ return [
 
     'menu' => [
         /* Topnav: text search and logout */
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
+        
         [
             'text'         => 'Logout',
             'url'          => 'admin/logout',

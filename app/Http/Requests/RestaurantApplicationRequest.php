@@ -31,8 +31,8 @@ class RestaurantApplicationRequest extends FormRequest
         return [
             'title' => 'required',
 			'description' => 'required',
-			'slug' => 'required',
-			'streetaddress' => 'required',
+			'slug' => 'required|unique:restaurants,slug|max:255',
+			'streetaddress' => 'required|unique:restaurants,name',
 			'streetaddresstwo' => 'sometimes',
 			'city' => 'required',
 			'stateprovince' => 'required',
@@ -42,3 +42,7 @@ class RestaurantApplicationRequest extends FormRequest
         ];
     }
 }
+
+/*
+'title' => 'required|unique:restaurants,name|max:255',
+*/

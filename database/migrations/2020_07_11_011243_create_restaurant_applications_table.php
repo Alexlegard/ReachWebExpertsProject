@@ -8,6 +8,9 @@ class CreateRestaurantApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
+     * This is the table for unapproved restaurants.
+     * I'm trying to make it so you can't create restaurants of the same name.
+     * But the migrations won't even run and this is driving me crazy.
      *
      * @return void
      */
@@ -23,7 +26,7 @@ class CreateRestaurantApplicationsTable extends Migration
 				->onUpdate('cascade')
 				->onDelete('cascade');
 			
-			$table->string('name')->unique('restaurants', 'name');
+			$table->string('name');
 			$table->text('description');
 			$table->string('slug');
 			$table->json('address');

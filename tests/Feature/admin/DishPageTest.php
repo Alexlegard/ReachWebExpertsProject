@@ -32,6 +32,8 @@ class DishPageTest extends TestCase
             ->assertSee($dish->stock);
     }
 
+    
+
     /** @test **/
     public function users_cannot_access_page()
     {

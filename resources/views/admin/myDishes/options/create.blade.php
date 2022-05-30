@@ -7,20 +7,32 @@
 @section('content')
 
 <div class="container">
+
 	<div class="row">
 		<div class="col-12">
-			<div class="header-large-blue">
-				<h1>Add New Selection</h1>
-			</div>	
-			<h5>{{ $dish->name }}</h5>
+			<div class="breadcrumbs">
+				<a href="{{ url('admin/my-restaurants') }}">Restaurants</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-restaurants/'.$restaurant->id) }}">{{ $restaurant->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<a href="{{ url('admin/my-dishes/'.$dish->id) }}">{{ $dish->name }}</a>
+				<i class="fas fa-arrow-right"></i>
+				<span>Selections</span>
+			</div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-12">
-			<div class="grey-nav-link">
-				<a href="{{ url('admin/my-dishes/'.$dish->id) }}">Back to Dish</a>
-			</div>
+			<div class="header-large-blue">
+				<h1>New Selection for {{ $dish->name }}</h1>
+			</div>	
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			
 			<form class="content-form" method="post"
 				action="/admin/my-dishes/selections/{{ $dish->id }}" enctype="multipart/form-data">
 				@csrf
