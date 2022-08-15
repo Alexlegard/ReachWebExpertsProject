@@ -52,7 +52,7 @@ class ProfileController extends Controller
      */
     public function update(AdminProfileRequest $request, AdminProfile $adminProfile)
     {
-        $this->authorize('owns-profile', $adminProfile);
+        $this->authorize('owns-admin-profile', $adminProfile);
 
 		$admin = $adminProfile->admin;
         $admin->name = $request->name;

@@ -19,7 +19,7 @@ class MyRestaurantsController extends Controller
 	use GetOrders;
 	
     /**
-     * Display a listing of the restaurant.
+     * Display a listing of the restaurants.
      *
      * @return \Illuminate\Http\Response
      */
@@ -46,7 +46,7 @@ class MyRestaurantsController extends Controller
     }
 
     /**
-     * Store a newly created restaurant in storage.
+     * Store a newly created restaurant application in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -89,6 +89,7 @@ class MyRestaurantsController extends Controller
     {
     	$restaurant = Restaurant::find($id);
 
+    	//There's something wrong with authorization - 403 error
     	$this->authorize('owns-restaurant', $restaurant);
 		
 		$admin = Auth::guard('admin')->user();
@@ -99,10 +100,10 @@ class MyRestaurantsController extends Controller
 		
         return view("admin/myRestaurants/show", [
 			'restaurant' => $restaurant,
-			'address' =>    $address,
-			'cuisines' =>   $cuisines,
-			'orders' =>     $orders,
-			'reviews' =>    $reviews
+			'address'    => $address,
+			'cuisines'   => $cuisines,
+			'orders'     => $orders,
+			'reviews'    => $reviews
 		]);
     }
 

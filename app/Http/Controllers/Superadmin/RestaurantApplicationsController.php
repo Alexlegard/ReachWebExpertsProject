@@ -12,6 +12,7 @@ use App\Traits\GetAddressStrings;
 use App\Traits\GetCuisinesStrings;
 use App\Traits\GetOrders;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class RestaurantApplicationsController extends Controller
 {
@@ -72,7 +73,12 @@ class RestaurantApplicationsController extends Controller
 		$restaurant->address = $restaurantApplication->address;
 		$restaurant->cuisine = $restaurantApplication->cuisine;
 
-		if(isset($restaurantApplication->image)) {
+		// Store an image to the storage then the database and delete the old
+    	// one from storage.
+    	if( isset($restaurantApplication->image) ) {
+
+    		$restaurant->image = $this->setImage($restaurant, $restaurantApplication);
+    		//dd($restaurantApplication->image);
 			$restaurant->image = $restaurantApplication->image;
 		}
 
@@ -98,6 +104,36 @@ class RestaurantApplicationsController extends Controller
 		$path = 'restaurantapplicationimages/'.$image;
 
         Storage::disk('public')->delete($path);
+	}
+
+	// Store an image to the storage then the database and delete the old
+    // one from storage.
+	private function setImage($restaurant, $restapp)
+	{
+			//f0a47065d1b86feb98e07f5bdc67a0ba.png
+
+			$oldpath = storage_path('storage/restaurantapplicationimages/' . $restapp->image);
+			$oldfilepath = 'restaurantapplicationimages/' . $restapp->image;
+			$paththree = 'storage/restaurantapplicationimages/' . $restapp->image;
+
+			// We save the image as a new file
+			try {
+				//dd($paththree);
+				$img = Image::make($paththree);
+			} catch(\Exception $exception) {
+				return view('errors.imagenotfound');
+			}
+			
+			//dd("after try/catch");
+
+			// Finally we delete it from storage
+			Storage::disk('public')->delete($oldfilepath);
+
+			// Save the image
+			$img->save('storage/restaurantimages/'.$restapp->image);
+
+			// Save restaurant->image
+			$restaurant->image = $restapp->image;
 	}
 }
 

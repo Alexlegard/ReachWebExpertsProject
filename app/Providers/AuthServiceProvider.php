@@ -5,6 +5,10 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Auth;
+use App\User;
+use App\Restaurant;
+use App\AdminProfile;
+
 
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,10 +20,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        Order::class      => OrderPolicy::class,
-        Restaurant::class => RestaurantPolicy::class,
-        Dish::class       => DishPolicy::class,
-        Review::class     => ReviewsPolicy::class,
+        Order::class      => 'App\Policies\OrderPolicy',
+        Restaurant::class => 'App\Policies\RestaurantPolicy',
+        Restaurant::class => 'App\Policies\admin\RestaurantPolicy',
+        Dish::class       => 'App\Policies\DishPolicy',
+        Review::class     => 'App\Policies\ReviewsPolicy',
 
     ];
 
@@ -32,21 +37,18 @@ class AuthServiceProvider extends ServiceProvider
 	{
 		$this->registerPolicies();
 		
-		
-		
 		/************* ADMIN GATES *************/
 		//Restaurants
-		Gate::define('owns-restaurant', function ($user = null, $restaurant) {
+		Gate::define('owns-restaurant', function ($user = null, Restaurant $restaurant) {
 
 			if( Auth::guard('admin')->check() ) {
-				
 				$admin = Auth::guard('admin')->user();
 				return $restaurant->admins->contains($admin->id);
 			}
 			return false;
 		});
 
-		Gate::define('owns-profile', function ($user = null, $adminProfile) {
+		Gate::define('owns-admin-profile', function (User $user = null, AdminProfile $adminProfile){
 			
 			if( Auth::guard('admin')->check() ) {
 				

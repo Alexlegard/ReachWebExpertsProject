@@ -14,7 +14,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 */
 
 /* Public guest routes */
+/* Test */
+
 /* Welcome */
+
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes(['verify' => true]);
 /* Home */

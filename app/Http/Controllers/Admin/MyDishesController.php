@@ -13,6 +13,7 @@ use App\Traits\GetRestaurants;
 use App\Traits\PaginateCollection;
 use App\Http\Requests\MyDishRequest;
 use Image;
+use Illuminate\Support\Facades\Storage;
 
 class MyDishesController extends Controller
 {
@@ -22,7 +23,7 @@ class MyDishesController extends Controller
 	use PaginateCollection;
 	
     /**
-     * Display a listing of the dish.
+     * Display a listing of all dishes owned by the admin.
      *
      * @return \Illuminate\Http\Response
      */
@@ -181,7 +182,9 @@ class MyDishesController extends Controller
     	
     	$this->authorize('owns-restaurant', $restaurant);
 
-        $dish->delete();
+    	$this->deleteImage($dish->image);
+        $dish->delete($dish->image);
+
 		$dishes_array = array();
 		$restaurants = Auth::guard('admin')->user()->restaurants;
 		
@@ -209,5 +212,13 @@ class MyDishesController extends Controller
 		}
 		
 		return $restaurants;
+	}
+
+	//When a dish is deleted, also delete its image from storage.
+	private function deleteImage($image)
+	{
+		$path = 'dishimages/' . $image;
+
+        Storage::disk('public')->delete($path);
 	}
 }

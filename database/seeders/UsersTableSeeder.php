@@ -23,5 +23,14 @@ class UsersTableSeeder extends Seeder
 			'type' => 'user',
             'email_verified_at' => Carbon::now()
 		]);
+
+        User::create([
+            //Name, email, password, type
+            'name' => 'Alex Legard',
+            'email' => 'alexlegard3@yahoo.com',
+            'password' => '$2y$10$WYeJA/7N1No2u0rdPJ7h4e6IKIOzCBVb0e89O/uE0khKw0pDX2cha',
+            'type' => 'user',
+            'email_verified_at' => Carbon::now()
+        ]);
     }
 }

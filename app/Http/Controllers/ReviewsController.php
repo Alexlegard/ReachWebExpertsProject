@@ -50,15 +50,15 @@ class ReviewsController extends Controller
 
 		$review->save();
 		
-		return redirect("restaurants/" . $restaurant->id);
+		return redirect("restaurants/" . $restaurant->slug);
 	}
 
 	public function delete(Review $review)
 	{
-		$id = $review->restaurant->id;
+		$slug = $review->restaurant->slug;
 
 		$review->delete();
 
-		return redirect('restaurants/'.$id);
+		return redirect('restaurants/'.$slug);
 	}
 }

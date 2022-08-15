@@ -30,7 +30,7 @@ class ReviewsPolicy
      */
     public function view(Admin $admin, Review $review)
     {
-        dd("policies/admin");
+        //dd("policies/admin");
 
         foreach($review->restaurant->admins as $ad)
         {
