@@ -14,11 +14,6 @@ class SuperAdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        SuperAdmin::create([
-            //Name, email, password, type
-            'name' => 'Alex Legard',
-            'email' => 'alexlegard3@gmail.com',
-            'password' => '$2y$10$8oWsL7TppnVsTpIS3xF13.1FNUy4fFh060qiejftFgO7AGkd1MQwi',
-        ]);
+        
     }
 }
