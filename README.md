@@ -14,36 +14,57 @@ Above the restaurant owners is the super admin, which is the owner of the websit
 #### Users
 
 -Register an account (email verification is required)
+
 -Password reset
+
 -Change profile settings (name, email, description, billing & shipping address, avatar)
+
 -Post reviews
+
 -Add items to cart & view cart
+
 -Place and view orders
+
 -Set restaurants as favorites
+
 -Follow other users
+
 -View reviews of users you follow ("Social Feed")
 
 
 #### Admin / Restaurant Owner
 
 -Create restaurant applications which are unapproved restaurants
+
 -Read, update, and delete restaurants
+
 -Create, read, update, delete dishes for their restaurants
+
 -Create dish options (a way for users to customise certain dishes)
+
 -View recent orders/invoices
+
 -View reviews on their restaurants and delete them
+
 -View profile
+
 -Password reset
 
 
 #### Super Admin
 
 -Delete restaurants and all related data
+
 -Approve and deny restaurant applications
+
 -View all orders and sales
+
 -Delete reviews
+
 -Delete users and admins
+
 -View profile
+
 -Password reset
 
 
