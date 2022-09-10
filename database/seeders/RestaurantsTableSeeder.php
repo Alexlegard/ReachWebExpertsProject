@@ -20,7 +20,7 @@ class RestaurantsTableSeeder extends Seeder
 			'slug'               => 'subway-mcvean-dr',
 			'address'            => json_decode('{"streetaddress":"9995 McVean Dr","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
 			'cuisine'            => ["Sandwiches",null,null],
-			'image'              => 'subway.png',
+			'image_external_url' => 'https://alexlegard.ca/images/SubwayLogo.jpg',
 			'facebook'           => 'https://www.facebook.com/subway/',
 			'twitter'            => 'https://twitter.com/SUBWAY',
 			'instagram'          => 'https://www.instagram.com/subway/'
@@ -32,7 +32,7 @@ class RestaurantsTableSeeder extends Seeder
 			'slug'               => 'mcdonalds-mountainash-rd',
 			'address'            => json_decode('{"streetaddress":"45 Mountainash Rd","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
 			'cuisine'            => ["Sandwiches","Fries","Coffee"],
-			'image'              => 'mcdonalds.png',
+			'image_external_url' => 'https://alexlegard.ca/images/McdonaldsLogo.jpg',
 			'facebook'           => 'https://www.facebook.com/McDonalds/',
 			'twitter'            => 'https://twitter.com/mcdonalds',
 			'instagram'          => 'https://www.instagram.com/mcdonalds/'
@@ -44,7 +44,7 @@ class RestaurantsTableSeeder extends Seeder
 			'slug'               => 'tim-hortons-mountainash-rd',
 			'address'            => json_decode('{"streetaddress":"43 Mountainash Rd","city":"Brampton","stateprovince":"Ontario","country":"Canada"}'),
 			'cuisine'            => ["Coffee","Sandwiches","Donuts"],
-			'image'              => 'timhortons.png',
+			'image_external_url' => 'https://alexlegard.ca/images/TimHortonsLogo.jpg',
 			'facebook'           => 'https://www.facebook.com/TimHortons/',
 			'twitter'            => 'https://twitter.com/TimHortons',
 			'instagram'          => 'https://www.instagram.com/timhortons/'

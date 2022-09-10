@@ -20,9 +20,14 @@
 		<div class="col-md-6">
 			<a href="{{ url('restaurants/'.$restaurant->slug) }}">
 				<div class="welcome-restaurant-card" dusk="restaurant-card">
+
 					@if( $restaurant->image )
 					<div class="restaurant-card-logo">
 						<img src="{{ asset('storage/restaurantimages/'.$restaurant->image) }}" width="100" height="100">
+					</div>
+					@elseif( $restaurant->image_external_url )
+					<div class="restaurant-card-logo">
+						<img src="{{ $restaurant->image_external_url }}" width="100" height="100">
 					</div>
 					@endif
 					<div class="restaurant-card-details">
