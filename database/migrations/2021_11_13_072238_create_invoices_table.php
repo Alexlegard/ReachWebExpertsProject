@@ -40,7 +40,7 @@ class CreateInvoicesTable extends Migration
             $table->double('tax');
             $table->double('total');
             $table->double('commission');
-            $table->boolean('shipped')->default('false');
+            $table->boolean('shipped')->default(false);
             $table->timestamps();
         });
     }

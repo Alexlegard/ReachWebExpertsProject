@@ -37,7 +37,7 @@ class CreateOrdersTable extends Migration
 			$table->double('billing_total');
 			$table->double('billing_commission');
 			$table->string('payment_gateway')->default('stripe');
-			$table->boolean('shipped')->default('false');
+			$table->boolean('shipped')->default(false);
 			$table->string('error')->nullable();
 			$table->date('time_placed');
 			
