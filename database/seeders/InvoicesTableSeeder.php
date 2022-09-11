@@ -17,7 +17,7 @@ class InvoicesTableSeeder extends Seeder
         Invoice::create([
             'order_id'                  => 1,
             'admin_id'                  => 1,
-            'time_issued'               => '2020-07-13 06:13:17',
+            'time_issued'               => now(), 
             'customer_email'            => 'alexlegard3@gmail.com',
             'customer_name'             => 'Alex Legard',
             'customer_streetaddress'    => '1234 Example Street',

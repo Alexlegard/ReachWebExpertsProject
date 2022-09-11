@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             //Name, email, password, type
             'name' => 'Alex Legard',
             'email' => 'alexlegard3@gmail.com',
-            'password' => '$2y$10$qDsvuA4OPejyJqBXFzAcXuhp1fc1bABTvoIuH9ytXyFlor.GgcBRe',
+            'password' => \Hash::make('password'),
             'type' => 'user',
             'email_verified_at' => Carbon::now()
         ]);
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             //Name, email, password, type
             'name' => 'Alex Legard',
             'email' => 'alexlegard3@yahoo.com',
-            'password' => '$2y$10$scQLx4JzZljwe95/n36cbu4aMmmDc47xNNU5PSaKz43gu6ymI0h4O',
+            'password' => \Hash::make('password'),
             'type' => 'user',
             'email_verified_at' => Carbon::now()
         ]);

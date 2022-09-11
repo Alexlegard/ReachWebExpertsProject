@@ -30,7 +30,7 @@ class OrdersTableSeeder extends Seeder
 			'billing_commission' => '2.48',
 			'payment_gateway' => 'Stripe',
 			'shipped' => false,
-			'time_placed' => '2020-07-13',
+			'time_placed' => now(),
 		]);
 		
 		$order->dishes()->sync( array( 
