@@ -25,11 +25,7 @@ let weeklyOrdersChart = new Chart(weeklyOrdersContext, {
 				borderColor: "green",
 				fill: false,
 				
-				data: [
-					@foreach($weekly_invoices as $invoice)
-						{{ $invoice }},
-					@endforeach
-				]
+				data: {{ json_encode(array_values($weekly_invoices))}}
 			}
 		]
 		
@@ -58,11 +54,7 @@ let weeklyRevenueChart = new Chart(weeklyRevenueContext, {
 				borderColor: "green",
 				fill: false,
 				
-				data: [
-					@foreach($weekly_revenue as $invoice)
-						{{ $invoice }},
-					@endforeach
-				]
+				data: {{ json_encode(array_values($weekly_revenue)) }}
 			}
 		]
 		
@@ -99,11 +91,7 @@ let monthlyOrdersChart = new Chart(monthlyOrdersContext, {
 				borderColor: "blue",
 				fill: false,
 				
-				data: [
-					@foreach($monthly_invoices as $invoice)
-					{{ $invoice }},
-					@endforeach
-				]
+				data: {{ json_encode(array_values($monthly_invoices)) }}
 			}
 		]
 		
@@ -132,7 +120,7 @@ let monthlyRevenueChart = new Chart(monthlyRevenueContext, {
 			'21st', '22nd', '23rd', '24th', '25th',
 			'26th', '27th', '28th', '29th', '30th',
 			'31st'
-		].slice(0, {{count($monthly_invoices)}}),
+		].slice(0, {{count($monthly_revenue)}}),
 		datasets: [
 			{
 				label: "Orders",
@@ -140,11 +128,7 @@ let monthlyRevenueChart = new Chart(monthlyRevenueContext, {
 				borderColor: "blue",
 				fill: false,
 				
-				data: [
-					@foreach($monthly_invoices as $invoice)
-					{{ $invoice }},
-					@endforeach
-				]
+				data: {{ json_encode(array_values($monthly_revenue)) }}
 			}
 		]
 		
