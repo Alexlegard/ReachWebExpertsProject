@@ -38,7 +38,7 @@
 					<tr>
 						<td>
 							<div class="grey-nav-link">
-								<a href="{{ url('restaurants/'.$review->restaurant->id) }}">{{ $review->restaurant->name }}</a>
+								<a href="{{ url('restaurants/'.$review->restaurant->slug) }}">{{ $review->restaurant->name }}</a>
 							</div>
 						</td>
 						<td>{{ $review->created_at }}</td>

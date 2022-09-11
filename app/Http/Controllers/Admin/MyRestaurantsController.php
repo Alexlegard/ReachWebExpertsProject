@@ -89,7 +89,10 @@ class MyRestaurantsController extends Controller
     {
     	$restaurant = Restaurant::find($id);
 
-    	//There's something wrong with authorization - 403 error
+    	// There's something wrong with authorization.
+    	// 403 | This action is unauthorized.
+    	// Also, didn't I adjust my AuthServiceProvider recently
+    	// because it was messing with my unit tests?
     	$this->authorize('owns-restaurant', $restaurant);
 		
 		$admin = Auth::guard('admin')->user();

@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Auth;
 use App\User;
+use App\Admin;
+use App\SuperAdmin;
 use App\Restaurant;
 use App\AdminProfile;
 
@@ -39,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
 		
 		/************* ADMIN GATES *************/
 		//Restaurants
-		Gate::define('owns-restaurant', function ($user = null, Restaurant $restaurant) {
+		Gate::define('owns-restaurant', function (User|Admin|SuperAdmin $user = null, Restaurant $restaurant) {
 
 			if( Auth::guard('admin')->check() ) {
 				$admin = Auth::guard('admin')->user();
@@ -48,7 +50,7 @@ class AuthServiceProvider extends ServiceProvider
 			return false;
 		});
 
-		Gate::define('owns-admin-profile', function (User $user = null, AdminProfile $adminProfile){
+		Gate::define('owns-admin-profile', function (User|Admin|SuperAdmin $user = null, AdminProfile $adminProfile){
 			
 			if( Auth::guard('admin')->check() ) {
 				
@@ -58,7 +60,7 @@ class AuthServiceProvider extends ServiceProvider
 			return false;
 		});
 
-		Gate::define('add-restaurant', function ($user = null) {
+		Gate::define('add-restaurant', function (User|Admin|SuperAdmin $user = null) {
 			
 			if( Auth::guard('admin')->check() ) {
 				return true;
@@ -68,7 +70,7 @@ class AuthServiceProvider extends ServiceProvider
 
 		
 		/************* SUPER ADMIN GATES *************/
-		Gate::define('view-users', function ($user = null) {
+		Gate::define('view-users', function (User|Admin|SuperAdmin $user = null) {
 			
 			if( Auth::guard('superadmin')->check() ) {
 				return true;
