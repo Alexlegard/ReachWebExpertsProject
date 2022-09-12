@@ -30,15 +30,7 @@ trait GetInvoices {
 	public function getWeeklyInvoices(Admin $admin) {
 
 		// 0 is Monday, 1 is Tuesday, etc.
-		$invoices_array = [
-			1 => 0,
-			2 => 0,
-			3 => 0,
-			4 => 0,
-			5 => 0,
-			6 => 0,
-			7 => 0,
-		];
+		$invoices_array = array_fill(0, 7, 0);
 
 		$invoices = $admin->invoices;
 		$startOfWeek = Carbon::now()->startOfWeek();
@@ -59,14 +51,11 @@ trait GetInvoices {
 	// Return array of integers of this month's invoices
 	public function getMonthlyInvoices(Admin $admin) {
 
-		$invoices_array = [];
+		// REMEMBER I CAN USE ARRAY_FILL instead of a loop.
+		$invoices_array = array_fill(1, now()->daysInMonth, 0);
 		$invoices = $admin->invoices;
 		$now = Carbon::now();
 		$startOfMonth = $now->startOfMonth();
-
-		for($i = 1; $i <= $now->daysInMonth; $i++) {
-			$invoices_array[$i] = 0;
-		}
 
 		foreach( $invoices as $invoice ) {
 
@@ -74,8 +63,7 @@ trait GetInvoices {
 
 			if($invoiceWasIssued->between($startOfMonth, Carbon::now())) {
 
-				$day = Carbon::parse($invoice->time_issued)->day;
-				$invoices_array[$day] += 1;
+				$invoices_array[$invoice->time_issued->day + 1] += 1;
 			}
 		}
 		
@@ -148,15 +136,7 @@ trait GetInvoices {
 	public function getWeeklyRevenue(Admin $admin) {
 
 		// 0 is Monday, 1 is Tuesday, etc.
-		$revenue_array = [
-			1 => 0,
-			2 => 0,
-			3 => 0,
-			4 => 0,
-			5 => 0,
-			6 => 0,
-			7 => 0,
-		];
+		$revenue_array = array_fill(0, 7, 0);
 
 		$invoices = $admin->invoices;
 		$startOfWeek = Carbon::now()->startOfWeek();

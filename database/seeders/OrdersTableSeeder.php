@@ -16,7 +16,7 @@ class OrdersTableSeeder extends Seeder
     {
         $order = Order::create([
 			'user_id' => '1',
-			'billing_email' => 'alexlegard3@gmail.com',
+			'billing_email' => env('EMAIL_SEED'),
 			'billing_name' => 'Alex Legard',
 			'billing_streetaddress' => '1234 Example Street',
 			'billing_city' => 'Toronto',
@@ -30,7 +30,7 @@ class OrdersTableSeeder extends Seeder
 			'billing_commission' => '2.48',
 			'payment_gateway' => 'Stripe',
 			'shipped' => false,
-			'time_placed' => '2020-07-13',
+			'time_placed' => now(),
 		]);
 		
 		$order->dishes()->sync( array( 

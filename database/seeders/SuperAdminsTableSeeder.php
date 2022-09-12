@@ -16,9 +16,9 @@ class SuperAdminsTableSeeder extends Seeder
     {
         SuperAdmin::create([
             //Name, email, password, type
-            'name' => 'Alex Legard',
-            'email' => 'alexlegard3@gmail.com',
-            'password' => '$2y$10$HNdxRVWVF2t2g3d7NERB8.GP77jcfDLod90/vymeEba5jpvRwSKvC',
+            'name'     => 'Alex Legard',
+            'email'    => env('EMAIL_SEED'),
+            'password' => \Hash::make('>UGDdFi?w2ur'),
         ]);
     }
 }

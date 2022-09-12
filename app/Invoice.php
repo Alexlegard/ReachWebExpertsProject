@@ -9,6 +9,8 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    public $casts = ['time_issued' => 'datetime'];
+
     /**
      * The attributes that are mass assignable.
      *

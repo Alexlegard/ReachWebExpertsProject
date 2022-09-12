@@ -7,6 +7,12 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
 <script>
+// Functions
+function daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+}
+
+
 var weeklyOrdersContext = document.querySelector('#weeklyOrdersChart').getContext('2d');
 var weeklyRevenueContext = document.querySelector('#weeklyRevenueChart').getContext('2d');
 var monthlyOrdersContext = document.querySelector('#monthlyOrdersChart').getContext('2d');
@@ -17,7 +23,7 @@ var quarterlyRevenueContext = document.querySelector('#quarterlyRevenueChart').g
 let weeklyOrdersChart = new Chart(weeklyOrdersContext, {
 	type: 'line',
 	data: {
-		labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+		labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 		datasets: [
 			{
 				label: "Orders",
@@ -26,13 +32,9 @@ let weeklyOrdersChart = new Chart(weeklyOrdersContext, {
 				fill: false,
 				
 				data: [
-					{{ $weekly_invoices[1] }},
-					{{ $weekly_invoices[2] }},
-					{{ $weekly_invoices[3] }},
-					{{ $weekly_invoices[4] }},
-					{{ $weekly_invoices[5] }},
-					{{ $weekly_invoices[6] }},
-					{{ $weekly_invoices[7] }}
+					@foreach($weekly_invoices as $invoice)
+						{{ $invoice }},
+					@endforeach
 				]
 			}
 		]
@@ -54,7 +56,7 @@ let weeklyOrdersChart = new Chart(weeklyOrdersContext, {
 let weeklyRevenueChart = new Chart(weeklyRevenueContext, {
 	type: 'line',
 	data: {
-		labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+		labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 		datasets: [
 			{
 				label: "Revenue",
@@ -63,13 +65,9 @@ let weeklyRevenueChart = new Chart(weeklyRevenueContext, {
 				fill: false,
 				
 				data: [
-					{{ $weekly_revenue[1] }},
-					{{ $weekly_revenue[2] }},
-					{{ $weekly_revenue[3] }},
-					{{ $weekly_revenue[4] }},
-					{{ $weekly_revenue[5] }},
-					{{ $weekly_revenue[6] }},
-					{{ $weekly_revenue[7] }}
+					@foreach($weekly_revenue as $revenue)
+						{{ $revenue }},
+					@endforeach
 				]
 			}
 		]
@@ -99,7 +97,7 @@ let monthlyOrdersChart = new Chart(monthlyOrdersContext, {
 			'21st', '22nd', '23rd', '24th', '25th',
 			'26th', '27th', '28th', '29th', '30th',
 			'31st'
-		],
+		].slice(0, {{ count($monthly_invoices) }}),
 		datasets: [
 			{
 				label: "Orders",
@@ -108,37 +106,9 @@ let monthlyOrdersChart = new Chart(monthlyOrdersContext, {
 				fill: false,
 				
 				data: [
-					{{ $monthly_invoices['1'] }},
-					{{ $monthly_invoices['2'] }},
-					{{ $monthly_invoices['3'] }},
-					{{ $monthly_invoices['4'] }},
-					{{ $monthly_invoices['5'] }},
-					{{ $monthly_invoices['6'] }},
-					{{ $monthly_invoices['7'] }},
-					{{ $monthly_invoices['8'] }},
-					{{ $monthly_invoices['9'] }},
-					{{ $monthly_invoices['10'] }},
-					{{ $monthly_invoices['11'] }},
-					{{ $monthly_invoices['12'] }},
-					{{ $monthly_invoices['13'] }},
-					{{ $monthly_invoices['14'] }},
-					{{ $monthly_invoices['15'] }},
-					{{ $monthly_invoices['16'] }},
-					{{ $monthly_invoices['17'] }},
-					{{ $monthly_invoices['18'] }},
-					{{ $monthly_invoices['19'] }},
-					{{ $monthly_invoices['20'] }},
-					{{ $monthly_invoices['21'] }},
-					{{ $monthly_invoices['22'] }},
-					{{ $monthly_invoices['23'] }},
-					{{ $monthly_invoices['24'] }},
-					{{ $monthly_invoices['25'] }},
-					{{ $monthly_invoices['26'] }},
-					{{ $monthly_invoices['27'] }},
-					{{ $monthly_invoices['28'] }},
-					{{ $monthly_invoices['29'] }},
-					{{ $monthly_invoices['30'] }},
-					{{ $monthly_invoices['31'] }}
+					@foreach($monthly_invoices as $invoice)
+						{{ $invoice }},
+					@endforeach
 				]
 			}
 		]
@@ -177,37 +147,9 @@ let monthlyRevenueChart = new Chart(monthlyRevenueContext, {
 				fill: false,
 				
 				data: [
-					{{ $monthly_revenue['1'] }},
-					{{ $monthly_revenue['2'] }},
-					{{ $monthly_revenue['3'] }},
-					{{ $monthly_revenue['4'] }},
-					{{ $monthly_revenue['5'] }},
-					{{ $monthly_revenue['6'] }},
-					{{ $monthly_revenue['7'] }},
-					{{ $monthly_revenue['8'] }},
-					{{ $monthly_revenue['9'] }},
-					{{ $monthly_revenue['10'] }},
-					{{ $monthly_revenue['11'] }},
-					{{ $monthly_revenue['12'] }},
-					{{ $monthly_revenue['13'] }},
-					{{ $monthly_revenue['14'] }},
-					{{ $monthly_revenue['15'] }},
-					{{ $monthly_revenue['16'] }},
-					{{ $monthly_revenue['17'] }},
-					{{ $monthly_revenue['18'] }},
-					{{ $monthly_revenue['19'] }},
-					{{ $monthly_revenue['20'] }},
-					{{ $monthly_revenue['21'] }},
-					{{ $monthly_revenue['22'] }},
-					{{ $monthly_revenue['23'] }},
-					{{ $monthly_revenue['24'] }},
-					{{ $monthly_revenue['25'] }},
-					{{ $monthly_revenue['26'] }},
-					{{ $monthly_revenue['27'] }},
-					{{ $monthly_revenue['28'] }},
-					{{ $monthly_revenue['29'] }},
-					{{ $monthly_revenue['30'] }},
-					{{ $monthly_revenue['31'] }}
+					@foreach($monthly_revenue as $revenue)
+						{{ $revenue }},
+					@endforeach
 				]
 			}
 		]

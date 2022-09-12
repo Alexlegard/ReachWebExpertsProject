@@ -17,8 +17,8 @@ class AdminsTableSeeder extends Seeder
 		Admin::create([
             //Name, email, password, type
             'name'     => 'Alex Legard',
-            'email'    => 'alexlegard3@gmail.com',
-            'password' => '$2y$10$LwVswuTOjNfd2YjSDnIy1OqbI2cRJSZMwZP8mgS.GP65CoXyU3KR2',
+            'email'    => env('EMAIL_SEED'),
+            'password' => \Hash::make('v11gH,^!w}-H'),
         ]);
     }
 }

@@ -17,19 +17,19 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             //Name, email, password, type
-            'name' => 'Alex Legard',
-            'email' => 'alexlegard3@gmail.com',
-            'password' => '$2y$10$qDsvuA4OPejyJqBXFzAcXuhp1fc1bABTvoIuH9ytXyFlor.GgcBRe',
-            'type' => 'user',
+            'name'              => 'Alex Legard',
+            'email'             => env('EMAIL_SEED'),
+            'password'          => \Hash::make('HyLEy}6Ri-ff'),
+            'type'              => 'user',
             'email_verified_at' => Carbon::now()
         ]);
 
         User::create([
             //Name, email, password, type
-            'name' => 'Alex Legard',
-            'email' => 'alexlegard3@yahoo.com',
-            'password' => '$2y$10$scQLx4JzZljwe95/n36cbu4aMmmDc47xNNU5PSaKz43gu6ymI0h4O',
-            'type' => 'user',
+            'name'              => 'Alex Legard',
+            'email'             => env('EMAIL_SEED_TWO'),
+            'password'          => \Hash::make('3_gQWu:mB_!c'),
+            'type'              => 'user',
             'email_verified_at' => Carbon::now()
         ]);
     }
